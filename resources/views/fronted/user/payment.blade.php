@@ -71,8 +71,10 @@
             <div class="col-lg-6">
                 <h2>Địa chỉ giao hàng</h2>
                 <?php
+                if(Session::get('user_address')!==null){
                 $a = Session::get('user_address');
                 echo $a->address;
+                }
                 ?>
             </div>
             <div class="col-lg-6">

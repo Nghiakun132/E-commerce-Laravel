@@ -22,10 +22,17 @@ class BackendHomeController extends Controller
             $total = DB::table('order')->sum('order_total');
             $user = DB::table('users')->count('id');
             $products = DB::table('products')->count('id');
+            $order = DB::table('order')
+            ->join('users','order.user_id','=','users.id')
+            ->select('order.*','users.name')
+            ->join('address','users.id','=','address.user_id')->orderBy('order.id')->limit(5)->get();
+            $view =[
+                'order' => $order,
+            ];
             Session::put('total', $total);
             Session::put('users', $user);
             Session::put('products', $products);
-        return view('backend.index');
+        return view('backend.index',$view);
     }
     public function login(){
         return view('backend.login');

@@ -16,7 +16,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- //Custom Theme files -->
 <!-- web font -->
 <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
-<!-- //web font -->
+<!-- //web font --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- main -->
@@ -28,9 +31,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     @csrf
 					<input class="text" type="text" name="name" placeholder="Username" required="">
 					<input class="text email" type="email" name="email" placeholder="Email" required="">
+                    <small class="form-text text-danger"> {{ $errors->first('email') }}</small>
 					<input class="text" type="password" name="password" placeholder="Password" required="">
+                    <small class="form-text text-danger"> {{ $errors->first('password')}}</small>
 					<input class="text" style="margin:24px 0" type="text" name="address" placeholder="address" required="">
 					<input class="text" style="margin:24px 0" type="number" name="phone" placeholder="Phone" required="">
+                    <small class="form-text text-danger"> {{ $errors->first('phone')}}</small>
 					<div class="wthree-text">
 						<label class="anim">
 							<input type="checkbox" class="checkbox" required="">

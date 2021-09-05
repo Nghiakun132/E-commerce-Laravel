@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Fronted;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\register;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,12 +20,12 @@ class CheckoutController extends Controller
         return view('fronted.user.index');
     }
 
-    public function add_user(Request $request){
+    public function add_user(register $request){
         $data= array();
         $data2 =array();
         $data['name']  = $request->name;
         $data['email'] = $request->email;
-        $data['password'] = $request->password;
+        $data['password'] = md5($request->password,false);
         $data['phone'] = $request->phone;
         $data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         $insert = DB::table('users')->insertGetId($data);
@@ -38,19 +39,6 @@ class CheckoutController extends Controller
     public function checkout(){
         return view('fronted.user.checkout');
     }
-    public function save_checkout(Request $request){
-        $data= array();
-        $data['s_name']  = $request->name;
-        $data['s_email'] = $request->email;
-        $data['s_phone'] = $request->phone;
-        $data['s_address'] = $request->diachi;
-        $data['s_notes'] = $request->note;
-        $data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
-        $insert = DB::table('shipping')->insertGetId($data);
-        Session::put('s_id',$insert);
-        Session::put('s_name', $request->name);
-        return Redirect::to('payment');
-    }
 
     public function logout(){
         Session::flush();
@@ -58,8 +46,9 @@ class CheckoutController extends Controller
     }
     public function login_user(Request $request){
         $email = $request->email;
-        $password = $request->password;
+        $password = md5($request->password);
         $result = DB::table('users')->where('email', $email)->where('password', $password)->first();
+        // dd($result);
         Session::put('user_id',$result->id);
         Session::put('user_name',$result->name);
         return Redirect()->Route('get.home');

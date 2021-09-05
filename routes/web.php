@@ -38,7 +38,6 @@ Route::group(['namespace' =>'Fronted'],function () {
     Route::post('add-user','CheckoutController@add_user');
     Route::post('login-user','CheckoutController@login_user');
     Route::get('checkout','CheckoutController@checkout');
-    Route::post('save-checkout','CheckoutController@save_checkout');
     Route::get('logout','CheckoutController@logout');
     Route::get('payment','CheckoutController@payment');
     Route::get('order-place','CheckoutController@order_place');

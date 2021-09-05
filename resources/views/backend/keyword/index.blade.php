@@ -1,6 +1,6 @@
 
 @extends('layout.app_backend')
-@section("titles",'Danh sách từ khóa')
+@section("title",'Danh sách từ khóa')
 @section('content')
     <h3>Danh sach từ khóa</h3>
     <div class="row">

@@ -1,5 +1,5 @@
 @extends('layout.app_backend')
-@section("titles",'Cập nhật Tag')
+@section("title",'Cập nhật Tag')
 @section('content')
     <h3>Danh sach tag</h3>
     <div class="row">

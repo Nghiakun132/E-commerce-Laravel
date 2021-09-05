@@ -103,18 +103,7 @@
                         <li>Thuế <span>{{ Cart::tax() . ' ' . 'đ' }}</span></li>
                         <li>Thành tiền <span>{{ Cart::total() . ' ' . 'đ' }}</span></li>
                     </ul>
-                    <?php
-                    $userId = Session::get('user_id');
-                    if($userId != NULL) {
-                    ?>
-                    <a href="{{URL::to('payment')}}" class="primary-btn" >Tiến hành thanh toán</a>
-                    <?php
-                    }else{
-                        ?>
-                    <a href="{{URL::to('checkout')}}" class="primary-btn" >Tiến hành thanh toán</a>
-                        <?php
-                    }
-                    ?>
+                   <a href="{{URL::to('payment')}}" class="primary-btn" >Tiến hành thanh toán</a>
                 </div>
             </div>
         </div>

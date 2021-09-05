@@ -1,6 +1,6 @@
 
 @extends('layout.app_backend')
-@section("titles",'Danh sách menu')
+@section("title",'Danh sách menu')
 @section('content')
     <h3>Danh sach menu</h3>
     <div class="row">

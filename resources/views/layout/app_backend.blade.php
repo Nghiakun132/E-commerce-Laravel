@@ -20,6 +20,7 @@
         <meta name="msapplication-config" content="/docs/4.6/assets/img/favicons/browserconfig.xml">
         <meta name="theme-color" content="#563d7c">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <style>
             .bd-placeholder-img {
             font-size: 1.125rem;

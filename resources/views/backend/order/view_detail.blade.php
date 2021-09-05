@@ -4,7 +4,7 @@
 <h2>Chi tiết đơn hàng</h2>
 <br>
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-6 card">
         <h3>Thông tin người mua</h3>
         <table class="table table-hover">
             <tr>
@@ -21,7 +21,7 @@
             @endforeach
         </table>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-6 card">
         <h3>Thông tin đơn hàng</h3>
         <table class="table table-hover">
             <tr>
