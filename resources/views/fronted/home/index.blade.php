@@ -5,7 +5,7 @@
 
 </style>
 <div class="nghia">
-    <section class="hero">
+    {{-- <section class="hero">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -24,13 +24,13 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
+                            <form action="{{URL::to('tim-kiem')}}" method="post">
+                                @csrf
                                 <div class="hero__search__categories">
-                                    Tât cả
-                                    <span class="arrow_carrot-down">
+                                    Tất cả
                                     </span>
                                 </div>
-                                <input type="text" placeholder="Bạn cần gì ???">
+                                <input type="text" placeholder="Bạn cần gì ???" name='tukhoa'>
                                 <button type="submit" class="site-btn">Tìm kiếm</button>
                             </form>
                         </div>
@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Hero Section End -->
 
     <!-- Categories Section Begin -->
@@ -80,7 +80,7 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="././public/img/categories/cat-4.jpg">
-                            <h5><a href="#">Hản sản</a></h5>
+                            <h5><a href="#">Hải sản</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -106,21 +106,20 @@
                         <ul>
                             <li class="active" data-filter="*">All</li>
                             @foreach ($categoriesGlobal as $item)
-                            <li data-filter=".{{$item->c_name}}">{{$item->c_name}}</li>
+                            <li data-filter=".{{$item->c_slug}}">{{$item->c_name}}</li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row featured__filter">
-                @foreach ($productsGlobal as $item)
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                @foreach ($product as $item)
+                <div class="col-lg-3 col-md-4 col-sm-6 mix {{ $item->c_slug}}">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="{{url_file2($item->pro_avatar)}}">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
@@ -160,7 +159,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
-                        <h4>Latest Products</h4>
+                        <h4>Sản phẩm mới nhất</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 @foreach ($products as $item2)

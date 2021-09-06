@@ -9,6 +9,7 @@
         <title>@yield('title')</title>
         <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/navbar-fixed/">
         <!-- Bootstrap core CSS -->
+    <link rel="shortcut icon" href="{{asset('././././public/img/2.png')}}" type="image/png">
         <link href="https://getbootstrap.com/docs/4.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <!-- Favicons -->
         <link rel="apple-touch-icon" href="/docs/4.6/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -57,7 +58,22 @@
                 </li>
                 @endforeach
                 </ul>
+                <style>
+                    .vcl a:hover {
+                        text-decoration: none;
+                        color: red !important;
+                    }
+                </style>
+                <h3 class="text-right text-warning vcl" style="display: block">Xin chào:
+                    <a href="" data-toggle="modal" class="text-warning " data-target="#myModal"> <?php
+                    $name = Session::get('name');
+                    if ($name) {
+                        echo $name;
+                    }
 
+                    ?></a>&nbsp;&nbsp;&nbsp;<a
+                            href="{{ URL::to('admin/logout') }}">Đăng xuất <i class="fas fa-sign-out-alt    "></i></a>
+                </h3>
             </div>
         </nav>
         <main role="main" class="container-fluid">

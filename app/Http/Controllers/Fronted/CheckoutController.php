@@ -66,11 +66,12 @@ class CheckoutController extends Controller
         $order = array();
         $order['user_id']= Session::get('user_id');
         $order['order_total'] = Cart::total();
-        $order['order_status'] = 1;
+        $order['order_status'] = 0;
         $order['address'] = $address->address;
         $order['transport'] = rand(1,9);
         $order['created_at']=Carbon::now('Asia/Ho_Chi_Minh');
         $insert = DB::table('order')->insertGetId($order);
+
         //order_detail
         $order2 = array();
         $content = Cart::content();
@@ -82,6 +83,16 @@ class CheckoutController extends Controller
         $order2['product_qty'] = $value->qty;
         DB::table('order_detail')->insert($order2);
     }
+
+        $soluong = array();
+        foreach($content as $v2){
+            $id = $v2->id;
+            $qty = DB::table('products')->select('pro_number')->where('id',$id)->first();
+            $sl = $v2->qty;
+            $soluong['pro_number'] = $qty->pro_number - $sl;
+            DB::table('products')->where('id',$id)->update($soluong);
+        }
+
         Cart::destroy();
         return Redirect()->Route('get.home');
     }

@@ -22,6 +22,9 @@ class BackendOrderController extends Controller
     }
     public function index(){
         $this->AuthLogin();
+        // $status = DB::table('order')->select('order_status')->first();
+
+        // dd($status);
         $order = DB::table('order')
         ->join('users','order.user_id','=','users.id')
         ->select('order.*','users.name')
@@ -55,7 +58,16 @@ class BackendOrderController extends Controller
         }
         public function change_status($id){
             $this->AuthLogin();
-            $data['order_status'] = 0;
+            $status = DB::table('order')->select('order_status')->where('id', $id)->first();
+            // $status = int($status);
+            // dd($status);
+            if($status->order_status == 0){
+                $data['order_status'] = 1;
+            }else if($status->order_status == 1){
+                $data['order_status'] = 2;
+            }else if($status->order_status== 2){
+                $data['order_status'] = 3;
+            }
             $data['time_confirm']=Carbon::now('Asia/Ho_Chi_Minh');
             DB::table('order')
             ->where('id', $id)->update($data);

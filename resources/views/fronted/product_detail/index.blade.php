@@ -102,7 +102,11 @@
                                 </div>
                             </div>
                             <input type="hidden" name="product_id" value="{{$product->id}}">
-                            <button type="submit" class="btn btn-success btn-lg">ADD TO CARD</button>
+                            @if($product->pro_number !=0)
+                                 <button type="submit" class="btn btn-success btn-lg">ADD TO CARD</button>
+                            @else
+                                <button type="submit" class="btn btn-success btn-lg "disabled>ADD TO CARD</button>
+                            @endif
                             <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         </form>
 
@@ -111,11 +115,11 @@
                                     <b>
                                         Tình trạng
                                     </b>
-                                    <span>
+                                    <span class="text-danger">
                                         @if ($product->pro_number > 0)
                                             Còn hàng
                                         @else
-                                            Hết hàng
+                                             Hết hàng
                                         @endif
                                     </span>
                                 </li>
@@ -180,70 +184,24 @@
                 </div>
             </div>
             <div class="row">
+                @foreach ($related as $related)
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg=".././public/img/product/product-1.jpg"
+                        <div class="product__item__pic set-bg" data-setbg="{{url_file($related->pro_avatar)}}"
                             style="background-image: url(&quot;.././public/img/product/product-1.jpg&quot;);">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">{{$related->pro_name}}</a></h6>
+                            <h5>{{number_format(($related->pro_price),0,',','.').'đ'}}</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg=".././public/img/product/product-2.jpg"
-                            style="background-image: url(&quot;.././public/img/product/product-2.jpg&quot;);">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg=".././public/img/product/product-3.jpg"
-                            style="background-image: url(&quot;.././public/img/product/product-3.jpg&quot;);">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg=".././public/img/product/product-7.jpg"
-                            style="background-image: url(&quot;.././public/img/product/product-7.jpg&quot;);">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </section>

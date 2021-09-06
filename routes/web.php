@@ -18,22 +18,28 @@ use Illuminate\Support\Facades\Route;
 // });
 //Fronted
 Route::group(['namespace' =>'Fronted'],function () {
-    Route::get('','HomeController@index')->name('get.home'); //Trang chu
-
-    Route::get('danh-muc/{slug}','CategoryController@index')->name('get.category'); //Danh muc sp
-
-    Route::get('chi-tiet/{slug}','ProductDetailController@index')->name('get.product_detail'); //chi tiet sp
-
-    Route::get('menu/{slug}','MenuController@index')->name('get.menu'); //Menu
+    //Trang chu
+    Route::get('','HomeController@index')->name('get.home');
+    //Cập nhật thông tin
+    Route::get('update-tt','HomeController@update_tt');
+    Route::post('update','HomeController@update');
+    //Danh muc sp
+    Route::get('danh-muc/{slug}','CategoryController@index')->name('get.category');
+    //chi tiet sp
+    Route::get('chi-tiet/{slug}','ProductDetailController@index')->name('get.product_detail');
+    //Menu
+    Route::get('menu/{slug}','MenuController@index')->name('get.menu');
     Route::get('show-articles','ArticleDetailController@index');
+    //search
+    Route::post('tim-kiem','HomeController@search');
 
-// giỏ hàng
+    // giỏ hàng
     Route::get('gio-hang','CartController@index');
     Route::post('save-cart','CartController@save_cart');
     Route::get('show-cart','CartController@show_cart')->name('get.cart');
     Route::get('delete-cart/{rowId}','CartController@delete_cart');
     Route::post('update-qty','CartController@update_qty');
-//checkout
+    //checkout
     Route::get('login-checkout','CheckoutController@login_checkout');
     Route::post('add-user','CheckoutController@add_user');
     Route::post('login-user','CheckoutController@login_user');
@@ -54,6 +60,7 @@ Route::group(['namespace' =>'Fronted'],function () {
 
     //article
     Route::get('bai-viet/{slug}','ArticleDetailController@index')->name('get.article_detail'); //chi tiet bai viet
+
 });
 //Backend
 include('route_admin.php');

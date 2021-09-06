@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Css Styles -->
+    <link rel="icon" href="{{ asset('././././public/img/2.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('././public/css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('././public/css/font-awesome.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('././public/css/elegant-icons.css') }}" type="text/css">
@@ -110,7 +111,7 @@
                                 <a href="#"><i class="fa fa-pinterest-p"></i></a>
                             </div>
                             <div class="header__top__right__language">
-                                <img src="{{asset('././public/img/language.png')}}" alt="">
+                                <img src="{{asset('././public/img/vn.png')}}" alt="">
                                 <div>Tiếng Việt</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
@@ -179,8 +180,9 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span></span></a></li>
-                            <li><a href="{{route('get.cart')}}"><i class="fa fa-shopping-bag"></i></a></li>
+                            <li><a href="{{URL::to('update-tt')}}" title="Cập nhật thông tin"><i class="fa fa-address-book" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-heart" title="Yêu thích"></i> <span></span></a></li>
+                            <li><a href="{{route('get.cart')}}" title="Giỏ hàng"><i class="fa fa-shopping-bag"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -193,7 +195,57 @@
 
     </header>
     <!-- Header Section End -->
-
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <i class="fa fa-bars"></i>
+                          <span>Danh mục</span>
+                        </div>
+                        <ul>
+                            @foreach($categoriesGlobal as $item)
+                            <li><a href="{{route('get.category',$item->c_slug)}}" title="{{ $item->c_name }}">{{$item->c_name}}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form action="{{URL::to('tim-kiem')}}" method="post">
+                                @csrf
+                                <div class="hero__search__categories">
+                                    Tất cả
+                                    </span>
+                                </div>
+                                <input type="text" placeholder="Bạn cần gì ???" name='tukhoa'>
+                                <button type="submit" class="site-btn">Tìm kiếm</button>
+                            </form>
+                        </div>
+                        <div class="hero__search__phone">
+                            <div class="hero__search__phone__icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="hero__search__phone__text">
+                                <h5>0776585055</h5>
+                                <span>Hỗ trợ 24/7 </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero__item set-bg" data-setbg="{{asset('././public/img/hero/banner.jpg')}}">
+                        <div class="hero__text">
+                            <span>FRUIT FRESH</span>
+                            <h2>Vegetable <br />100% Organic</h2>
+                            <p>Free Pickup and Delivery Available</p>
+                            <a href="#" class="primary-btn">SHOP NOW</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Hero Section Begin -->
     @yield('content')
 

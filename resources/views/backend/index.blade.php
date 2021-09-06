@@ -1,15 +1,22 @@
 @extends('layout.app_backend')
 @section('title', 'Trang chủ')
 @section('content')
-    <h3 class="text-left" style="display: block">Xin chào:
-        <?php
-        $name = Session::get('name');
-        if ($name) {
-            echo $name;
+    <style>
+        .nhap {
+            animation: myAnimation 1s linear infinite;
         }
-        ?>&nbsp;&nbsp;&nbsp;<a href="{{ URL::to('admin/logout') }}">Đăng xuất</a>
-    </h3>
 
+        @keyframes myAnimation {
+            from {
+                color: red !important;
+            }
+
+            to {
+                color: rgb(20, 221, 20) !important;
+            }
+        }
+
+    </style>
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
             <h1 class="h3 mb-0 text-gray-800">Thống kê toàn cục</h1>
@@ -21,12 +28,11 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col mr-2">
-
                                 <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng tiền</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     <?php
                                     $total = Session::get('total');
-                                    echo number_format(($total*1000),0,',','.').'đ';
+                                    echo number_format($total * 1000, 0, ',', '.') . 'đ';
                                     ?>
                                 </div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
@@ -35,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-primary"></i>
+                                <i class="fas fa-calendar fa-2x nhap text-primary"></i>
                             </div>
                         </div>
                     </div>
@@ -50,8 +56,8 @@
                                 <div class="text-xs font-weight-bold text-uppercase mb-1">Sản phẩm</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     <?php
-                                        $product = Session::get('products');
-                                        echo $product;
+                                    $product = Session::get('products');
+                                    echo $product;
                                     ?>
                                 </div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
@@ -76,7 +82,7 @@
                                 <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
                                     <?php
                                     $user = Session::get('users');
-                                    echo ($user);
+                                    echo $user;
                                     ?>
                                 </div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
@@ -195,8 +201,8 @@
                 <div class="card">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Đơn hàng</h6>
-                        <a class="m-0 float-right btn btn-danger btn-sm" href="{{route('get_backend.order.index')}}">Xem thêm <i
-                                class="fas fa-chevron-right"></i></a>
+                        <a class="m-0 float-right btn btn-danger btn-sm" href="{{ route('get_backend.order.index') }}">Xem
+                            thêm <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
@@ -212,20 +218,32 @@
                             </thead>
                             <tbody>
                                 @foreach ($order as $value)
-                                <tr>
-                                    <td><a href="#">{{$value->id}}</a></td>
-                                    <td>{{$value->name}}</td>
-                                    <td>{{$value->address}}</td>
-                                    <td>{{($value->order_total).' đ'}}</td>
-                                    <td>
-                                        @if ($value->order_status ==0)
-                                        <span class="badge badge-success ac">Đã xác nhận</span>
-                                        @else
-                                        <a id="del" href="{{URL::to('admin/order/change-status',$value->id)}}"><span class="badge badge-success ac">Đang xử lý</span></a>
-                                        @endif
+                                    <tr>
+                                        <td><a
+                                                href="{{ URL::to('admin/order/view-detail', $value->id) }}">{{ $value->id }}</a>
                                         </td>
-                                    <td><a href="{{URL::to('admin/order/view-detail',$value->id)}}" class="btn btn-sm btn-primary">Xem chi tiết</a></td>
-                                </tr>
+                                        <td>{{ $value->name }}</td>
+                                        <td>{{ $value->address }}</td>
+                                        <td>{{ $value->order_total . ' đ' }}</td>
+                                        <td>
+                                            @if ($value->order_status == 0)
+                                                <a id="del" href="{{ URL::to('admin/order/change-status', $value->id) }}">
+                                                    <span class="badge badge-success ac">Đang xử lý</span></a>
+                                            @elseif ($value->order_status == 1)
+                                                <a id="del"
+                                                    href="{{ URL::to('admin/order/change-status', $value->id) }}"><span
+                                                        class="badge badge-warning ac">Đã xác nhận</span></a>
+                                            @elseif ($value->order_status == 2)
+                                                <a id="del"
+                                                    href="{{ URL::to('admin/order/change-status', $value->id) }}"><span
+                                                        class="badge badge-danger ac">Đang vận chuyển</span></a>
+                                            @elseif ($value->order_status == 3)
+                                                <span class="badge badge-info ac">Đã giao hàng</span>
+                                            @endif
+                                        </td>
+                                        <td><a href="{{ URL::to('admin/order/view-detail', $value->id) }}"
+                                                class="btn btn-sm btn-primary">Xem chi tiết</a></td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -235,4 +253,19 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="card">
+                        <img src="././././public/uploads/2021/09/04/2021-09-04__avatar.jpg" width="300px" height="300px"
+                            alt="" class="img-thumbnail">
+                    </div> Bùi Hữu Nghĩa B1809377
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 @stop
