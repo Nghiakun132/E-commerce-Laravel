@@ -122,8 +122,8 @@
             <div class="col-xl-4 col-lg-5">
                 <div class="card mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Sản phẩm đã bán</h6>
-                        <div class="dropdown no-arrow">
+                        <h6 class="m-0 font-weight-bold text-primary">Số lượng </h6>
+                        {{-- <div class="dropdown no-arrow">
                             <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button" id="dropdownMenuLink"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Month <i class="fas fa-chevron-down"></i>
@@ -136,59 +136,22 @@
                                 <a class="dropdown-item active" href="#">Month</a>
                                 <a class="dropdown-item" href="#">This Year</a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="card-body">
-                        <div class="mb-3">
-                            <div class="small text-gray-500">
-                                Oblong T-Shirt
-                                <div class="small float-right"><b>600 of 800 Items</b></div>
-                            </div>
-                            <div class="progress" style="height: 12px;">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 80%"
-                                    aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="small text-gray-500">
-                                Gundam 90'Editions
-                                <div class="small float-right"><b>500 of 800 Items</b></div>
-                            </div>
-                            <div class="progress" style="height: 12px;">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 70%"
-                                    aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="small text-gray-500">
-                                Rounded Hat
-                                <div class="small float-right"><b>455 of 800 Items</b></div>
-                            </div>
-                            <div class="progress" style="height: 12px;">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 55%" aria-valuenow="55"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="small text-gray-500">
-                                Indomie Goreng
-                                <div class="small float-right"><b>400 of 800 Items</b></div>
-                            </div>
-                            <div class="progress" style="height: 12px;">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="small text-gray-500">
-                                Remote Control Car Racing
-                                <div class="small float-right"><b>200 of 800 Items</b></div>
-                            </div>
-                            <div class="progress" style="height: 12px;">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 30%"
-                                    aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
+                        @foreach ($sp as $pd)
+                                <div class="mb-3">
+                                    <div class="medium text-gray-500">
+                                        <span>{{ $pd->pro_name }}</span>
+                                        <div class="medium float-right"><b>{{ $pd->pro_number }}
+                                                Sản phẩm</b></div>
+                                    </div>
+                                    <div class="progress" style="height: 12px;">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 100%"
+                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                        @endforeach
                     </div>
                     <div class="card-footer text-center">
                         <a class="m-0 small text-primary card-link" href="#">View More <i

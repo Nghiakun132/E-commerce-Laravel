@@ -58,6 +58,20 @@
                     <small class="form-text text-danger"> {{ $errors->first('pro_number') }}</small>
                     @endif
                 </div>
+                <div class="form-group">
+                    <label for="">Đơn vị </label>
+                    <select name="pro_unit" >
+                        <option value="Kg">Kg</option>
+                        <option value="Lốc">Lốc</option>
+                        <option value="Gói">Gói</option>
+                        <option value="Chai">Chai</option>
+                        <option value="Thùng">Thùng</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Giảm giá </label>
+                    <input type="text" name="pro_sale" value="{{$product->pro_sale}}">
+                </div>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" accept="image/*" id="customFile" name="pro_avatar">
                     <label for="customFile" class="custom-file-label">Chọn ảnh từ máy tính</label>

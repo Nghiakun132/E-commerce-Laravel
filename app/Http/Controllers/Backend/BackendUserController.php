@@ -21,10 +21,8 @@ class BackendUserController extends Controller
     public function index(){
         $user = DB::table('users')
         ->join('address','address.user_id','=','users.id')->get();
-        $no_user = DB::table('shipping')->get();
         $data = [
             'user' => $user,
-            'no_user' => $no_user,
         ];
         return view($this->folder.'index',$data);
     }
@@ -33,9 +31,6 @@ class BackendUserController extends Controller
         DB::table('users')->where('id',$id)->delete();
         return Redirect()->route('get_backend.user.index');
     }
-    public function delete_shipping($id){
-        DB::table('shipping')->where('id',$id)->delete();
-        return Redirect()->route('get_backend.user.index');
-    }
+
 
 }

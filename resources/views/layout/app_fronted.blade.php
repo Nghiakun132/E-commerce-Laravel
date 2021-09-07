@@ -160,8 +160,6 @@
                             <li><a href="#">Trang</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="">Giỏ hàng</a></li>
-                                    <li><a href="">Đăng ký</a></li>
-                                    <li><a href="">Đăng nhập</a></li>
                                 </ul>
                             </li>
                             <li><b style="cursor: pointer">BÀI VIẾT</b>
@@ -180,8 +178,9 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
+                            <li><a href="{{URL::to('tracking-order')}}" title="Kiểm tra đơn hàng"><i class="fa fa-check-circle" aria-hidden="true"></i></a></li>
                             <li><a href="{{URL::to('update-tt')}}" title="Cập nhật thông tin"><i class="fa fa-address-book" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-heart" title="Yêu thích"></i> <span></span></a></li>
+                            <li><a href="{{URL::to('view-favorite')}}"><i class="fa fa-heart" title="Yêu thích"></i></a></li>
                             <li><a href="{{route('get.cart')}}" title="Giỏ hàng"><i class="fa fa-shopping-bag"></i></a></li>
                         </ul>
                     </div>

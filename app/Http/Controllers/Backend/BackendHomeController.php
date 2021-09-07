@@ -27,10 +27,15 @@ class BackendHomeController extends Controller
             ->join('users','order.user_id','=','users.id')
             ->select('order.*','users.name')
             ->join('address','users.id','=','address.user_id')->orderBy('order.id')->limit(5)->get();
-            $view =[
+
+            $sp = DB::table('products')->get();
+                $view =[
                 'order' => $order,
                 'admins' => $admins,
+                'sp' => $sp,
             ];
+
+            // dd($view);
             Session::put('total', $total);
             Session::put('users', $user);
             Session::put('products', $products);

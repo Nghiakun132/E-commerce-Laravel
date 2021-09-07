@@ -12,6 +12,14 @@ use Session;
 
 class HomeController extends Controller
 {   protected $folder = 'fronted.home.';
+    public function AuthLogin(){
+        $id = Session::get('user_id');
+        if($id){
+            return redirect()->route('get.home');
+        }else{
+            return redirect()->route('login')->send();
+        }
+    }
     public function index(){
         $product = DB::table('products')->select('*')
         ->join('categories','products.pro_category_id','=', 'categories.id')->limit(8)
@@ -34,6 +42,7 @@ class HomeController extends Controller
         return view('fronted.search.index',compact('products','count'));
     }
     public function update_tt(){
+        $this->AuthLogin();
         $id = Session::get('user_id');
         $user = DB::table('users')
         ->join('address','address.user_id','=','users.id')
@@ -59,5 +68,43 @@ class HomeController extends Controller
         $data2['updated_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         DB::table('address')->where('user_id',$user_id)->update($data2);
         return Redirect()->Route('get.home');
+    }
+    public function add_favorite($slug){
+        $this->AuthLogin();
+        $in =array();
+        $in['user_id'] = Session::get('user_id');
+        $in['product_slug'] = $slug;
+        $in['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
+        DB::table('favorite_product')->insert($in);
+        return Redirect()->Route('fronted.home.favorite');
+    }
+    public function view_favorite(){
+        $this->AuthLogin();
+        $user = Session::get('user_id');
+        $data = DB::table('favorite_product')
+        ->join('products', 'products.pro_slug','=','favorite_product.product_slug')
+        ->join('users', 'users.id','=','favorite_product.user_id')
+        ->where('users.id',$user)
+        ->get();
+        $view=[
+            'data' => $data,
+        ];
+        return view('fronted.home.favorite',$view);
+    }
+
+    public function delete_favorite($slug){
+        $user = Session::get('user_id');
+        DB::table('favorite_product')->where('user_id',$user)->where('product_slug',$slug)->delete();
+        return Redirect()->Route('fronted.home.favorite');
+
+    }
+    public function tracking_order(){
+        $this->AuthLogin();
+        $id = Session::get('user_id');
+        $order = DB::table('order')->where('user_id',$id)->get();
+        $view =[
+            'order' =>$order,
+        ];
+        return view('fronted.home.check_order',$view);
     }
 }

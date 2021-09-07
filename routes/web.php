@@ -23,6 +23,12 @@ Route::group(['namespace' =>'Fronted'],function () {
     //Cập nhật thông tin
     Route::get('update-tt','HomeController@update_tt');
     Route::post('update','HomeController@update');
+    //favorite
+    Route::get('add-favorite/{slug}','HomeController@add_favorite');
+    Route::get('view-favorite','HomeController@view_favorite')->name('fronted.home.favorite');
+    Route::get('delete-favorite/{slug}','HomeController@delete_favorite');
+    //check-order
+    Route::get('tracking-order','HomeController@tracking_order');
     //Danh muc sp
     Route::get('danh-muc/{slug}','CategoryController@index')->name('get.category');
     //chi tiet sp
@@ -40,9 +46,9 @@ Route::group(['namespace' =>'Fronted'],function () {
     Route::get('delete-cart/{rowId}','CartController@delete_cart');
     Route::post('update-qty','CartController@update_qty');
     //checkout
-    Route::get('login-checkout','CheckoutController@login_checkout');
+    Route::get('login-checkout','CheckoutController@login_checkout')->name('login');
     Route::post('add-user','CheckoutController@add_user');
-    Route::post('login-user','CheckoutController@login_user');
+    Route::post('login-user','CheckoutController@login_user')->name('get.login');
     Route::get('checkout','CheckoutController@checkout');
     Route::get('logout','CheckoutController@logout');
     Route::get('payment','CheckoutController@payment');

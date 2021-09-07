@@ -118,7 +118,7 @@
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="{{url_file2($item->pro_avatar)}}">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="{{URL::to('add-favorite',$item->pro_slug)}}"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                             </ul>
                         </div>
