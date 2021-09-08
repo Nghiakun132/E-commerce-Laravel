@@ -26,14 +26,15 @@ class HomeController extends Controller
         ->get();
         $products = DB::table('products')->select('*')->limit(3)->get();
         $topViews = DB::table('products')->select('*')->orderBy('pro_view','DESC')->limit(3)->get();
-        return view($this->folder.'index',compact('products','topViews','product'));
+        $blog = DB::table('articles')->limit(3)->inRandomOrder()->get();
+        return view($this->folder.'index',compact('products','topViews','product','blog'));
     }
     public function login() {
         return view('fronted.home.login');
     }
     public function search(Request $request) {
         $keywords = $request->tukhoa;
-        $products = DB::table('products')->where('pro_name','like','%'.$keywords.'%')->get();
+        $products = DB::table('products')->where('pro_name','like','%'.$keywords.'%')->limit(20)->get();
         $count = count($products);
         $view=[
             'products' => $products,

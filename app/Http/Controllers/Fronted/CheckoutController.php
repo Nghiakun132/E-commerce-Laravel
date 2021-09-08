@@ -65,6 +65,8 @@ class CheckoutController extends Controller
             Session::put('user_id', $result->id);
             Session::put('user_name', $result->name);
             return Redirect()->Route('get.home');
+        }else{
+            return Redirect()->Route('login');
         }
     }
 

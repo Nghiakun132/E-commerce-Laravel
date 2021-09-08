@@ -32,7 +32,7 @@
                     <div class="product__item__pic set-bg" data-setbg="{{ url_file2($product->pro_avatar) }}"
                         style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
                         <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="{{URL::to('add-favorite',$product->pro_slug)}}"><i class="fa fa-heart"></i></a></li>
                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                         </ul>
                     </div>

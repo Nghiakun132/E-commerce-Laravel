@@ -36,6 +36,8 @@ Route::group(['namespace' =>'Fronted'],function () {
     //Menu
     Route::get('menu/{slug}','MenuController@index')->name('get.menu');
     Route::get('show-articles','ArticleDetailController@index');
+    //articles
+    Route::get('bai-viet/{slug}','ArticleDetailController@index')->name('get.article_detail'); //chi tiet bai viet
     //search
     Route::post('tim-kiem','HomeController@search');
 
@@ -65,7 +67,6 @@ Route::group(['namespace' =>'Fronted'],function () {
     });
 
     //article
-    Route::get('bai-viet/{slug}','ArticleDetailController@index')->name('get.article_detail'); //chi tiet bai viet
 
 });
 //Backend

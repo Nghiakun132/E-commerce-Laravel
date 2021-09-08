@@ -621,6 +621,11 @@
     
     .hero__categories ul li {
         list-style: none;
+        font-weight: bold !important;
+    }
+    
+    .hero_span:hover {
+        color: red !important;
     }
     
     .hero__categories ul li a {

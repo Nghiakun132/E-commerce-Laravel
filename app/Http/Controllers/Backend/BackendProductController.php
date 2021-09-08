@@ -7,6 +7,7 @@ use App\Http\Requests\BackendProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Session;
 
@@ -35,19 +36,20 @@ class BackendProductController extends Controller
     public function create()
     {
         $this->AuthLogin();
+        $product = DB::table('products')->get();
         $categories = Category::all();
         $viewData = [
+            'product' => $product,
             'categories' => $categories,
         ];
         return view($this->folder . 'create', $viewData);
     }
     public function store(BackendProductRequest $request)
     {
-
         $this->AuthLogin();
         $data = $request->except('_token', 'pro_avatar');
         $data['pro_slug'] = Str::slug($request->pro_name);
-        $data['create_at'] = Carbon::now('Asia/Ho_Chi_Minh');
+        $data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         if ($request->pro_avatar) {
             $image = upload_image('pro_avatar');
             if(isset($image['code'])){
@@ -55,7 +57,7 @@ class BackendProductController extends Controller
             }
         }
         $products = Product::create($data);
-        return redirect()->back();
+        return Redirect()->back();
     }
 
     public function edit($id)
