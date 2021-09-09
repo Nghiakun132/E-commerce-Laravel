@@ -24,9 +24,9 @@ Route::group(['namespace' =>'Fronted'],function () {
     Route::get('update-tt','HomeController@update_tt');
     Route::post('update','HomeController@update');
     //favorite
-    Route::get('add-favorite/{slug}','HomeController@add_favorite');
+    Route::get('add-favorite/{id}','HomeController@add_favorite');
     Route::get('view-favorite','HomeController@view_favorite')->name('fronted.home.favorite');
-    Route::get('delete-favorite/{slug}','HomeController@delete_favorite');
+    Route::get('delete-favorite/{id}','HomeController@delete_favorite');
     //check-order
     Route::get('tracking-order','HomeController@tracking_order');
     //Danh muc sp

@@ -9,6 +9,7 @@
         <table class="table table-hover">
             <tr>
                 <th>Tên</th>
+                {{-- <th></th> --}}
                 <th>Số điện thoại</th>
             </tr>
             @foreach ($order_detail as $value)
@@ -16,6 +17,7 @@
             <tr>
                 <td>{{$value->name}}</td>
                 <td>{{$value->phone}}</td>
+                {{-- <td>{{$value->address}}</td> --}}
             </tr>
             @endif
             @endforeach

@@ -85,7 +85,7 @@ class CheckoutController extends Controller
         $order['user_id'] = Session::get('user_id');
         $order['order_total'] = Cart::total();
         $order['order_status'] = 0;
-        $order['address'] = $address->address;
+        // $order['address'] = $address->address;
         $order['transport'] = rand(1, 9);
         $order['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         $insert = DB::table('order')->insertGetId($order);

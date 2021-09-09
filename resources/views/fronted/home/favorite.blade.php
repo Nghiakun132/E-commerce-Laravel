@@ -12,7 +12,7 @@
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="{{url_file2($item->pro_avatar)}}">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="{{URL::to('delete-favorite',$item->pro_slug)}}"><i class="fa fa-trash"></i></a></li>
+                                <li><a href="{{URL::to('delete-favorite',$item->id)}}"><i class="fa fa-trash"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">

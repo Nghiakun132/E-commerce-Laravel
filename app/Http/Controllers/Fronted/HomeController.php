@@ -21,9 +21,10 @@ class HomeController extends Controller
         }
     }
     public function index(){
-        $product = DB::table('products')->select('*')
+        $product = DB::table('products')->select('products.*','categories.c_slug')
         ->join('categories','products.pro_category_id','=', 'categories.id')->limit(8)
         ->get();
+        // dd($product);
         $products = DB::table('products')->select('*')->limit(3)->get();
         $topViews = DB::table('products')->select('*')->orderBy('pro_view','DESC')->limit(3)->get();
         $blog = DB::table('articles')->limit(3)->inRandomOrder()->get();
@@ -70,11 +71,11 @@ class HomeController extends Controller
         DB::table('address')->where('user_id',$user_id)->update($data2);
         return Redirect()->Route('get.home');
     }
-    public function add_favorite($slug){
+    public function add_favorite($id){
         $this->AuthLogin();
         $in =array();
         $in['user_id'] = Session::get('user_id');
-        $in['product_slug'] = $slug;
+        $in['product_id'] = $id;
         $in['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         DB::table('favorite_product')->insert($in);
         return Redirect()->Route('fronted.home.favorite');
@@ -83,19 +84,20 @@ class HomeController extends Controller
         $this->AuthLogin();
         $user = Session::get('user_id');
         $data = DB::table('favorite_product')
-        ->join('products', 'products.pro_slug','=','favorite_product.product_slug')
+        ->join('products','products.id','=','favorite_product.product_id')
         ->join('users', 'users.id','=','favorite_product.user_id')
-        ->where('users.id',$user)
+        ->where('user_id',$user)
         ->get();
+        // dd($data);
         $view=[
             'data' => $data,
         ];
         return view('fronted.home.favorite',$view);
     }
 
-    public function delete_favorite($slug){
+    public function delete_favorite($id){
         $user = Session::get('user_id');
-        DB::table('favorite_product')->where('user_id',$user)->where('product_slug',$slug)->delete();
+        DB::table('favorite_product')->where('user_id',$user)->where('product_id',$id)->delete();
         return Redirect()->Route('fronted.home.favorite');
 
     }

@@ -2,7 +2,7 @@
 @extends('layout.app_backend')
 @section("title",'Danh sách từ khóa')
 @section('content')
-    <h3>Danh sach từ khóa</h3>
+    <h3>Danh sách từ khóa</h3>
     <div class="row">
         <div class="col-sm-7">
             <div class="card">

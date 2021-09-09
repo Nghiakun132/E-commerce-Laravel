@@ -27,8 +27,11 @@ class BackendOrderController extends Controller
         // dd($status);
         $order = DB::table('order')
         ->join('users','order.user_id','=','users.id')
-        ->select('order.*','users.name')
+        ->join('address','address.user_id','=','users.id')
+        ->select('order.*','users.name','address.address')
+
         ->orderBy('order.id','asc')->get();
+        // dd($order);
         $view=[
             'order' => $order,
         ];
@@ -69,6 +72,7 @@ class BackendOrderController extends Controller
                 $data['order_status'] = 3;
             }
             $data['time_confirm']=Carbon::now('Asia/Ho_Chi_Minh');
+            $data['admin_id'] = Session::get('id');
             DB::table('order')
             ->where('id', $id)->update($data);
             return Redirect()->route('get_backend.order.index');

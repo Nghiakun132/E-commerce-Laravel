@@ -118,12 +118,13 @@
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="{{url_file2($item->pro_avatar)}}">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="{{URL::to('add-favorite',$item->pro_slug)}}"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="{{URL::to('add-favorite',$item->id)}}"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="{{route('get.product_detail',$item->pro_slug)}}" title="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="{{route('get.product_detail',$item->pro_slug)}}">{{$item->pro_name}}</a></h6>
+                            <h6>{{$item->pro_name}}</h6>
                             <h5>{{number_format(($item->pro_price),0,',','.').'đ'}}</h5>
                         </div>
                     </div>

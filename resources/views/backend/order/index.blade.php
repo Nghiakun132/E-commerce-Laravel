@@ -14,6 +14,7 @@
             <th>Transport</th>
             <th>Order_status</th>
             <th>Created_at</th>
+            <th>Time_confirm</th>
             <th>Action</th>
         </tr>
         @foreach ($order as $value)
@@ -23,7 +24,7 @@
                 <td>{{ $value->user_id }}</td>
                 <td>{{ $value->name }}</td>
                 <td>{{ $value->address }}</td>
-                <td>{{ $value->order_total }}</td>
+                <td>{{ $value->order_total.'đ' }}</td>
                 <td>
                     @if ($value->transport == 1)
                         Giao hàng nhanh
@@ -60,6 +61,7 @@
                     @endif
                 </td>
                 <td>{{ $value->created_at }}</td>
+                <td>{{ $value->time_confirm }}</td>
                 <td><a href="{{ URL::to('admin/order/view-detail/' . $value->id) }}" style="margin-right: 12px"><i
                             class="fas fa-pen"></i></a>
                     <a href="{{ URL::to('admin/order/delete-order/' . $value->id) }}"><i class="fa fa-trash"

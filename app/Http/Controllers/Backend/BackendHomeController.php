@@ -25,9 +25,11 @@ class BackendHomeController extends Controller
             $admins = DB::table('admins')->select('avatar')->first();
             $order = DB::table('order')
             ->join('users','order.user_id','=','users.id')
-            ->select('order.*','users.name')
-            ->join('address','users.id','=','address.user_id')->orderBy('order.id')->limit(5)->get();
-
+            // ->join('address','address.user_id','=','users.id')
+            ->join('address','users.id','=','address.user_id')
+            ->select('order.*','users.name','address.address')
+            ->orderBy('order.id')->limit(5)->get();
+            // dd($order);
             $sp = DB::table('products')->get();
                 $view =[
                 'order' => $order,

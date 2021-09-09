@@ -1,7 +1,7 @@
 @extends('layout.app_backend')
 @section("title",'Danh sách Tag')
 @section('content')
-    <h3>Danh sach tag</h3>
+    <h3>Danh sách tag</h3>
     <div class="row">
         <div class="col-sm-7">
             <div class="card">
