@@ -8,6 +8,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Session;
 
 class HomeController extends Controller
@@ -22,11 +23,17 @@ class HomeController extends Controller
     }
     public function index(){
         $product = DB::table('products')->select('products.*','categories.c_slug')
-        ->join('categories','products.pro_category_id','=', 'categories.id')->limit(8)
+        ->join('categories','products.pro_category_id','=', 'categories.id')
+        ->where('products.pro_status',0)
+        ->limit(8)
         ->get();
         // dd($product);
-        $products = DB::table('products')->select('*')->limit(3)->get();
-        $topViews = DB::table('products')->select('*')->orderBy('pro_view','DESC')->limit(3)->get();
+        $products = DB::table('products')->select('*')
+        ->where('products.pro_status',0)
+        ->limit(3)->get();
+        $topViews = DB::table('products')->select('*')
+        ->where('products.pro_status',0)
+        ->orderBy('pro_view','DESC')->limit(3)->get();
         $blog = DB::table('articles')->limit(3)->inRandomOrder()->get();
         return view($this->folder.'index',compact('products','topViews','product','blog'));
     }
@@ -47,10 +54,12 @@ class HomeController extends Controller
         $this->AuthLogin();
         $id = Session::get('user_id');
         $user = DB::table('users')
-        ->join('address','address.user_id','=','users.id')
+        // ->join('address','address.user_id','=','users.id')
         ->where('users.id',$id)->limit(1)->get();
         // dd($user);
+        // $address = DB::table('address')->where('user_id',$id)->get();
         $view =[
+            // 'address' => $address,
             'user' => $user,
         ];
         return view('fronted.home.update',$view);
@@ -109,5 +118,73 @@ class HomeController extends Controller
             'order' =>$order,
         ];
         return view('fronted.home.check_order',$view);
+    }
+
+    public function tracking_order_details($id){
+            $order = DB::table('order')
+            ->join('order_detail','order_detail.order_id','=','order.id')
+            ->join('products','order_detail.product_id','=','products.id')
+            ->select('order.id','order_detail.*','products.pro_avatar')
+            ->where('order_detail.order_id',$id)
+            ->get();
+            // dd($order);
+            $view =[
+                'order' =>$order,
+            ];
+        return view('fronted.home.check_order_detail',$view);
+    }
+    public function add_address(){
+        return view('fronted.home.add_address');
+    }
+    public function add(Request $request){
+        $id = Session::get('user_id');
+        // dd($id);
+        $data =array();
+        $data['address'] = $request->address_new;
+        $data['user_id'] = $id;
+        $data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
+        DB::table('address')->insert($data);
+        return Redirect()->Route('get.home');
+        // return view('fronted.home.view');
+        // return view('fronted.home.index');
+    }
+    public function view_data(){
+        $this->AuthLogin();
+        $id = Session::get('user_id');
+        $user = DB::table('users')
+        // ->join('address','address.user_id','=','users.id')
+        ->where('users.id',$id)->limit(1)->get();
+        // dd($user);
+        // $address = DB::table('address')->where('address.user_id',$id)->get();
+        // dd($address);
+        $view =[
+            // 'address' => $address,
+            'user' => $user,
+        ];
+        return view('fronted.home.view',$view);
+    }
+    public function update_address(){
+        $this->AuthLogin();
+        $id = Session::get('user_id');
+        $user = DB::table('users')
+        ->join('address','address.user_id','=','users.id')
+        ->select('users.name', 'users.phone','address.*')
+        ->where('users.id',$id)->get();
+        $view =[
+            // 'address' => $address,
+            'user' => $user,
+        ];
+        return view('fronted.home.update_address',$view);
+    }
+    public function edit_address($id){
+        $address = DB::table('address')->where('id', $id)->first();
+        return view('fronted.home.edit_address',compact('address'));
+    }
+    public function edit(Request $request,$id) {
+        $data = array();
+        $data['address'] = $request->address_new;
+        DB::table('address')->where('id', $id)->update($data);
+        return Redirect()->Route('get.home');
+
     }
 }

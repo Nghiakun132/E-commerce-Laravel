@@ -90,16 +90,20 @@
                                                                         href="{{ URL::to('add-favorite', $sale->pro_slug) }}"><i
                                                                             class="fa fa-heart"></i></a></li>
                                                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                                <li><a href="{{ route('get.product_detail', $sale->pro_slug) }}"
+                                                                        title="Thêm vào giỏ hàng"><i
+                                                                            class="fa fa-shopping-cart"></i></a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                         <div class="product__discount__item__text">
-                                                            <span>Dried Fruit</span>
+                                                            {{-- <span>Dried Fruit</span> --}}
                                                             <h5><a
                                                                     href="{{ URL::to('chi-tiet', $sale->pro_slug) }}">{{ $sale->pro_name }}</a>
                                                             </h5>
                                                             <div class="product__item__price">
                                                                 {{ number_format($sale->pro_price - $sale->pro_price * $sale->pro_sale, 0, ',', '.') . 'đ' }}
-                                                                <span>{{ $sale->pro_price }}</span>
+                                                                <span>{{number_format(($sale->pro_price),0,',','.').'đ'}}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -160,6 +164,9 @@
                                             <li><a href="{{ URL::to('add-favorite', $product->pro_slug) }}"><i
                                                         class="fa fa-heart"></i></a></li>
                                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                            <li><a href="{{ route('get.product_detail', $product->pro_slug) }}"
+                                                    title="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="product__item__text">

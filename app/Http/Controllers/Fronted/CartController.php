@@ -34,10 +34,11 @@ class CartController extends Controller
             $data['id'] = $id;
             $data['qty'] = $qty;
             $data['name'] = $product_info->pro_name;
-            $data['price'] = $product_info->pro_price;
+            $data['price'] = ($product_info->pro_price)-(($product_info->pro_price)*($product_info->pro_sale));
             $data['weight'] = $product_info->pro_height;
             $data['options']['image'] = $product_info->pro_avatar;
             Cart::add($data);
+            Cart::setGlobalTax(10);
             // Cart::destroy();
             return Redirect::to('/show-cart');
 

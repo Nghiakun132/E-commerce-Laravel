@@ -26,16 +26,19 @@ class BackendHomeController extends Controller
             $order = DB::table('order')
             ->join('users','order.user_id','=','users.id')
             // ->join('address','address.user_id','=','users.id')
-            ->join('address','users.id','=','address.user_id')
-            ->select('order.*','users.name','address.address')
+            // ->join('address','users.id','=','address.user_id')
+            ->select('order.*','users.name')
             ->orderBy('order.id')->limit(5)->get();
+        $address = DB::table('address')->where('status',1)->first();
+
             // dd($order);
             $sp = DB::table('products')->get();
                 $view =[
                 'order' => $order,
                 'admins' => $admins,
                 'sp' => $sp,
-            ];
+                'address' => $address,
+                ];
 
             // dd($view);
             Session::put('total', $total);

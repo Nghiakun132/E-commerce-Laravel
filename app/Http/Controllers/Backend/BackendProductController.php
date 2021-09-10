@@ -95,4 +95,16 @@ class BackendProductController extends Controller
         \DB::table('products')->where('id', $id)->delete();
         return redirect()->route(route: 'get_backend.product.index');
     }
+    public function change_status($id){
+        $data = array();
+        $status = DB::table('products')->where('id', $id)->first();
+        // dd($status);
+        if($status->pro_status == 0){
+        $data['pro_status'] = 1;
+        }else{
+            $data['pro_status'] = 0;
+        }
+        DB::table('products')->where('id', $id)->update($data);
+        return redirect()->Route('get_backend.product.index');
+    }
 }

@@ -23,7 +23,7 @@
                 <td>{{ $value->id }}</td>
                 <td>{{ $value->user_id }}</td>
                 <td>{{ $value->name }}</td>
-                <td>{{ $value->address }}</td>
+                <td>{{ $address->address }}</td>
                 <td>{{ $value->order_total.'đ' }}</td>
                 <td>
                     @if ($value->transport == 1)

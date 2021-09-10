@@ -46,7 +46,7 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
         Route::post('update/{id}','BackendProductController@update');
 
         Route::get('delete/{id}','BackendProductController@delete')->name('get_backend.product.delete');
-
+        Route::get('change-status/{id}','BackendProductController@change_status');
     });
     //Menu
     Route::prefix('menu')->group(function(){

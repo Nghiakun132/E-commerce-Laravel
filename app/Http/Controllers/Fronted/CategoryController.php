@@ -12,10 +12,20 @@ class CategoryController extends Controller
 {   protected $folder = 'fronted.category.';
     public function index($slug){
         $category = Category::where('c_slug', $slug)->first();
-        $product = Product::where('pro_category_id', $category->id)->get();
-        $sales = DB::table('products')->where('pro_category_id', $category->id)->where('pro_sale','>',0)->limit(3)->get();
+        $product = Product::where('pro_category_id', $category->id)
+        ->where('products.pro_status',0)
+        ->get();
+        $sales = DB::table('products')
+        ->where('pro_category_id', $category->id)
+        ->where('pro_sale','>',0)
+        ->where('products.pro_status',0)
+        ->limit(3)->get();
         // dd($sales);
-        $lates = Product::where('pro_category_id', $category->id)->limit(3)->orderbyDesc('id')->get();
+        $lates = Product::where('pro_category_id', $category->id)
+        ->where('products.pro_status',0)
+        ->limit(3)
+        ->orderbyDesc('id')
+        ->get();
         $count = count($product);
         return view($this->folder.'index',compact('product','sales','lates','count'));
     }

@@ -23,12 +23,20 @@ Route::group(['namespace' =>'Fronted'],function () {
     //Cập nhật thông tin
     Route::get('update-tt','HomeController@update_tt');
     Route::post('update','HomeController@update');
+    Route::get('view-data','HomeController@view_data');
+    Route::get('add-address','HomeController@add_address');
+    Route::get('update-address','HomeController@update_address');
+    Route::post('add','HomeController@add');
+    Route::get('edit-address/{id}','HomeController@edit_address');
+    Route::post('edit/{id}','HomeController@edit');
+
     //favorite
     Route::get('add-favorite/{id}','HomeController@add_favorite');
     Route::get('view-favorite','HomeController@view_favorite')->name('fronted.home.favorite');
     Route::get('delete-favorite/{id}','HomeController@delete_favorite');
     //check-order
     Route::get('tracking-order','HomeController@tracking_order');
+    Route::get('tracking-order-details/{id}','HomeController@tracking_order_details');
     //Danh muc sp
     Route::get('danh-muc/{slug}','CategoryController@index')->name('get.category');
     //chi tiet sp

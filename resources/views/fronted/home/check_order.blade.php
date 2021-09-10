@@ -1,17 +1,34 @@
 @extends('layout.app_fronted')
 @section('content')
 @section('title', 'Kiểm tra đơn hàng')
+<section class="breadcrumb-section set-bg" data-setbg="./././public/img/breadcrumb.jpg" style="background-image: url(&quot;.././public/img/breadcrumb.jpg&quot;);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Kiểm tra đơn hàng</h2>
+                    <div class="breadcrumb__option">
+                        <a href="http://localhost/nienluancoso">Trang chủ</a>
+    <span>Kiểm tra đơn hàng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div class="container">
-    <h3>Kiểm tra đơn hàng</h3>
     <div class="row">
         <div class="col-lg-12">
+            <h2>Tìm nhanh</h2>
             <input class="form-control mt-3 mb-3" id="myInput" type="text" placeholder="Tìm nhanh">
+            <h2>Danh sách đơn hàng đã đặt</h2>
             <table class="table table-hover">
                 <tr>
                     <th>ID</th>
                     <th>Tổng tiền</th>
                     <th>Đơn vị vận chuyển</th>
                     <th>Trạng thái</th>
+                    <th>Action</th>
                 </tr>
                 <tbody id="myTable">
                 @foreach ($order as $order)
@@ -50,6 +67,7 @@
                                 <span class="badge badge-info ac">Đã giao hàng</span>
                             @endif
                         </td>
+                        <td><a href="{{URL::to('tracking-order-details',$order->id)}}"><i class="fa fa-info-circle text-info" style="font-size:30px" aria-hidden="true"></i></a></td>
                     </tr>
                 @endforeach
             </table>

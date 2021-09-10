@@ -100,8 +100,9 @@
                 <div class="shoping__checkout">
                     <h5>Tổng giỏ hàng</h5>
                     <ul>
-                        <li>Thuế <span>{{ Cart::tax() . ' ' . 'đ' }}</span></li>
-                        <li>Thành tiền <span>{{ Cart::total() . ' ' . 'đ' }}</span></li>
+                        <li>Thuế <span>{{ Cart::tax(0,',','.'). 'đ' }}</span></li>
+                        <li>Phí vận chuyển <span>Miễn phí</span></li>
+                        <li>Thành tiền <span>{{ Cart::total(0,',','.') . 'đ' }}</span></li>
                     </ul>
                    <a href="{{URL::to('payment')}}" class="primary-btn" >Tiến hành thanh toán</a>
                 </div>

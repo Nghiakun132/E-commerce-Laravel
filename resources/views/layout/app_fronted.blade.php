@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
+    {{-- <meta name="robots" content=""> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="canotical" href="http://localhost/nienluancoso/">
     <title>@yield('title')</title>
 
     <!-- Google Font -->
@@ -83,7 +85,7 @@
         <div class="humberger__menu__contact">
             <ul>
                 <li><i class="fa fa-envelope"></i>NghiaB1809377@student.ctu.edu.vn</li>
-                <li>Miễn phí vận chuyển cho đơn hàng trên 500k</li>
+                <li>Miễn phí vận chuyển cho đơn hàng trên 50k</li>
             </ul>
         </div>
     </div>
@@ -98,7 +100,7 @@
                         <div class="header__top__left">
                             <ul>
                                 <li><i class="fa fa-envelope"></i>NghiaB1809377@student.ctu.edu.vn</li>
-                                <li>Miễn phí vận chuyển từ 500k</li>
+                                <li>Miễn phí vận chuyển từ 50k</li>
                             </ul>
                         </div>
                     </div>
@@ -179,7 +181,7 @@
                     <div class="header__cart">
                         <ul>
                             <li><a href="{{URL::to('tracking-order')}}" title="Kiểm tra đơn hàng"><i class="fa fa-check-circle" aria-hidden="true"></i></a></li>
-                            <li><a href="{{URL::to('update-tt')}}" title="Cập nhật thông tin"><i class="fa fa-address-book" aria-hidden="true"></i></a></li>
+                            <li><a href="{{URL::to('view-data')}}" title="Cập nhật thông tin"><i class="fa fa-address-book" aria-hidden="true"></i></a></li>
                             <li><a href="{{URL::to('view-favorite')}}"><i class="fa fa-heart" title="Yêu thích"></i></a></li>
                             <li><a href="{{route('get.cart')}}" title="Giỏ hàng"><i class="fa fa-shopping-bag"></i></a></li>
                         </ul>

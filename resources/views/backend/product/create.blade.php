@@ -68,6 +68,7 @@
                         <option value="Gói">Gói</option>
                         <option value="Chai">Chai</option>
                         <option value="Thùng">Thùng</option>
+                        <option value="g">Gam</option>
                     </select>
                 </div>
                 <div class="form-group">

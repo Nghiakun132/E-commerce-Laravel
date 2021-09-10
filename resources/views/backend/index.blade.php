@@ -186,7 +186,7 @@
                                                 href="{{ URL::to('admin/order/view-detail', $value->id) }}">{{ $value->id }}</a>
                                         </td>
                                         <td>{{ $value->name }}</td>
-                                        <td>{{ $value->address }}</td>
+                                        <td>{{ $address->address }}</td>
                                         <td>{{ $value->order_total . ' đ' }}</td>
                                         <td>
                                             @if ($value->order_status == 0)

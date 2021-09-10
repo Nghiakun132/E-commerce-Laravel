@@ -2,13 +2,13 @@
 @section('content')
 @section('title', 'Thanh toán');
 <section class="shoping-cart spad">
-    <div class="container">
-        <div class="row">
+    <div class="container card">
+        <div class="row ">
             <div class="col-lg-12">
                 <h3 style="font-weight: bold">Xem lại giỏ hàng</h3>
 
             </div>
-            <div class="col-lg-12">
+            <div class="col-lg-12 ">
                 <div class="shoping__cart__table">
                     <?php
                     $content = Cart::content();
@@ -81,8 +81,9 @@
                 <div class="shoping__checkout">
                     <h5>Tổng giỏ hàng</h5>
                     <ul>
-                        <li>Thuế <span>{{ Cart::tax() . ' ' . 'đ' }}</span></li>
-                        <li>Thành tiền <span>{{ Cart::total() . ' ' . 'đ' }}</span></li>
+                        <li>Thuế <span>{{ Cart::tax(0,',','.') . 'đ' }}</span></li>
+                        <li>Phí vận chuyển <span>Miễn phí</span></li>
+                        <li>Thành tiền <span>{{ Cart::total(0,',','.') . 'đ' }}</span></li>
                     </ul>
                     <a href="{{ URL::to('order-place') }}" class="primary-btn orders">Thanh toán</a>
                     <script>
