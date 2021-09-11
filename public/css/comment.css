@@ -1,0 +1,38 @@
+.comment {
+    background-color: rgba(150, 146, 146, 0.041);
+}
+
+.comment h2 {
+    color: rgba(241, 18, 204, 0.658);
+    font-size: 40px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.comment_name {
+    padding: 12px 0 12px 8px;
+    color: #000;
+    text-shadow: 1px 1px 2px rgb(240, 116, 116), 0 0 25px rgb(58, 235, 23), 0 0 5px rgb(135, 236, 19);
+}
+
+.comment_name h4 {
+    font-weight: bold;
+}
+
+.comment_content {
+    font-size: 18px;
+    padding-left: 8px;
+}
+
+.comment_write {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.pl {
+    padding-left: 8px;
+    font-size: 18px;
+}
+
+.like_comment:hover .pl {
+    color: red !important;
+}

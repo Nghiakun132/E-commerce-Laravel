@@ -41,7 +41,8 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
         Route::get('','BackendProductController@index')->name('get_backend.product.index');
         Route::get('create','BackendProductController@create')->name('get_backend.product.create');
         Route::post('create','BackendProductController@store')->name('get_backend.product.store');
-
+        Route::get('add-img/{id}','BackendProductController@add_img')->name('get_backend.product.add');
+        Route::post('add-image','BackendProductController@add_image');
         Route::get('update/{id}','BackendProductController@edit')->name('get_backend.product.update');
         Route::post('update/{id}','BackendProductController@update');
 
@@ -95,8 +96,11 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
     Route::get('setting','BackendSettingController@index')->name('get_backend.setting');
     Route::post('setting','BackendSettingController@createOrupdate')->name('get_backend.setting.store');
 
-    Route::get('profile','BackendProfileController@index')->name('get_backend.profile');
-    Route::post('profile','BackendProfileController@createOrupdate')->name('get_backend.profile.store');
+    Route::prefix('comment')->group(function(){
+    Route::get('','BackendCommentController@index')->name('get_backend.comment.index');
+    Route::get('delete-comment/{id}','BackendCommentController@delete_comment');
+    // Route::post('comment','BackendCommentController@createOrupdate')->name('get_backend.comment.store');
+    });
     //order
     Route::prefix('order')->group(function(){
         Route::get('','BackendOrderController@index')->name('get_backend.order.index');

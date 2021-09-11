@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Organi Shop</h2>
+                        <h2>NghiaKun Shop</h2>
                         <div class="breadcrumb__option">
                             <a href="{{ route('get.home') }}">Home</a>
                             <span>Danh mục</span>
@@ -87,7 +87,7 @@
                                                                 {{ $sale->pro_sale * 100 . '%' }}</div>
                                                             <ul class="product__item__pic__hover">
                                                                 <li><a
-                                                                        href="{{ URL::to('add-favorite', $sale->pro_slug) }}"><i
+                                                                        href="{{ URL::to('add-favorite', $sale->id) }}"><i
                                                                             class="fa fa-heart"></i></a></li>
                                                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                                                 <li><a href="{{ route('get.product_detail', $sale->pro_slug) }}"
@@ -161,7 +161,7 @@
                                         data-setbg="{{ url_file($product->pro_avatar) }}"
                                         style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
                                         <ul class="product__item__pic__hover">
-                                            <li><a href="{{ URL::to('add-favorite', $product->pro_slug) }}"><i
+                                            <li><a href="{{ URL::to('add-favorite', $product->id) }}"><i
                                                         class="fa fa-heart"></i></a></li>
                                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                             <li><a href="{{ route('get.product_detail', $product->pro_slug) }}"

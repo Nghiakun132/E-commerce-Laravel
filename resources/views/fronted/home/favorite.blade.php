@@ -6,10 +6,10 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
-                    <h2>Kiểm tra chi tiết đơn hàng</h2>
+                    <h2>Sản phẩm yêu thích</h2>
                     <div class="breadcrumb__option">
                         <a href="http://localhost/nienluancoso">Trang chủ</a>
-                        <span>Kiểm tra chi tiết đơn hàng</span>
+                        <span>Sản phẩm yêu thích</span>
                     </div>
                 </div>
             </div>

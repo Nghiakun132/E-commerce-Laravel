@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Session;
 
@@ -107,4 +109,25 @@ class BackendProductController extends Controller
         DB::table('products')->where('id', $id)->update($data);
         return redirect()->Route('get_backend.product.index');
     }
+
+    public function add_img($id){
+        $product = DB::table('products')->where('id',$id)->first();
+        // dd($product);
+        return view('backend.product.img_product',compact('product'));
+    }
+    public function add_image(Request $request){
+        $data =array();
+        $data = $request->except('_token', 'pro_avatar');
+        $data['product_slug'] = $request->product_slug;
+        if ($request->pro_avatar) {
+            $image = upload_image('pro_avatar');
+            if(isset($image['code'])){
+                $data['anh'] = $image['name'];
+            }
+        }
+        DB::table('anh')->insert($data);
+        return redirect()->route('get_backend.product.index');
+    }
+
+
 }

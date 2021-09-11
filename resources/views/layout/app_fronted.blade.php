@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('././public/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('././public/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('././public/css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('././public/css/comment.css') }}" type="text/css">
 </head>
 
 <body>
@@ -85,7 +86,7 @@
         <div class="humberger__menu__contact">
             <ul>
                 <li><i class="fa fa-envelope"></i>NghiaB1809377@student.ctu.edu.vn</li>
-                <li>Miễn phí vận chuyển cho đơn hàng trên 50k</li>
+                <li>Miễn phí vận chuyển cho đơn hàng trên 1k</li>
             </ul>
         </div>
     </div>
@@ -100,7 +101,7 @@
                         <div class="header__top__left">
                             <ul>
                                 <li><i class="fa fa-envelope"></i>NghiaB1809377@student.ctu.edu.vn</li>
-                                <li>Miễn phí vận chuyển từ 50k</li>
+                                <li>Miễn phí vận chuyển từ 1k</li>
                             </ul>
                         </div>
                     </div>
@@ -173,7 +174,7 @@
                                     @endforeach
                                 </ul>
                             </li>
-                            <li><a href="">LIÊN HỆ</a></li>
+                            <li><a href="https://www.facebook.com/nghiakun132" target="_blank">liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>

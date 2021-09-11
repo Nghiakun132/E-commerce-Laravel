@@ -1095,6 +1095,11 @@
     
     .sidebar__item ul li {
         list-style: none;
+        font-weight: bold !important;
+    }
+    
+    .sidebar__item ul li a:hover {
+        color: red !important;
     }
     
     .sidebar__item ul li a {

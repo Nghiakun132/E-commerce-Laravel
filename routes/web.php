@@ -41,7 +41,9 @@ Route::group(['namespace' =>'Fronted'],function () {
     Route::get('danh-muc/{slug}','CategoryController@index')->name('get.category');
     //chi tiet sp
     Route::get('chi-tiet/{slug}','ProductDetailController@index')->name('get.product_detail');
-    //Menu
+    Route::post('comment','ProductDetailController@comment')->name('comment');
+    Route::get('like-comment/{id}','ProductDetailController@like_comment')->name('like-comment');
+    // Menu
     Route::get('menu/{slug}','MenuController@index')->name('get.menu');
     Route::get('show-articles','ArticleDetailController@index');
     //articles

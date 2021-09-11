@@ -3,6 +3,8 @@
 @section('content')
     <h3>Danh sách sản phẩm <a href="{{ route('get_backend.product.create') }}" class="btn btn-xs btn-success">Thêm sản
             phẩm</a></h3>
+            {{-- <a href="{{URL::to('admin/product/add-img')}}" class="btn btn-xs btn-success ml-2">Thêm hình ảnh sản
+                phẩm</a></h3> --}}
     <table class="table table-hover">
         <thead>
             <tr>
@@ -41,6 +43,7 @@
                     <td>
                         <a href="{{ route('get_backend.product.delete', $item->id) }}" class="btn btn-danger">Delete</a>
                         <a href="{{ route('get_backend.product.update', $item->id) }}" class="btn btn-primary">Update</a>
+                        <a href="{{ route('get_backend.product.add', $item->id) }}" class="btn btn-primary">Thêm ảnh</a>
                     </td>
                 </tr>
             @endforeach

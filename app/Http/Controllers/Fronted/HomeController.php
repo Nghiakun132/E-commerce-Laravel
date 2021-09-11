@@ -95,6 +95,7 @@ class HomeController extends Controller
         $data = DB::table('favorite_product')
         ->join('products','products.id','=','favorite_product.product_id')
         ->join('users', 'users.id','=','favorite_product.user_id')
+        ->select('products.*','favorite_product.user_id','favorite_product.product_id')
         ->where('user_id',$user)
         ->get();
         // dd($data);

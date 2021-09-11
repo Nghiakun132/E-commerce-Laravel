@@ -31,6 +31,9 @@ return [
             [
                 'name' => 'Thành viên',
                 'route' => 'get_backend.user.index'
+            ],[
+                'name' => 'Bình luận',
+                'route' => 'get_backend.comment.index'
             ],
 
         ]

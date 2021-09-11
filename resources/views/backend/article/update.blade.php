@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Nội dung</label>
-                        <textarea name="a_content" class="form-control " cols="30" rows="3">{{$value->a_content}}</textarea>
+                        <textarea name="a_content" class="form-control " cols="30" rows="10">{{$value->a_content}}</textarea>
                         @if($errors->first('a_content'))
                         <small class="form-text text-danger"> {{ $errors->first('a_content') }}</small>
                         @endif
