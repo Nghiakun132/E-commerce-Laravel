@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Fronted;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Cart;
@@ -17,31 +17,31 @@ class CartController extends Controller
     // {
     //     return view('fronted.cart.index');
     // }
-    public function AuthLogin(){
+    public function AuthLogin()
+    {
         $id = Session::get('user_id');
-        if($id){
+        if ($id) {
             return redirect()->route('get.home');
-        }else{
+        } else {
             return redirect()->route('login')->send();
         }
     }
     public function save_cart(Request $request)
     {
-            $qty = $request->qty;
-            $id = $request->product_id;
-            $product_info = DB::table('products')->where('id', $id)->first();
-            // Cart::add('293ad', 'Product 1', 1, 9.99, 550);
-            $data['id'] = $id;
-            $data['qty'] = $qty;
-            $data['name'] = $product_info->pro_name;
-            $data['price'] = ($product_info->pro_price)-(($product_info->pro_price)*($product_info->pro_sale));
-            $data['weight'] = $product_info->pro_height;
-            $data['options']['image'] = $product_info->pro_avatar;
-            Cart::add($data);
-            Cart::setGlobalTax(10);
-            // Cart::destroy();
-            return Redirect::to('/show-cart');
-
+        $qty = $request->qty;
+        $id = $request->product_id;
+        $product_info = DB::table('products')->where('id', $id)->first();
+        // Cart::add('293ad', 'Product 1', 1, 9.99, 550);
+        $data['id'] = $id;
+        $data['qty'] = $qty;
+        $data['name'] = $product_info->pro_name;
+        $data['price'] = ($product_info->pro_price) - (($product_info->pro_price) * ($product_info->pro_sale));
+        $data['weight'] = $product_info->pro_height;
+        $data['options']['image'] = $product_info->pro_avatar;
+        Cart::add($data);
+        Cart::setGlobalTax(10);
+        // Cart::destroy();
+        return Redirect::to('/show-cart');
     }
     public function show_cart()
     {
@@ -60,5 +60,27 @@ class CartController extends Controller
         $qty = $request->cart_qty;
         Cart::update($rowId, $qty);
         return Redirect::to('/show-cart');
+    }
+    public function check_coupon(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+        $coupon = Coupon::where('cp_code', $data['coupon'])->first();
+        if($coupon != null) {
+            if($coupon->cp_qty>0){
+                session::put('cp_condition',$coupon->cp_condition);
+                session::put('cp_id',$coupon->cp_id);
+                return Redirect()->back()->with('message','Thêm mã giảm giá thành công');
+            }else{
+            return Redirect()->back()->with('message_error2','Mã giảm giá đã sử dụng hết');
+            }
+        }else{
+            return Redirect()->back()->with('message_error','Mã giảm giá không tồn tại');
+        }
+    }
+    public function delete_coupon(){
+            session::forget('cp_condition');
+            session::forget('cp_id');
+            return Redirect()->back()->with('success','Xóa mã giảm giá thành công');
     }
 }

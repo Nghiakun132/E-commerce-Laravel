@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Fronted;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\register;
+use App\Models\Coupon;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -59,15 +60,16 @@ class CheckoutController extends Controller
     public function login_user(Request $request)
     {
         $email = $request->email;
+        $status = DB::table('users')->select('status')->where('email', $email)->first();
         $password = md5($request->password);
-        $result = DB::table('users')->where('email', $email)->where('password', $password)->first();
+        // if($status->status ==0)
+        $result = DB::table('users')->where('email', $email)->where('password', $password)->where('status',0)->first();
         if($result != null){
             Session::put('user_id', $result->id);
             Session::put('user_name', $result->name);
             return Redirect()->Route('get.home');
-        }else{
-            return Redirect()->Route('login');
-        }
+        }else
+            return Redirect()->Route('login')->with('message','Tài khoản của bạn bị khóa');
     }
 
     public function payment()
@@ -79,11 +81,12 @@ class CheckoutController extends Controller
     }
     public function order_place()
     {
+        $code = Session::get('cp_condition');
         $address = Session::get('user_address');
         //order
         $order = array();
         $order['user_id'] = Session::get('user_id');
-        $order['order_total'] = Cart::total();
+        $order['order_total'] = Cart::total(0,',','.')-(Cart::total(0,',','.') * $code);
         $order['order_status'] = 0;
         // $order['address'] = $address->address;
         $order['transport'] = rand(1, 9);
@@ -110,7 +113,15 @@ class CheckoutController extends Controller
             $soluong['pro_number'] = $qty->pro_number - $sl;
             DB::table('products')->where('id', $id)->update($soluong);
         }
-
+        $id_cp = Session::get('cp_id');
+        $cp = Coupon::where('cp_id', $id_cp)->first();
+        $qty_cp = array();
+        $qty_cp['cp_qty'] = $cp->cp_qty - 1;
+        // $qty_update = $qty_cp - 1;
+        DB::table('coupon')->where('cp_id', $id_cp)->update($qty_cp);
+        // session_destroy();
+        Session::forget('cp_id');
+        Session::forget('cp_condition');
         Cart::destroy();
         return Redirect()->Route('get.home');
     }

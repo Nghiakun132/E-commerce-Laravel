@@ -57,6 +57,8 @@ Route::group(['namespace' =>'Fronted'],function () {
     Route::get('show-cart','CartController@show_cart')->name('get.cart');
     Route::get('delete-cart/{rowId}','CartController@delete_cart');
     Route::post('update-qty','CartController@update_qty');
+    Route::post('check-coupon','CartController@check_coupon');
+    Route::get('delete-coupon','CartController@delete_coupon');
     //checkout
     Route::get('login-checkout','CheckoutController@login_checkout')->name('login');
     Route::post('add-user','CheckoutController@add_user');

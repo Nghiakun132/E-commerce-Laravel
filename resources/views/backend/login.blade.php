@@ -53,13 +53,16 @@
 
             </div>
         </div>
-        <?php
-                    $message =  Session::get('message');
-                    if($message){
-                        echo '<h2 class="text-center text-danger mt-7">' . $message . '</h2>';
-                        Session::put('message',null);
-                    }
-                    ?>
+
     </div>
 </body>
 </html>
+<?php
+$message = Session::get('message');
+if ($message) {
+    echo '<h2 class="text-center text-danger mt-7">' . $message . '</h2>';
+    Session::put('message', null);
+}
+?>
+
+

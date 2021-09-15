@@ -53,7 +53,11 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="">Số lượng</label>
+                    <label for="">Số lượng kho</label>
+                    <input type="number" class="form-control" placeholder="Số lượng" name="pro_kho" value="{{old('pro_number',$product->pro_kho ?? 0)}}">
+                </div>
+                <div class="form-group">
+                    <label for="">Số lượng hiện tại</label>
                     <input type="number" class="form-control" placeholder="Số lượng" name="pro_number" value="{{old('pro_number',$product->pro_number ?? 0)}}">
                     @if($errors->first('pro_number'))
                     <small class="form-text text-danger"> {{ $errors->first('pro_number') }}</small>

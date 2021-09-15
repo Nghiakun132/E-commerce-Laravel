@@ -79,20 +79,35 @@
             </div>
             <div class="col-lg-6">
                 <div class="shoping__checkout">
+                    <?php
+                    if(Session::get('cp_condition'))
+                        $code = Session::get('cp_condition');
+                    ?>
                     <h5>Tổng giỏ hàng</h5>
                     <ul>
                         <li>Thuế <span>{{ Cart::tax(0,',','.') . 'đ' }}</span></li>
                         <li>Phí vận chuyển <span>Miễn phí</span></li>
-                        <li>Thành tiền <span>{{ Cart::total(0,',','.') . 'đ' }}</span></li>
+                        <li>Giảm giá<span><?php echo $code*100 .'%' ?></span></li>
+                        @if($code > 0)
+                        <li>Tổng tiền
+                            <span>{{ Cart::total (0,',','.')-(Cart::total (0,',','.') * $code). 'đ' }}
+                            </span>
+                        </li>
+                        @else
+                        <li>Tổng tiền
+                            <span>{{ Cart::total (0,',','.'). 'đ' }}
+                            </span>
+                        </li>
+                        @endif
                     </ul>
                     <a href="{{ URL::to('order-place') }}" class="primary-btn orders">Thanh toán</a>
-                    <script>
+                    {{-- <script>
                         $(document).ready(function() {
                             $('.orders').click(function() {
                                 alert('Bạn đã thanh toán thành công');
                             });
                         });
-                    </script>
+                    </script> --}}
                 </div>
             </div>
         </div>

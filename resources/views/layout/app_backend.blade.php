@@ -53,7 +53,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                 @foreach(config('nav.admin.top') as $item)
-                <li class="nav-item ">
+                <li class="nav-item vcl">
                     <a class="nav-link text-white text-bold {{ \Request::route()->getName()==$item['route'] ? 'active' : ''}} " href="{{ route($item['route']) }}">{{ $item['name'] }}</a>
                 </li>
                 @endforeach

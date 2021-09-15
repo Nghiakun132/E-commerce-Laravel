@@ -21,29 +21,26 @@ class BackendHomeController extends Controller
         $this->AuthLogin();
             $total = DB::table('order')->sum('order_total');
             $user = DB::table('users')->count('id');
-            $products = DB::table('products')->count('id');
+            $products_sell = DB::table('order_detail')->sum('product_qty');
             $admins = DB::table('admins')->select('avatar')->first();
             $order = DB::table('order')
             ->join('users','order.user_id','=','users.id')
-            // ->join('address','address.user_id','=','users.id')
-            // ->join('address','users.id','=','address.user_id')
             ->select('order.*','users.name')
             ->orderBy('order.id')->limit(5)->get();
         $address = DB::table('address')->where('status',1)->first();
-
-            // dd($order);
+            $comment = DB::table('comment')->count('id');
             $sp = DB::table('products')->get();
                 $view =[
                 'order' => $order,
                 'admins' => $admins,
                 'sp' => $sp,
                 'address' => $address,
+                'comment' => $comment,
+                'products_sell' => $products_sell,
                 ];
-
-            // dd($view);
             Session::put('total', $total);
             Session::put('users', $user);
-            Session::put('products', $products);
+            // Session::put('products', $products);
         return view('backend.index',$view);
     }
     public function login(){

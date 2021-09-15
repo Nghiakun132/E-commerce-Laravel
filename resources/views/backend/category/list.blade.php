@@ -1,5 +1,5 @@
-<table class="table table-hover">
-    <thead>
+<table class="table table-hover table-info">
+    <thead class="text-danger">
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -18,8 +18,8 @@
             <td>{{$item->created_at}}</td>
             <td>{{$item->updated_at}}</td>
             <td>
-                <a href="{{route('get_backend.category.delete',$item->id)}}" class="btn btn-danger">Delete</a>
-                <a href="{{route('get_backend.category.update',$item->id)}}" class="btn btn-primary">Update</a>
+                <a href="{{route('get_backend.category.delete',$item->id)}}" class="btn btn-danger delete">Delete</a>
+                <a href="{{route('get_backend.category.update',$item->id)}}" class="btn btn-primary update">Update</a>
             </td>
         </tr>
         @endforeach

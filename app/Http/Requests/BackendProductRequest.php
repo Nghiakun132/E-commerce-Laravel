@@ -23,10 +23,12 @@ class BackendProductRequest extends FormRequest
             'pro_name' => 'required|unique:products,pro_name,' .$this->id,
             'pro_price' =>'required',
             'pro_category_id' =>'required',
-            'pro_number' =>'required',
+            'pro_kho' =>'required',
             'pro_description' =>'required',
             'pro_number' =>'required',
+            'pro_sale' =>'required',
             'pro_content' =>'required',
+            'pro_avatar' =>'required',
         ];
     }
     public function messages()
@@ -37,8 +39,11 @@ class BackendProductRequest extends FormRequest
             'pro_price.required' => 'Dữ liệu không được để trống',
             'pro_category_id.required' => 'Dữ liệu không được để trống',
             'pro_number.required' => 'Dữ liệu không được để trống',
+            'pro_kho.required' => 'Dữ liệu không được để trống',
+            'pro_sale.required' => 'Dữ liệu không được để trống',
             'pro_description.required' => 'Dữ liệu không được để trống',
             'pro_content.required' => 'Dữ liệu không được để trống',
+            'pro_avatar.required' => 'Dữ liệu không được để trống',
         ];
     }
 }

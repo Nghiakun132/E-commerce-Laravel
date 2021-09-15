@@ -16,6 +16,8 @@
         <link rel="stylesheet" type="text/css" href="./././public/css/login.css">
     </head>
     <body>
+        <?php $messages = Session::get('message'); ?>
+        <h3 class="text-danger text-center"> <?php echo $messages?></h2>
         <div class="container">
             <div class="d-flex justify-content-center h-100">
                 <div class="card">
@@ -49,6 +51,7 @@
                                 <input type="submit" value="Login" class="btn float-right login_btn">
                             </div>
                         </form>
+
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-center links">

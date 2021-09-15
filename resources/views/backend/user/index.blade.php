@@ -11,6 +11,7 @@
             <th>Email</th>
             <th>Địa chỉ</th>
             <th>Số điện thoại</th>
+            <th>Trạng thái</th>
             <th>Action</th>
         </tr>
         @foreach ($user as $value)
@@ -20,6 +21,13 @@
                 <td>{{ $value->email }}</td>
                 <td>{{ $value->address }}</td>
                 <td>{{ $value->phone }}</td>
+                <td>
+                    @if( $value->status == 0)
+                        <a  title="Tài khoản hoạt động"  href="{{URL::to('admin/user/change-status-user',$value->id)}}"><i class="fa fa-thumbs-up ml-2 text-success" style="font-size:21px" aria-hidden="true"></i></a>
+                    @else
+                        <a title="Tài khoản bị khóa"  href="{{URL::to('admin/user/change-status-user',$value->id)}}"><i class="fa fa-thumbs-down text-danger" style="font-size:21px"  aria-hidden="true"></i></a>
+                    @endif
+                </td>
                 <td><a href="{{ URL::to('admin/user/delete/' . $value->id) }}"><i class="fa fa-trash"
                             aria-hidden="true"></i></a></td>
             </tr>

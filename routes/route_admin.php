@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\BackendCouponController;
 
 Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
     //Trang chu
@@ -89,12 +90,9 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
     Route::prefix('user')->group(function(){
         Route::get('','BackendUserController@index')->name('get_backend.user.index');
         Route::get('delete/{id}','BackendUserController@delete');
-        Route::get('delete-shipping/{id}','BackendUserController@delete_shipping');
-
+        // Route::get('delete-shipping/{id}','BackendUserController@delete_shipping');
+        Route::get('change-status-user/{id}','BackendUserController@change_status_user');
     });
-
-    Route::get('setting','BackendSettingController@index')->name('get_backend.setting');
-    Route::post('setting','BackendSettingController@createOrupdate')->name('get_backend.setting.store');
 
     Route::prefix('comment')->group(function(){
     Route::get('','BackendCommentController@index')->name('get_backend.comment.index');
@@ -109,4 +107,13 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
         Route::get('change-status/{id}','BackendOrderController@change_status');
 
     });
+    //coupon
+    Route::prefix('coupon')->group(function(){
+        Route::get('','BackendCouponController@index')->name('get_backend.coupon.index');
+        Route::get('add-coupon','BackendCouponController@add_coupon');
+        Route::post('add','BackendCouponController@add');
+
+
+    });
+
 });

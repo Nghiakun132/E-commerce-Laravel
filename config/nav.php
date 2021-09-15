@@ -31,11 +31,15 @@ return [
             [
                 'name' => 'Thành viên',
                 'route' => 'get_backend.user.index'
-            ],[
+            ],
+            [
                 'name' => 'Bình luận',
                 'route' => 'get_backend.comment.index'
             ],
-
+            [
+                'name' => 'Giảm giá',
+                'route' => 'get_backend.coupon.index'
+            ],
         ]
     ]
 ];

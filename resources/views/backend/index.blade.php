@@ -3,10 +3,11 @@
 @section('content')
     <style>
         .nhap {
-            animation: myAnimation 1s linear infinite;
+            color: red !important;
+            animation: nhapnhay 1s linear infinite;
         }
 
-        @keyframes myAnimation {
+        /* @keyframes myAnimation {
             from {
                 color: red !important;
             }
@@ -14,6 +15,10 @@
             to {
                 color: rgb(20, 221, 20) !important;
             }
+        } */
+        @keyframes nhapnhay{
+            from { color: rgb(46, 12, 241); }
+            to { color: rgb(9, 238, 28); }
         }
 
     </style>
@@ -53,12 +58,9 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Sản phẩm</div>
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">Sản phẩm đã bán</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    <?php
-                                    $product = Session::get('products');
-                                    echo $product;
-                                    ?>
+                                  {{$products_sell}}
                                 </div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
@@ -79,7 +81,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-uppercase mb-1">Thành viên mới</div>
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 nhap">
                                     <?php
                                     $user = Session::get('users');
                                     echo $user;
@@ -97,16 +99,17 @@
                     </div>
                 </div>
             </div>
+
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">Bình luận</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$comment}}</div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
-                                    <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 1.10%</span>
                                     <span>Since yesterday</span>
                                 </div>
                             </div>
@@ -143,7 +146,7 @@
                                 <div class="mb-3">
                                     <div class="medium text-gray-500">
                                         <span>{{ $pd->pro_name }}</span>
-                                        <div class="medium float-right"><b>{{ $pd->pro_number }}
+                                        <div class="medium float-right"><b>Đã bán {{$pd->pro_kho - $pd->pro_number}} sản phẩm / {{ $pd->pro_kho }}
                                                 Sản phẩm</b></div>
                                     </div>
                                     <div class="progress" style="height: 12px;">
