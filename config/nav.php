@@ -5,23 +5,16 @@ return [
         'top' =>
         [
             [
-                'name' => 'Từ khóa',
-                'route' => 'get_backend.keyword.index'
-            ],
-            [
-                'name' => 'Danh mục',
+                'name' => 'Danh mục sản phẩm',
                 'route' => 'get_backend.category.index'
             ],
             [
                 'name' => 'Sản phẩm',
                 'route' => 'get_backend.product.index'
             ],
+
             [
-                'name' => 'Tag',
-                'route' => 'get_backend.tag.index'
-            ],
-            [
-                'name' => 'Menu',
+                'name' => 'Danh mục bài viết',
                 'route' => 'get_backend.menu.index'
             ],
             [

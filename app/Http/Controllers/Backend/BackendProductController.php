@@ -126,7 +126,7 @@ class BackendProductController extends Controller
             }
         }
         DB::table('anh')->insert($data);
-        return redirect()->route('get_backend.product.index');
+        return redirect()->back();
     }
 
 

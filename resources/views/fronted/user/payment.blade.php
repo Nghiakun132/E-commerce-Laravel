@@ -87,8 +87,12 @@
                     <ul>
                         <li>Thuế <span>{{ Cart::tax(0,',','.') . 'đ' }}</span></li>
                         <li>Phí vận chuyển <span>Miễn phí</span></li>
-                        <li>Giảm giá<span><?php echo $code*100 .'%' ?></span></li>
-                        @if($code > 0)
+                        <?php if($code){?>
+                            <li>Giảm giá<span><?php echo $code * 100 .'%' ?></span></li>
+                        <?php }else{?>
+                            <li>Giảm giá<span>0%</span></li>
+                        <?php } ?>
+                            @if($code > 0)
                         <li>Tổng tiền
                             <span>{{ Cart::total (0,',','.')-(Cart::total (0,',','.') * $code). 'đ' }}
                             </span>

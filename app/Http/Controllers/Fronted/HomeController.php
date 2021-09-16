@@ -188,4 +188,22 @@ class HomeController extends Controller
         return Redirect()->Route('get.home');
 
     }
+    public function change_address($id){
+        $user_id = Session::get('user_id');
+        // // dd($user_id);
+        $status = DB::table('address')->where('user_id', $user_id)->where('id',$id)->first();
+        $data = array();
+        if($status->status == 1){
+            $data['status'] = 0;
+        }else{
+            $data['status'] = 1;
+        }
+        DB::table('address')->where('id',$id)->update($data);
+        return redirect()->back();
+    }
+    public function delete_address($id){
+        $user_id = Session::get('user_id');
+        DB::table('address')->where('user_id', $user_id)->where('id',$id)->delete();
+        return redirect()->back();
+    }
 }

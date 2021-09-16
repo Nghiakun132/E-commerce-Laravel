@@ -166,7 +166,7 @@
             <div class="col-xl-8 col-lg-7 mb-4">
                 <div class="card">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Đơn hàng</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Đơn hàng gần nhất</h6>
                         <a class="m-0 float-right btn btn-danger btn-sm" href="{{ route('get_backend.order.index') }}">Xem
                             thêm <i class="fas fa-chevron-right"></i></a>
                     </div>
@@ -189,8 +189,8 @@
                                                 href="{{ URL::to('admin/order/view-detail', $value->id) }}">{{ $value->id }}</a>
                                         </td>
                                         <td>{{ $value->name }}</td>
-                                        <td>{{ $address->address }}</td>
-                                        <td>{{ $value->order_total . ' đ' }}</td>
+                                        <td>{{ $value->address }}</td>
+                                        <td>{{ ($value->order_total) *1000 . 'đ' }}</td>
                                         <td>
                                             @if ($value->order_status == 0)
                                                 <a id="del" href="{{ URL::to('admin/order/change-status', $value->id) }}">

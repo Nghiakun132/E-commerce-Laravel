@@ -27,13 +27,14 @@ class BackendOrderController extends Controller
         // dd($status);
         $order = DB::table('order')
         ->join('users','order.user_id','=','users.id')
-        // ->join('address','address.user_id','=','users.id')
-        ->select('order.*','users.name')
+        ->join('address','address.user_id','=','users.id')
+        ->select('order.*','users.name','address.address')
+        ->where('address.status',1)
         ->orderBy('order.id','asc')->get();
         // dd($order);
-        $address = DB::table('address')->where('status',1)->first();
+        // $address = DB::table('address')->where('status',1)->first();
         $view=[
-            'address' => $address,
+            // 'address' => $address,
             'order' => $order,
         ];
         return view('backend.order.index',$view);

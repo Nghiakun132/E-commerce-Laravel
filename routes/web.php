@@ -29,6 +29,8 @@ Route::group(['namespace' =>'Fronted'],function () {
     Route::post('add','HomeController@add');
     Route::get('edit-address/{id}','HomeController@edit_address');
     Route::post('edit/{id}','HomeController@edit');
+    Route::get('change-address/{id}','HomeController@change_address');
+    Route::get('delete-address/{id}','HomeController@delete_address');
 
     //favorite
     Route::get('add-favorite/{id}','HomeController@add_favorite');

@@ -103,7 +103,7 @@
                                                             </h5>
                                                             <div class="product__item__price">
                                                                 {{ number_format($sale->pro_price - $sale->pro_price * $sale->pro_sale, 0, ',', '.') . 'đ' }}
-                                                                <span>{{number_format(($sale->pro_price),0,',','.').'đ'}}</span>
+                                                                <span>{{ number_format($sale->pro_price, 0, ',', '.') . 'đ' }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -126,18 +126,22 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-5">
                                 <div class="filter__sort">
-                                    <span>Sort By</span>
-                                    <select style="display: none;">
-                                        <option value="0">Default</option>
-                                        <option value="0">Default</option>
-                                    </select>
-                                    <div class="nice-select" tabindex="0">
+                                    <span>Sắp xếp theo</span>
+                                    <form action="">
+                                        @csrf
+                                        <select name="sort" id="sort">
+                                            <option value="{{Request::url()}}?sort_by=none">Mặc định</option>
+                                            <option value="{{Request::url()}}?sort_by=tangdan">Giá tăng dần</option>
+                                            <option value="{{Request::url()}}?sort_by=giamdan">Giá giảm đàn</option>
+                                        </select>
+                                    </form>
+                                    {{-- <div class="nice-select" tabindex="0">
                                         <span class="current">Default</span>
                                         <ul class="list">
                                             <li data-value="0" class="option selected">Default</li>
                                             <li data-value="0" class="option">Default</li>
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4">
@@ -190,6 +194,18 @@
             </div>
         </div>
     </section>
-
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#sort').on('change', function(){
+            var url = $(this).val();
+            // alert(url);
+            if(url){
+                window.location = url;
+            }else{
+                return false;
+            }
+            });
+    });
+</script>
 @stop

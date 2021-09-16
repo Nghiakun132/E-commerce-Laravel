@@ -86,7 +86,7 @@ class CheckoutController extends Controller
         //order
         $order = array();
         $order['user_id'] = Session::get('user_id');
-        $order['order_total'] = Cart::total(0,',','.')-(Cart::total(0,',','.') * $code);
+        $order['order_total'] = (Cart::total(0,',','.')-(Cart::total(0,',','.') * $code));
         $order['order_status'] = 0;
         // $order['address'] = $address->address;
         $order['transport'] = rand(1, 9);
@@ -116,12 +116,14 @@ class CheckoutController extends Controller
         $id_cp = Session::get('cp_id');
         $cp = Coupon::where('cp_id', $id_cp)->first();
         $qty_cp = array();
+        if($id_cp!= null){
         $qty_cp['cp_qty'] = $cp->cp_qty - 1;
         // $qty_update = $qty_cp - 1;
         DB::table('coupon')->where('cp_id', $id_cp)->update($qty_cp);
         // session_destroy();
         Session::forget('cp_id');
         Session::forget('cp_condition');
+        }
         Cart::destroy();
         return Redirect()->Route('get.home');
     }

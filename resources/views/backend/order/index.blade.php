@@ -7,24 +7,24 @@
     <table class="table table-hover">
         <tr>
             <th>Id</th>
-            <th>User_id</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Order_total</th>
-            <th>Transport</th>
-            <th>Order_status</th>
-            <th>Created_at</th>
-            <th>Time_confirm</th>
+            {{-- <th>User_id</th> --}}
+            <th>Tên</th>
+            <th>Địa chỉ</th>
+            <th>Tổng tiền</th>
+            <th>Đơn vị vận chuyển</th>
+            <th>Trạng thái đơn hàng</th>
+            <th>Ngày đặt</th>
+            <th>Ngày xác nhận</th>
             <th>Action</th>
         </tr>
         @foreach ($order as $value)
             <tr>
 
                 <td>{{ $value->id }}</td>
-                <td>{{ $value->user_id }}</td>
+                {{-- <td>{{ $value->user_id }}</td> --}}
                 <td>{{ $value->name }}</td>
-                <td>{{ $address->address }}</td>
-                <td>{{ $value->order_total.'đ' }}</td>
+                <td>{{ $value->address }}</td>
+                <td>{{ ($value->order_total) * 1000 .'đ' }}</td>
                 <td>
                     @if ($value->transport == 1)
                         Giao hàng nhanh

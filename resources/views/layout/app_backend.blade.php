@@ -9,17 +9,17 @@
         <title>@yield('title')</title>
         <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/navbar-fixed/">
         <!-- Bootstrap core CSS -->
-    <link rel="shortcut icon" href="{{asset('././././public/img/2.png')}}" type="image/png">
+    <link rel="shortcut icon" href="{{asset('././././public/img/2.png')}}" type="image/png" width="100px" height="100px">
         <link href="https://getbootstrap.com/docs/4.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <!-- Favicons -->
         <link rel="apple-touch-icon" href="/docs/4.6/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-        <link rel="icon" href="/docs/4.6/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-        <link rel="icon" href="/docs/4.6/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-        <link rel="manifest" href="/docs/4.6/assets/img/favicons/manifest.json">
-        <link rel="mask-icon" href="/docs/4.6/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
-        <link rel="icon" href="/docs/4.6/assets/img/favicons/favicon.ico">
-        <meta name="msapplication-config" content="/docs/4.6/assets/img/favicons/browserconfig.xml">
-        <meta name="theme-color" content="#563d7c">
+        {{-- <link rel="icon" href="/docs/4.6/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png"> --}}
+        {{-- <link rel="icon" href="/docs/4.6/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png"> --}}
+        {{-- <link rel="manifest" href="/docs/4.6/assets/img/favicons/manifest.json"> --}}
+        {{-- <link rel="mask-icon" href="/docs/4.6/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c"> --}}
+        {{-- <link rel="icon" href="/docs/4.6/assets/img/favicons/favicon.ico"> --}}
+        {{-- <meta name="msapplication-config" content="/docs/4.6/assets/img/favicons/browserconfig.xml"> --}}
+        {{-- <meta name="theme-color" content="#563d7c"> --}}
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <style>
