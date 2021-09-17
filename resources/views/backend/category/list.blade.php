@@ -18,7 +18,7 @@
             <td>{{$item->created_at}}</td>
             <td>{{$item->updated_at}}</td>
             <td>
-                <a href="{{route('get_backend.category.delete',$item->id)}}" class="btn btn-danger delete">Delete</a>
+                <a href="{{route('get_backend.category.delete',$item->id)}}" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger delete">Delete</a>
                 <a href="{{route('get_backend.category.update',$item->id)}}" class="btn btn-primary update">Update</a>
             </td>
         </tr>

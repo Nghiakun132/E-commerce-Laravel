@@ -5,58 +5,6 @@
 
 </style>
 <div class="nghia">
-    {{-- <section class="hero">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                          <span>Danh mục</span>
-                        </div>
-                        <ul>
-                            @foreach($categoriesGlobal as $item)
-                            <li><a href="{{route('get.category',$item->c_slug)}}" title="{{ $item->c_name }}">{{$item->c_name}}</a></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="{{URL::to('tim-kiem')}}" method="post">
-                                @csrf
-                                <div class="hero__search__categories">
-                                    Tất cả
-                                    </span>
-                                </div>
-                                <input type="text" placeholder="Bạn cần gì ???" name='tukhoa'>
-                                <button type="submit" class="site-btn">Tìm kiếm</button>
-                            </form>
-                        </div>
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>0776585055</h5>
-                                <span>Hỗ trợ 24/7 </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hero__item set-bg" data-setbg="././public/img/hero/banner.jpg">
-                        <div class="hero__text">
-                            <span>FRUIT FRESH</span>
-                            <h2>Vegetable <br />100% Organic</h2>
-                            <p>Free Pickup and Delivery Available</p>
-                            <a href="#" class="primary-btn">SHOP NOW</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-- Hero Section End -->
 
     <!-- Categories Section Begin -->
     <section class="categories">
@@ -65,12 +13,12 @@
                 <div class="categories__slider owl-carousel">
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="././public/img/categories/cat-1.jpg">
-                            <h5><a href="#">Nước trái cây</a></h5>
+                            <h5><a href="#">Nước uống</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="././public/img/categories/cat-2.jpg">
-                            <h5><a href="#">Trái cây khô</a></h5>
+                            <h5><a href="#">Trái cây</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -166,7 +114,7 @@
                                 @foreach ($products as $item2)
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="{{url_file2($item2->pro_avatar)}}" alt="">
+                                        <img src="{{url_file2($item2->pro_avatar)}}" width="80px" height="80px" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>{{$item2->pro_name}}</h6>

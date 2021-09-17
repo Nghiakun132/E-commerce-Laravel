@@ -92,7 +92,12 @@ class CheckoutController extends Controller
         $order['transport'] = rand(1, 9);
         $order['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         $insert = DB::table('order')->insertGetId($order);
-
+        //bought
+        $pd = array();
+        $pd['pk_order_id'] = $insert;
+        $pd['pk_user_id'] = Session::get('user_id');
+        $pd['pd_total'] = (Cart::total(0,',','.')-(Cart::total(0,',','.') * $code));
+        DB::table('product_bought')->insert($pd);
         //order_detail
         $order2 = array();
         $content = Cart::content();

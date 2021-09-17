@@ -24,8 +24,10 @@
             <div class="row">
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
-                        <div class="sidebar__item">
-                            <h4>Danh mục</h4>
+                        <div class="hero__categories">
+                            <div class="hero__categories__all">
+                            <h4 class="hero_span" style="font-weight: bold;"><i class="fa fa-bars"></i>Danh mục</h4>
+                            </div>
                             <ul>
                                 @foreach ($categoriesGlobal as $item)
                                     <li><a href="{{ route('get.category', $item->c_slug) }}"
@@ -33,7 +35,7 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="sidebar__item">
+                        <div class="sidebar__item mt-2">
                             <div class="latest-product__text">
                                 <h4>Latest Products</h4>
                                 <div class="latest-product__slider owl-carousel owl-loaded owl-drag">
@@ -158,38 +160,33 @@
                         </div>
                     </div>
                     <div class="row">
-                        @foreach ($product as $product)
+                        @foreach ($product as $products)
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg"
-                                        data-setbg="{{ url_file($product->pro_avatar) }}"
+                                        data-setbg="{{ url_file($products->pro_avatar) }}"
                                         style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
                                         <ul class="product__item__pic__hover">
-                                            <li><a href="{{ URL::to('add-favorite', $product->id) }}"><i
+                                            <li><a href="{{ URL::to('add-favorite', $products->id) }}"><i
                                                         class="fa fa-heart"></i></a></li>
                                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="{{ route('get.product_detail', $product->pro_slug) }}"
+                                            <li><a href="{{ route('get.product_detail', $products->pro_slug) }}"
                                                     title="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
                                         <h6><a
-                                                href="{{ URL::to('chi-tiet', $product->pro_slug) }}">{{ $product->pro_name }}</a>
+                                                href="{{ URL::to('chi-tiet', $products->pro_slug) }}">{{ $products->pro_name }}</a>
                                         </h6>
-                                        <h5>{{ number_format($product->pro_price - $product->pro_price * $product->pro_sale, 0, ',', '.') . 'đ' }}
+                                        <h5>{{ number_format($products->pro_price - $products->pro_price * $products->pro_sale, 0, ',', '.') . 'đ' }}
                                         </h5>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-                    <div class="product__pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+                        {{$product->links()}}
                 </div>
             </div>
         </div>

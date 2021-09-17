@@ -77,7 +77,7 @@
                                     <td>{{ $item->created_at }}</td>
                                     <td>{{ $item->updated_at }}</td>
                                     <td>
-                                        <a class="nhap" href="{{ URL::to('admin/article/delete-article', $item->id) }}"><i
+                                        <a class="nhap" onclick="return confirm('Bạn có chắc muốn xóa không')" href="{{ URL::to('admin/article/delete-article', $item->id) }}"><i
                                                 style="font-size:19px" class="fa fa-trash" aria-hidden="true"></i></a>
                                         <a class="nhap4" href="{{ URL::to('admin/article/edit-article', $item->id) }}"><i
                                                 style="font-size:19px;" class="fa fa-pen"

@@ -21,8 +21,8 @@ class BackendUserController extends Controller
     }
     public function index(){
         $user = DB::table('users')
-        ->join('address','address.user_id','=','users.id')->distinct()
-        ->select('address.address','users.*')
+        // ->join('address','address.user_id','=','users.id')->distinct()
+        // ->select('address.address','users.*')
         // ->groupBy('id')
         ->get();
         // $address = DB::table('address')->where('user_id',$user->id)->get();
@@ -48,5 +48,21 @@ class BackendUserController extends Controller
             DB::table('users')->where('id',$id)->update($st);
         return Redirect()->route('get_backend.user.index');
     }
-
+    public function detail($id) {
+        $user = DB::table('users')->where('id',$id)->first();
+        $product_bought = DB::table('order')->where('user_id',$id)->sum('order_total');
+        // ->join('order_detail','order_detail.order_id','=','order.id')
+        // ->join('products','products.id','=','order_detail.product_id')
+        // ->get();
+        // dd($product_bought);
+        // $total = DB:
+        $user_address = DB::table('address')->where('user_id',$id)->get();
+        $product_detail_bought = DB::table('order')->where('user_id',$id)
+        ->join('order_detail','order_detail.order_id','=','order.id')
+        ->join('products','products.id','=','order_detail.product_id')
+        ->select('order_detail.*','products.pro_avatar','order.*')
+        ->get();
+        // dd($product_detail_bought);
+        return view($this->folder.'detail',compact('user_address','user','product_bought','product_detail_bought'));
+    }
 }

@@ -90,7 +90,7 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
     Route::prefix('user')->group(function(){
         Route::get('','BackendUserController@index')->name('get_backend.user.index');
         Route::get('delete/{id}','BackendUserController@delete');
-        // Route::get('delete-shipping/{id}','BackendUserController@delete_shipping');
+        Route::get('detail/{id}','BackendUserController@detail');
         Route::get('change-status-user/{id}','BackendUserController@change_status_user');
     });
 

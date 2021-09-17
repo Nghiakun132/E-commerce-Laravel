@@ -42,12 +42,12 @@ class HomeController extends Controller
     }
     public function search(Request $request) {
         $keywords = $request->tukhoa;
-        $products = DB::table('products')->where('pro_name','like','%'.$keywords.'%')->limit(20)->get();
+        $products = Product::where('pro_name','like','%'.$keywords.'%')->get();
         $count = count($products);
-        $view=[
-            'products' => $products,
-            'count' => $count,
-        ];
+        // $view=[
+        //     'products' => $products,
+        //     'count' => $count,
+        // ];
         return view('fronted.search.index',compact('products','count'));
     }
     public function update_tt(){
@@ -204,6 +204,24 @@ class HomeController extends Controller
     public function delete_address($id){
         $user_id = Session::get('user_id');
         DB::table('address')->where('user_id', $user_id)->where('id',$id)->delete();
+        return redirect()->back();
+    }
+    public function cancel_order($id) {
+        $data = array();
+        $user_id = Session::get('user_id');
+        $data['order_status'] = 4;
+        DB::table('order')->where('user_id',$user_id)->where('id',$id)->update($data);
+        $order_detail = DB::table('order_detail')->where('order_id',$id)->get();
+        $soluong = array();
+        foreach ($order_detail as $v2) {
+            // $id = $v2->product_id;
+            $pro_id = $v2->product_id;
+            $qty = DB::table('products')->select('pro_number')->where('id', $pro_id)->first();
+            $sl = $v2->product_qty;
+            $soluong['pro_number'] = $qty->pro_number + $sl;
+            DB::table('products')->where('id', $pro_id)->update($soluong);
+        }
+        // dd($order_detail);
         return redirect()->back();
     }
 }

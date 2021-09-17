@@ -59,6 +59,8 @@ class BackendOrderController extends Controller
             $this->AuthLogin();
            DB::table('order')
             ->where('id', $id)->delete();
+            DB::table('order_detail')
+            ->where('order_id', $id)->delete();
             return Redirect()->route('get_backend.order.index');
         }
         public function change_status($id){

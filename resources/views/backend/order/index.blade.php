@@ -55,9 +55,11 @@
                                 class="badge badge-warning ac">Đã xác nhận</span></a>
                     @elseif ($value->order_status == 2)
                         <a id="del" href="{{ URL::to('admin/order/change-status', $value->id) }}"><span
-                                class="badge badge-danger ac">Đang vận chuyển</span></a>
+                                class="badge badge-primary ac">Đang vận chuyển</span></a>
                     @elseif ($value->order_status == 3)
                         <span class="badge badge-info ac">Đã giao hàng</span>
+                    @else
+                        <span class="badge badge-danger ac">Đã hủy</span>
                     @endif
                 </td>
                 <td>{{ $value->created_at }}</td>

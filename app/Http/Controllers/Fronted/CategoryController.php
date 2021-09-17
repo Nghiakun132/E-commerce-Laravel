@@ -16,8 +16,11 @@ class CategoryController extends Controller
         $category = Category::where('c_slug', $slug)->first();
         $product = Product::where('pro_category_id', $category->id)
             ->where('products.pro_status', 0)
-            // ->orderBy('pro_price','ASC')
-            ->get();
+            ->Paginate(10);
+        // $product = DB::table('products')->where('pro_category_id', $category->id)
+        // ->where('products.pro_status', 0)
+        // ->paginate(10);
+            // dd($product);
         $sales = DB::table('products')
             ->where('pro_category_id', $category->id)
             ->where('pro_sale', '>', 0)
@@ -37,16 +40,18 @@ class CategoryController extends Controller
                 $product = Product::where('pro_category_id', $category->id)
                     ->where('products.pro_status', 0)
                     ->orderBy('pro_price', 'ASC')
-                    ->get();
+                    ->Paginate(10);
             }else if($sort_by =='giamdan'){
                 $product = Product::where('pro_category_id', $category->id)
                 ->where('products.pro_status', 0)
                 ->orderBy('pro_price', 'DESC')
-                ->get();
+            ->Paginate(10);
+            // ->get();
             }else if ($sort_by=='none'){
                 $product = Product::where('pro_category_id', $category->id)
                 ->where('products.pro_status', 0)
-                ->get();
+                ->Paginate(10);
+            // ->get();
             }
         }
         return view($this->folder . 'index', compact('product', 'sales', 'lates', 'count'));

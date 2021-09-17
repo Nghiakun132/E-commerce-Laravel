@@ -161,6 +161,7 @@
                                 class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
+
             </div>
             <!-- Invoice Example -->
             <div class="col-xl-8 col-lg-7 mb-4">
@@ -202,9 +203,11 @@
                                             @elseif ($value->order_status == 2)
                                                 <a id="del"
                                                     href="{{ URL::to('admin/order/change-status', $value->id) }}"><span
-                                                        class="badge badge-danger ac">Đang vận chuyển</span></a>
+                                                        class="badge badge-primary ac">Đang vận chuyển</span></a>
                                             @elseif ($value->order_status == 3)
                                                 <span class="badge badge-info ac">Đã giao hàng</span>
+                                            @else
+                                            <span class="badge badge-danger ac">Đã hủy</span>
                                             @endif
                                         </td>
                                         <td><a href="{{ URL::to('admin/order/view-detail', $value->id) }}"
@@ -216,6 +219,32 @@
                     </div>
                     <div class="card-footer"></div>
                 </div>
+                {{-- <div class="card mt-2">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-warning">Khách hàng mua nhiều nhất</h6>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Tên</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($top as $value9)
+                                    <tr>
+                                        <td>{{ $value9->name }}</td>
+                                        <td>{{ $value9->address }}</td>
+                                        <td>{{ ($value9->pd_total) *1000 . 'đ' }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer"></div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -39,6 +39,7 @@ Route::group(['namespace' =>'Fronted'],function () {
     //check-order
     Route::get('tracking-order','HomeController@tracking_order');
     Route::get('tracking-order-details/{id}','HomeController@tracking_order_details');
+    Route::get('cancel-order/{id}','HomeController@cancel_order');
     //Danh muc sp
     Route::get('danh-muc/{slug}','CategoryController@index')->name('get.category');
     //chi tiet sp

@@ -54,7 +54,7 @@
                         <td>{{ $comment->comment }}</td>
                         <td>{{ $comment->liked }}</td>
                         <td>{{ $comment->created_at }}</td>
-                        <td><a class="delete" href="{{URL::to('admin/comment/delete-comment',$comment->id)}}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                        <td><a onclick="return confirm('Bạn có chắc muốn xóa không')" class="delete" href="{{URL::to('admin/comment/delete-comment',$comment->id)}}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                     </tr>
                 @endforeach
             </tbody>

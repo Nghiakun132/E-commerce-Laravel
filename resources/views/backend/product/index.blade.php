@@ -81,7 +81,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('get_backend.product.delete', $item->id) }}"
+                                    <a onclick="return confirm('Bạn có chắc muốn xóa không')" href="{{ route('get_backend.product.delete', $item->id) }}"
                                         class="btn btn-danger">Delete</a>
                                     <a href="{{ route('get_backend.product.update', $item->id) }}"
                                         class="btn btn-primary">Update</a>

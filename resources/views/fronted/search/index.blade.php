@@ -20,10 +20,27 @@
 
 
 <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
+    <hr>
+        <div class="filter__item">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-5">
+
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <div class="filter__found">
+                                    <h6><span>{{ $count }}</span> Sản phẩm tìm thấy</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3">
+                                <div class="filter__option">
+                                    <span class="icon_grid-2x2"></span>
+                                    <span class="icon_ul"></span>
+                                </div>
+                            </div>
+                        </div>
+                            {{-- <div class="col-lg-12">
             <h3 class="mt-2 mb-3 text-center text-danger">Kết quả tìm kiếm: <span>{{$count}} sản phẩm</span></h3>
-        </div>
+        </div> --}}
     </div>
     <div class="row">
         @foreach ($products as $product)
@@ -45,5 +62,20 @@
             </div>
         @endforeach
     </div>
+    {{-- {{$products->links()}} --}}
+
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#sort').on('change', function(){
+            var url = $(this).val();
+            // alert(url);
+            if(url){
+                window.location = url;
+            }else{
+                return false;
+            }
+            });
+    });
+</script>
 @stop
