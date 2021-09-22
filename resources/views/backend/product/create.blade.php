@@ -90,7 +90,7 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="">Số lượng kho</label>
+                            <label for="">Số lượng nhập</label>
                             <input type="number" class="form-control" placeholder="Số lượng kho" name="pro_kho">
                             @if ($errors->first('pro_kho'))
                                 <small class="form-text text-danger"> {{ $errors->first('pro_kho') }}</small>

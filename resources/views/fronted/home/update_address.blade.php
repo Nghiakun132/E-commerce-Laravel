@@ -1,10 +1,10 @@
 @extends('layout.app_fronted')
 @section('content')
-@section('title','Sổ địa chỉ')
-    <div class="container">
-        <hr>
-        <div class="row">
-            <div class="col-lg-12">
+@section('title', 'Sổ địa chỉ')
+<div class="container">
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
                 <table class="table table-hover">
                     <tr>
                         <th>Tên</th>
@@ -19,7 +19,7 @@
                         <td>{{$value->address}}</td>
                         <td>{{$value->phone}}</td>
                         <td><a href="{{URL::to('change-address',$value->id)}}">
-                            @if ($value->status==1)
+                            @if ($value->status == 1)
                                 <i class="fa fa-thumbs-up text-success" style="font-size:30px;margin-left:32px" aria-hidden="true"></i>
                             @else
                             <i class="fa fa-thumbs-down text-danger" style="font-size:30px;margin-left:32px" aria-hidden="true"></i>
@@ -32,6 +32,22 @@
                 </table>
              <a href="{{URL::to('add-address')}}"><button class="btn btn-primary">Thêm địa chỉ</button></a>
             </div>
+        {{-- <div class="col-lg-3">
         </div>
+        <div class="col-lg-6">
+            <form action="">
+                @foreach ($user as $value)
+                <div class="form-check">
+                        <label for="address">
+                            <input type="radio" name="default" value="{{$value->status}}" {{old( $value->status==1 ) ? 'checked = '.'"checked"':''}} id="address" class="form-check-input">{{$value->address }}
+                        </label>
+                </div>
+                @endforeach
+                <button class="btn btn-primary">Cập nhật</button>
+            </form>
+        </div>
+        <div class="col-lg-3">
+        </div> --}}
     </div>
+</div>
 @stop

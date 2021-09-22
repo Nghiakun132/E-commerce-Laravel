@@ -190,8 +190,8 @@
                                                 href="{{ URL::to('admin/order/view-detail', $value->id) }}">{{ $value->id }}</a>
                                         </td>
                                         <td>{{ $value->name }}</td>
-                                        <td>{{ $value->address }}</td>
-                                        <td>{{ ($value->order_total) *1000 . 'đ' }}</td>
+                                        <td>{{ $value->pk_address }}</td>
+                                        <td>{{ ($value->pd_total) *1000 . 'đ' }}</td>
                                         <td>
                                             @if ($value->order_status == 0)
                                                 <a id="del" href="{{ URL::to('admin/order/change-status', $value->id) }}">

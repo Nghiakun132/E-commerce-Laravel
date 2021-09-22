@@ -31,14 +31,14 @@ class BackendHomeController extends Controller
             ->sum('product_qty');
             // dd($products_sell);
             $admins = DB::table('admins')->select('avatar')->first();
-            $order = DB::table('order')
-            ->join('users','order.user_id','=','users.id')
-            ->join('address','address.user_id','=','users.id')
-            ->select('order.*','users.name','address.address')
-            ->where('address.status',1)
-            // ->where('address.user_id','users.id')
-            ->orderBy('order.id','desc')->limit(5)->get();
-            $address = DB::table('address')->where('status',1)->first();
+            $order = DB::table('product_bought')
+            ->join('users','product_bought.pk_user_id','=','users.id')
+            ->join('order','order.id','=','product_bought.pk_order_id')
+            // ->select('order.*','users.name','product_bought.pk_address')
+            ->orderBy('order.id','desc')
+            ->limit(5)->distinct()->get();
+            // dd($order);
+            // $address = DB::table('product_bought')->select('address')->first();
             $comment = DB::table('comment')->count('id');
 
             $sp = DB::table('products')->get();
@@ -46,7 +46,7 @@ class BackendHomeController extends Controller
                 'order' => $order,
                 'admins' => $admins,
                 'sp' => $sp,
-                'address' => $address,
+                // 'address' => $address,
                 'comment' => $comment,
                 'products_sell' => $products_sell,
                 ];

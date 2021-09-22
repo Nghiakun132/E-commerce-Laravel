@@ -20,7 +20,7 @@ class BackendArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'a-name' => 'required|unique:articles,a_name,' .$this->id,
+            'a_name' => 'required|unique:articles,a_name,' .$this->id,
             'a_menu_id' => 'required',
             'a_description' => 'required',
             'a_content' => 'required',

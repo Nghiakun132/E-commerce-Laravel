@@ -22,7 +22,7 @@ return [
                 'route' => 'get_backend.article.index'
             ],
             [
-                'name' => 'Thành viên',
+                'name' => 'Khách hàng',
                 'route' => 'get_backend.user.index'
             ],
             [
@@ -32,6 +32,10 @@ return [
             [
                 'name' => 'Giảm giá',
                 'route' => 'get_backend.coupon.index'
+            ],
+            [
+                'name' => 'Nhân viên',
+                'route' => 'get_backend.staff.index'
             ],
         ]
     ]

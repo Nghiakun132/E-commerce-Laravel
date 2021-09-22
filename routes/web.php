@@ -53,6 +53,7 @@ Route::group(['namespace' =>'Fronted'],function () {
     Route::get('bai-viet/{slug}','ArticleDetailController@index')->name('get.article_detail'); //chi tiet bai viet
     //search
     Route::post('tim-kiem','HomeController@search');
+    Route::get('adu','SearchController@adu');
 
     // giỏ hàng
     Route::get('gio-hang','CartController@index');

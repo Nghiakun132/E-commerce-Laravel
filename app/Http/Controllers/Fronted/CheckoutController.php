@@ -72,17 +72,17 @@ class CheckoutController extends Controller
             return Redirect()->Route('login')->with('message','Tài khoản của bạn bị khóa');
     }
 
-    public function payment()
-    {
-        $id = Session::get('user_id');
-        $address = DB::table('address')->where('user_id', $id)->first();
-        Session::put('user_address', $address);
-        return view('fronted.user.payment');
-    }
+    // public function payment()
+    // {
+    //     $id = Session::get('user_id');
+    //     $address = DB::table('address')->where('user_id', $id)->first();
+    //     Session::put('user_address', $address);
+    //     return view('fronted.user.payment');
+    // }
     public function order_place()
     {
         $code = Session::get('cp_condition');
-        $address = Session::get('user_address');
+        // $address = Session::get('user_address');
         //order
         $order = array();
         $order['user_id'] = Session::get('user_id');
@@ -93,9 +93,12 @@ class CheckoutController extends Controller
         $order['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         $insert = DB::table('order')->insertGetId($order);
         //bought
+        $user_id = Session::get('user_id');
+        $address = DB::table('address')->where('user_id',$user_id)->where('status',1)->first();
         $pd = array();
         $pd['pk_order_id'] = $insert;
         $pd['pk_user_id'] = Session::get('user_id');
+        $pd['pk_address'] = $address->address;
         $pd['pd_total'] = (Cart::total(0,',','.')-(Cart::total(0,',','.') * $code));
         DB::table('product_bought')->insert($pd);
         //order_detail
@@ -128,6 +131,12 @@ class CheckoutController extends Controller
         // session_destroy();
         Session::forget('cp_id');
         Session::forget('cp_condition');
+        }
+        $qty_cp_open =DB::table('users')->where('id',$user_id)->select('qty_open_cp')->first();
+        $qty_open_cp =array();
+        if(Cart::total(0,',','.') > 500 ){
+            $qty_open_cp['qty_open_cp'] = $qty_cp_open->qty_open_cp + 1;
+            DB::table('users')->where('id',$user_id)->update($qty_open_cp);
         }
         Cart::destroy();
         return Redirect()->Route('get.home');

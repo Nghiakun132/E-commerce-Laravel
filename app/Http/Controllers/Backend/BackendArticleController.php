@@ -35,6 +35,7 @@ class BackendArticleController extends Controller
         return view($this->folder.'index',$viewData);
     }
     public function add(){
+        $this->AuthLogin();
         $menus = Menu::all();
         $view=[
             'menus' => $menus,
@@ -42,7 +43,8 @@ class BackendArticleController extends Controller
         return view($this->folder.'create',$view);
     }
     public function add_article(Request $request){
-            $admin_id =Session::get('id');
+        $this->AuthLogin();
+        $admin_id =Session::get('id');
             $data = array();
             $data = $request->except('_token','a_avatar');
             $data['a_name'] =$request ->a_name;
@@ -62,6 +64,7 @@ class BackendArticleController extends Controller
         return Redirect()->route('get_backend.article.index');
     }
     public function edit($id) {
+        $this->AuthLogin();
         $menus = DB::table('menus')->get();
         $articles = DB::table('articles')->where('id', $id)->get();
         $view=[
@@ -72,7 +75,8 @@ class BackendArticleController extends Controller
     }
     public function update(Request $request, $id){
 
-            $data = array();
+        $this->AuthLogin();
+        $data = array();
             $data = $request->except('_token','a_avatar');
             $data['a_name'] = $request->a_name;
             $data['a_menu_id'] = $request->a_menu_id;
@@ -90,6 +94,7 @@ class BackendArticleController extends Controller
         return Redirect()->route('get_backend.article.index');
     }
     public function delete_article($id) {
+        $this->AuthLogin();
         DB::table('articles')->where('id', $id)->delete();
         return Redirect()->route('get_backend.article.index');
     }

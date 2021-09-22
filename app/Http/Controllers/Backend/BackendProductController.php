@@ -48,6 +48,7 @@ class BackendProductController extends Controller
     }
     public function store(BackendProductRequest $request)
     {
+        //add product
         $this->AuthLogin();
         $data = $request->except('_token', 'pro_avatar');
         $data['pro_slug'] = Str::slug($request->pro_name);
@@ -59,6 +60,22 @@ class BackendProductController extends Controller
             }
         }
         $products = Product::create($data);
+        //add import_product
+        $admin_id = Session::get('id');
+        $import = array();
+        $import['ip_admin_id'] =$admin_id;
+        $import['ip_price_total']=$request->pro_price * $request->pro_number;
+        $import['ip_created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
+        $ip_id = DB::table('import_product')->insertGetId($import);
+        $id_product= DB::table('products')->orderBy('id', 'DESC')->first();
+        //add import_product_details
+        $import_product_details =array();
+        $import_product_details['ipd_ip_id'] = $ip_id;
+        $import_product_details['ipd_product_id']=$id_product->id;
+        $import_product_details['ipd_product_qty']=$request->pro_number;
+        $import_product_details['ipd_price']=$request->pro_price;
+        $import_product_details['created_at']=Carbon::now('Asia/Ho_Chi_Minh');
+        DB::table('import_product_details')->insert($import_product_details);
         return Redirect()->back();
     }
 
@@ -98,6 +115,7 @@ class BackendProductController extends Controller
         return redirect()->route(route: 'get_backend.product.index');
     }
     public function change_status($id){
+        $this->AuthLogin();
         $data = array();
         $status = DB::table('products')->where('id', $id)->first();
         // dd($status);
@@ -111,11 +129,13 @@ class BackendProductController extends Controller
     }
 
     public function add_img($id){
+        $this->AuthLogin();
         $product = DB::table('products')->where('id',$id)->first();
         // dd($product);
         return view('backend.product.img_product',compact('product'));
     }
     public function add_image(Request $request){
+        $this->AuthLogin();
         $data =array();
         $data = $request->except('_token', 'pro_avatar');
         $data['product_slug'] = $request->product_slug;

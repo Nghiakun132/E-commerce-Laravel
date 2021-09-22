@@ -20,6 +20,7 @@ class BackendUserController extends Controller
         }
     }
     public function index(){
+        $this->AuthLogin();
         $user = DB::table('users')
         // ->join('address','address.user_id','=','users.id')->distinct()
         // ->select('address.address','users.*')
@@ -34,11 +35,13 @@ class BackendUserController extends Controller
     }
 
     public function delete($id){
+        $this->AuthLogin();
         DB::table('users')->where('id',$id)->delete();
         return Redirect()->route('get_backend.user.index');
     }
     public function change_status_user($id){
-            $status = DB::table('users')->where('id',$id)->select('status')->first();
+        $this->AuthLogin();
+        $status = DB::table('users')->where('id',$id)->select('status')->first();
             $st= array();
             if($status->status == 0){
                 $st['status'] = 1;
@@ -49,6 +52,7 @@ class BackendUserController extends Controller
         return Redirect()->route('get_backend.user.index');
     }
     public function detail($id) {
+        $this->AuthLogin();
         $user = DB::table('users')->where('id',$id)->first();
         $product_bought = DB::table('order')->where('user_id',$id)->sum('order_total');
         // ->join('order_detail','order_detail.order_id','=','order.id')

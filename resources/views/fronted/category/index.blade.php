@@ -1,6 +1,18 @@
 @extends('layout.app_fronted')
 @section('content')
 @section('title', 'Danh mục')
+<style>
+    .product__discount__percent{
+    animation: fade 2.1s linear infinite;
+    }
+    @keyframes fade {
+        to{
+            transform:rotateX(0deg)
+        }from{
+            transform: rotateX(360deg)
+        }
+    }
+</style>
 <div class="nghia">
     <section class="breadcrumb-section set-bg" data-setbg="../public/img/breadcrumb.jpg"
         style="background-image: url(&quot;../public/images/breadcrumb.jpg&quot;);">

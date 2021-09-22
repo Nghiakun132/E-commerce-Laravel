@@ -22,17 +22,11 @@ class BackendOrderController extends Controller
     }
     public function index(){
         $this->AuthLogin();
-        // $status = DB::table('order')->select('order_status')->first();
-
-        // dd($status);
-        $order = DB::table('order')
-        ->join('users','order.user_id','=','users.id')
-        ->join('address','address.user_id','=','users.id')
-        ->select('order.*','users.name','address.address')
-        ->where('address.status',1)
-        ->orderBy('order.id','asc')->get();
-        // dd($order);
-        // $address = DB::table('address')->where('status',1)->first();
+        $order = DB::table('product_bought')
+        ->join('users','product_bought.pk_user_id','=','users.id')
+        ->join('order','order.id','=','product_bought.pk_order_id')
+        ->orderBy('order.id','asc')
+        ->get();
         $view=[
             // 'address' => $address,
             'order' => $order,

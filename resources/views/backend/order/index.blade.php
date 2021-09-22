@@ -23,7 +23,7 @@
                 <td>{{ $value->id }}</td>
                 {{-- <td>{{ $value->user_id }}</td> --}}
                 <td>{{ $value->name }}</td>
-                <td>{{ $value->address }}</td>
+                <td>{{ $value->pk_address }}</td>
                 <td>{{ ($value->order_total) * 1000 .'đ' }}</td>
                 <td>
                     @if ($value->transport == 1)
