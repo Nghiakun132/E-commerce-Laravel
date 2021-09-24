@@ -11,7 +11,7 @@
             font-size: 44px;
             text-shadow: 0px 0px 3px #610d0d;
             text-align: center;
-            animation: nhapnhay 0.8s linear infinite;
+            animation: nhapnhay 1.5s linear infinite;
         }
 
         @keyframes nhapnhay {
@@ -44,12 +44,12 @@
         .update{
             outline: none;
             border: none;
-            animation: nhapnhay1 0.8s linear infinite;
+            animation: nhapnhay1 1.8s linear infinite;
         }
         .delete{
             outline: none;
             border: none;
-            animation: nhapnhay2 0.8s linear infinite;
+            animation: nhapnhay2 1.8s linear infinite;
 
         }
     </style>
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="col-sm-5">
-                <div class="card p-3">
+                <div class="card p-3 bg-info">
                     <h4>Thêm mới || Cập nhật</h4>
                     @include('backend.category.form',['route' => route('get_backend.category.store')])
                 </div>

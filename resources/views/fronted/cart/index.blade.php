@@ -142,7 +142,7 @@
                         </li>
                         @endif
                     </ul>
-                   <a href="{{URL::to('order-place')}}" class="primary-btn" >Tiến hành thanh toán</a>
+                   <a href="{{URL::to('payment')}}" class="primary-btn" >Tiến hành thanh toán</a>
                 </div>
             </div>
         </div>

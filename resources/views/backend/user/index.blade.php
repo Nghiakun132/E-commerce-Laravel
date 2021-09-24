@@ -1,10 +1,24 @@
 @extends('layout.app_backend')
 @section('content')
 @section('title', 'Danh sách thành viên')
-
-<h3>Danh sách thành viên</h3>
-<div class="card">
-    <table class="table table-hover">
+<style>
+    body {
+        background-color: rgba(217, 182, 228, 0.432);
+    }
+    .heading{
+        font-size: 44px;
+        text-shadow: 1px 1px 0px rgb(155, 229, 155);
+        animation: nhapnhay 1.2s linear infinite;
+        text-align: center;
+    }
+    @keyframes nhapnhay{
+        from { color: red; }
+        to { color: green; }
+    }
+</style>
+<h2 class="heading">Danh sách thành viên</h2>
+    <table class="table table-hover bg-secondary">
+        <thead class="text-warning">
         <tr>
             <th>ID</th>
             <th>Tên</th>
@@ -14,7 +28,8 @@
             <th>Trạng thái</th>
             <th>Action</th>
         </tr>
-        @foreach ($user as $value)
+    </thead>
+    @foreach ($user as $value)
             <tr>
                 <td>{{ $value->id }}</td>
                 <td>{{ $value->name }}</td>
@@ -37,5 +52,4 @@
             </tr>
         @endforeach
     </table>
-</div>
 @stop

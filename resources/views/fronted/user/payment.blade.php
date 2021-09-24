@@ -2,11 +2,11 @@
 @section('content')
 @section('title', 'Thanh toán');
 <section class="shoping-cart spad">
-    <div class="container card">
-        <div class="row ">
-            <div class="col-lg-12">
-                <h3 style="font-weight: bold">Xem lại giỏ hàng</h3>
-
+    <div class="container">
+                <h2 style="font-weight: bold" class="text-warning">Xem lại giỏ hàng</h2>
+                <hr>
+                <div class="row">
+                <div class="col-lg-12">
             </div>
             <div class="col-lg-12 ">
                 <div class="shoping__cart__table">
@@ -68,43 +68,62 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__btns">
+                    <a href="{{ route('get.home') }}" class="btn btn-success btn-lg text-danger" style="font-weight: bold">Tiếp tục mua hàng</a>
+                </div>
+            </div>
+        </div>
+            <hr>
+
+        <style>
+            .ac{
+                margin-top: 8px;
+            }
+            .bg_info{
+                background-color: #ccc;
+            }
+            .item{
+                font-size:23px;
+            }
+        </style>
+        <div class="row">
             <div class="col-lg-6">
-                <h2>Địa chỉ giao hàng</h2>
-                <?php
-                if(Session::get('user_address')!==null){
-                $a = Session::get('user_address');
-                echo $a->address;
-                }
-                ?>
+                <h2 style="font-weight: bold">Thông tin giao hàng</h2>
+                <div class="bg_info">
+                <ul class="list-group list-group-flush ac">
+                    <li class="list-group-item item"><b>Họ tên:</b> {{$user->name}}</li>
+                    <li class="list-group-item item"><b>Số điện thoại:</b> {{$user->phone}}</li>
+                    <li class="list-group-item item"><b>Địa chỉ:</b> {{$address->address}}</li>
+                    <li class="list-group-item item"><b>Email:</b> {{$user->email}}</li>
+                </ul>
+            </div>
             </div>
             <div class="col-lg-6">
                 <div class="shoping__checkout">
                     <?php
-                    if(Session::get('cp_condition'))
-                        $code = Session::get('cp_condition');
+                    $code = Session::get('cp_condition');
                     ?>
                     <h5>Tổng giỏ hàng</h5>
                     <ul>
-                        <li>Thuế <span>{{ Cart::tax(0,',','.') . 'đ' }}</span></li>
-                        <li>Phí vận chuyển <span>Miễn phí</span></li>
-                        <?php if($code){?>
-                            <li>Giảm giá<span><?php echo $code * 100 .'%' ?></span></li>
-                        <?php }else{?>
-                            <li>Giảm giá<span>0%</span></li>
-                        <?php } ?>
-                            @if($code > 0)
+                        <li>Thuế <span>{{ Cart::tax(0,',','.'). 'đ' }}</span></li>
+                        <li>Phí vận chuyển<span>Miễn phí</span></li>
+                        <li>Voucher giảm giá<span><?php echo $code*100 .'%' ?></span></li>
+                        {{-- <li>Giảm giá<span>{{Cart::total (0,',','.') * ($code*1000)}}</span></li> --}}
+                        {{-- <li>Giảm giá<span>{{$code}}</span></li> --}}
+                        @if($code > 0)
                         <li>Tổng tiền
-                            <span>{{ Cart::total (0,',','.')-(Cart::total (0,',','.') * $code). 'đ' }}
+                            <span>{{ Cart::total (0,',','.')-(Cart::total (0,',','.')*$code). 'đ' }}
                             </span>
                         </li>
                         @else
                         <li>Tổng tiền
-                            <span>{{ Cart::total (0,',','.'). 'đ' }}
+                            <span>{{ Cart::total (0,',','.') . 'đ' }}
                             </span>
                         </li>
                         @endif
                     </ul>
-                    <a href="{{ URL::to('order-place') }}" class="primary-btn orders">Thanh toán</a>
+                   <a href="{{URL::to('order-place')}}" class="primary-btn" >Tiến hành thanh toán</a>
                     {{-- <script>
                         $(document).ready(function() {
                             $('.orders').click(function() {

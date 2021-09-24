@@ -2,6 +2,9 @@
 @section('title', 'Danh sách sản phẩm')
 @section('content')
     <style>
+        body{
+            background-color: rgba(206, 168, 199, 0.575);
+        }
         .heading {
             color: rgb(46, 12, 241);
             font-weight: bold;

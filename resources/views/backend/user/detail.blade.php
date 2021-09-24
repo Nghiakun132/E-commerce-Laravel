@@ -1,20 +1,28 @@
 @extends('layout.app_backend')
 @section('content')
 @section('title', 'Danh sách thành viên')
-
+<style>
+    body {
+        background-color: rgba(226, 181, 226, 0.5);
+    }
+    .www{
+        font-weight: bold;
+        color: #fff;
+    }
+</style>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-2"></div>
-        <div class="col-lg-8 card">
+        <div class="col-lg-8 card bg-primary">
             <table class="table table-hover text-center">
-                <thead>
+                <thead class="text-warning">
                     <tr>
                         <th>Tên</th>
                         <th>Địa chỉ</th>
                         <th>Số tiền đã mua</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="www">
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>

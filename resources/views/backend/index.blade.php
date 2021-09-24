@@ -2,32 +2,47 @@
 @section('title', 'Trang chủ')
 @section('content')
     <style>
+        body {
+            background-color: rgba(243, 193, 193, 0.671);
+        }
         .nhap {
             color: red !important;
             animation: nhapnhay 1s linear infinite;
         }
 
         /* @keyframes myAnimation {
+                        from {
+                            color: red !important;
+                        }
+
+                        to {
+                            color: rgb(20, 221, 20) !important;
+                        }
+                    } */
+        @keyframes nhapnhay {
             from {
-                color: red !important;
+                color: rgb(46, 12, 241);
             }
 
             to {
-                color: rgb(20, 221, 20) !important;
+                color: rgb(9, 238, 28);
             }
-        } */
-        @keyframes nhapnhay{
-            from { color: rgb(46, 12, 241); }
-            to { color: rgb(9, 238, 28); }
         }
 
     </style>
     <div class="container-fluid" id="container-wrapper">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-            <h1 class="h3 mb-0 text-gray-800">Thống kê toàn cục</h1>
+        <div class="row mb-2">
+            <div class="col-lg-4">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
+                    <h1 class="h3 mb-0 text-gray-800">Thống kê toàn cục</h1>
+                </div>
+            </div>
+            <div class="col-lg-4">
+            </div>
+            <div class="col-lg-4">
+            </div>
         </div>
         <div class="row mb-3">
-            <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
@@ -52,7 +67,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Earnings (Annual) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
@@ -60,7 +74,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-uppercase mb-1">Sản phẩm đã bán</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                  {{$products_sell}}
+                                    {{ $products_sell }}
                                 </div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
@@ -107,7 +121,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-uppercase mb-1">Bình luận</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$comment}}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $comment }}</div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 1.10%</span>
                                     <span>Since yesterday</span>
@@ -143,17 +157,19 @@
                     </div>
                     <div class="card-body">
                         @foreach ($sp as $pd)
-                                <div class="mb-3">
-                                    <div class="medium text-gray-500">
-                                        <span>{{ $pd->pro_name }}</span>
-                                        <div class="medium float-right"><b>Đã bán {{$pd->pro_kho - $pd->pro_number}} sản phẩm / {{ $pd->pro_kho }}
-                                                Sản phẩm</b></div>
-                                    </div>
-                                    <div class="progress" style="height: 12px;">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 100%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                            <div class="mb-3">
+                                <div class="medium text-gray-500">
+                                    <span>{{ $pd->pro_name }}</span>
+                                    <div class="medium float-right"><b>Đã bán {{ $pd->pro_kho - $pd->pro_number }} sản
+                                            phẩm
+                                            / {{ $pd->pro_kho }}
+                                            Sản phẩm</b></div>
                                 </div>
+                                <div class="progress" style="height: 12px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%"
+                                        aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
                         @endforeach
                     </div>
                     <div class="card-footer text-center">
@@ -191,10 +207,11 @@
                                         </td>
                                         <td>{{ $value->name }}</td>
                                         <td>{{ $value->pk_address }}</td>
-                                        <td>{{ ($value->pd_total) *1000 . 'đ' }}</td>
+                                        <td>{{ $value->pd_total * 1000 . 'đ' }}</td>
                                         <td>
                                             @if ($value->order_status == 0)
-                                                <a id="del" href="{{ URL::to('admin/order/change-status', $value->id) }}">
+                                                <a id="del"
+                                                    href="{{ URL::to('admin/order/change-status', $value->id) }}">
                                                     <span class="badge badge-success ac">Đang xử lý</span></a>
                                             @elseif ($value->order_status == 1)
                                                 <a id="del"
@@ -207,7 +224,7 @@
                                             @elseif ($value->order_status == 3)
                                                 <span class="badge badge-info ac">Đã giao hàng</span>
                                             @else
-                                            <span class="badge badge-danger ac">Đã hủy</span>
+                                                <span class="badge badge-danger ac">Đã hủy</span>
                                             @endif
                                         </td>
                                         <td><a href="{{ URL::to('admin/order/view-detail', $value->id) }}"

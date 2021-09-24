@@ -70,9 +70,8 @@
                     if ($name) {
                         echo $name;
                     }
-
                     ?></a>&nbsp;&nbsp;&nbsp;<a
-                            href="{{ URL::to('admin/logout') }}">Đăng xuất <i class="fas fa-sign-out-alt    "></i></a>
+                            href="{{ URL::to('admin/logout') }}">Đăng xuất <i class="fas fa-sign-out-alt"></i></a>
                 </h3>
             </div>
         </nav>

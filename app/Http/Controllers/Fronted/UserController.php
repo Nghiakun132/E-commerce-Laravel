@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     public function index(){
-
         return view('fronted.user.index');
     }
 
@@ -19,4 +18,8 @@ class UserController extends Controller
 
         return view('fronted.user.create');
     }
+    // public function ip(Request $request){
+    //     $ip = $request->ip();
+    //     return view('fronted.user.test',compact('ip'));
+    // }
 }

@@ -1,11 +1,11 @@
 <table class="table table-hover">
-    <thead>
+    <thead class="text-primary">
         <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>Tên</th>
             <th>Slug</th>
-            <th>Time</th>
-            <th>Time update</th>
+            <th>Thời gian</th>
+            <th>Thời gian cập nhật</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -18,8 +18,8 @@
             <td>{{$item->created_at}}</td>
             <td>{{$item->updated_at}}</td>
             <td>
-                <a href="{{route('get_backend.menu.delete',$item->id)}}" class="btn btn-danger">Delete</a>
-                <a href="{{route('get_backend.menu.update',$item->id)}}" class="btn btn-primary">Update</a>
+                <a href="{{route('get_backend.menu.delete',$item->id)}}" class="btn btn-danger">Xóa</a>
+                <a href="{{route('get_backend.menu.update',$item->id)}}" class="btn btn-warning">Cập nhật</a>
             </td>
         </tr>
         @endforeach

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+// use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,7 +79,7 @@ Route::group(['namespace' =>'Fronted'],function () {
         Route::get('','UserController@index')->name('get.user.index');
         Route::get('create','UserController@create')->name('get.user.create');
         Route::post('create','UserController@store')->name('get.user.store');
-
+        // Route::get('ip-user','UserController@ip');
     });
 
     //article

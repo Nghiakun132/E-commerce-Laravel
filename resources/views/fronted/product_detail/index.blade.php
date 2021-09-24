@@ -67,7 +67,7 @@
                                 <div class="product__details__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <input type="text" value="1" name="qty">
+                                            <input type="text" id="qty" value="1" name="qty" min="1" max="{{$product->pro_number}}">
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +79,11 @@
                                 @endif
                                 <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                             </form>
-
+                            <?php
+                            $message4 = Session::get('message_qty');
+                            if($message4){
+                                echo "<script type='text/javascript'>alert('$message4');</script>";
+                             } ?>
                             <ul>
                                 <li>
                                     <b>

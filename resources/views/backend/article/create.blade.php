@@ -2,6 +2,9 @@
 @section('title', 'Thêm bài viết')
 @section('content')
     <style>
+        body {
+            background-color: rgba(223, 183, 183, 0.404);
+        }
         .heading {
         color: rgb(46, 12, 241);
         font-weight: bold;
@@ -26,10 +29,10 @@
             </div>
             <div class="col-sm-6">
                 <div class="card">
-                    <div class="p-3">
+                    <div class="p-4">
                         <div class="form-group">
                             <label for="">Tên:</label>
-                            <input type="text" class="form-control" placeholder="Tên" name="a_name">
+                            <input type="text" class="form-control" name="a_name">
                             @if ($errors->first('a_name'))
                                 <small class="form-text text-danger"> {{ $errors->first('a_name') }}</small>
                             @endif

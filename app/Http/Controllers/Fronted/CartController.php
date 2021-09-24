@@ -28,10 +28,12 @@ class CartController extends Controller
     }
     public function save_cart(Request $request)
     {
-        $qty = $request->qty;
         $id = $request->product_id;
+        $product_info2 = DB::table('products')->where('id', $id)->first();
+        $qty = $request->qty;
+        if($qty <= $product_info2->pro_number){
         $product_info = DB::table('products')->where('id', $id)->first();
-        // Cart::add('293ad', 'Product 1', 1, 9.99, 550);
+        $id = $request->product_id;
         $data['id'] = $id;
         $data['qty'] = $qty;
         $data['name'] = $product_info->pro_name;
@@ -40,8 +42,11 @@ class CartController extends Controller
         $data['options']['image'] = $product_info->pro_avatar;
         Cart::add($data);
         Cart::setGlobalTax(10);
-        // Cart::destroy();
         return Redirect::to('/show-cart');
+    }else{
+            return Redirect()->back()->with('message_qty','Số lượng hàng hóa không đủ');
+        }
+        // Cart::destroy();
     }
     public function show_cart()
     {

@@ -72,13 +72,15 @@ class CheckoutController extends Controller
             return Redirect()->Route('login')->with('message','Tài khoản của bạn bị khóa');
     }
 
-    // public function payment()
-    // {
-    //     $id = Session::get('user_id');
-    //     $address = DB::table('address')->where('user_id', $id)->first();
-    //     Session::put('user_address', $address);
-    //     return view('fronted.user.payment');
-    // }
+    public function payment()
+    {
+        $id = Session::get('user_id');
+        $user = DB::table('users')->where('id', $id)->first();
+        $address = DB::table('address')->where('user_id', $id)->where('status',1)->first();
+        // Session::put('user_address', $address);
+        // dd($address);
+        return view('fronted.user.payment',compact('address','user'));
+    }
     public function order_place()
     {
         $code = Session::get('cp_condition');
