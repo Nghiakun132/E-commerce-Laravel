@@ -69,7 +69,7 @@ class CheckoutController extends Controller
             Session::put('user_name', $result->name);
             return Redirect()->Route('get.home');
         }else
-            return Redirect()->Route('login')->with('message','Tài khoản của bạn bị khóa');
+            return Redirect()->Route('login')->with('message','Tài khoản của bạn không tồn tại hoặc bị khóa');
     }
 
     public function payment()

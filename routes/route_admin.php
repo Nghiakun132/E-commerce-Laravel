@@ -5,6 +5,8 @@ use App\Http\Controllers\Backend\BackendCouponController;
 Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
     //Trang chu
     Route::get('','BackendHomeController@index')->name('get_backend.home');
+    Route::get('change-info/{id}','BackendHomeController@change_info');
+    Route::post('change/{id}','BackendHomeController@change');
     Route::post('adminlogin','BackendHomeController@adminlogin');
 
     //login
@@ -115,6 +117,7 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
     });
     Route::prefix('staff')->group(function(){
         Route::get('','AdminController@index')->name('get_backend.staff.index');
-        Route::get('add-staff','AdminController@add_staff')->name('get_backend.staff.add_staff');
+        Route::get('add-staff','AdminController@add_staff')->name('get_backend.staff.add_account');
+        Route::post('add-account','AdminController@add_account');
     });
 });

@@ -178,14 +178,31 @@
                         </ul>
                     </nav>
                 </div>
+                <style>
+                    .order:hover i{
+                        /* color: rgb(247, 4, 4) !important; */
+                        animation: quay 0.5s linear infinite;
+                    }
+                    .iconss{
+                        font-size: 20px !important;
+                    }
+                    @keyframes quay{
+                        from {
+                            transform: rotate(0deg)
+                        }
+                        to {
+                            transform: rotate(360deg)
+                        }
+                    }
+                </style>
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="{{URL::to('tracking-order')}}" title="Kiểm tra đơn hàng"><i class="fa fa-check-circle text-success" aria-hidden="true"></i></a></li>
-                            <li><a href="{{URL::to('view-data')}}" title="Cập nhật thông tin"><i class="fa fa-address-book text-info" aria-hidden="true"></i></a></li>
-                            <li><a href="{{URL::to('view-favorite')}}"><i class="fa fa-heart text-danger" title="Yêu thích"></i></a></li>
-                            <li><a href="{{route('get.cart')}}" title="Giỏ hàng"><i class="fa fa-shopping-bag text-warning"></i></a></li>
-                            <li><a href="{{URL::to('adu')}}" title="Mã giảm giá"><i class="fa fa-gift text-danger"></i></a></li>
+                            <li><a href="{{URL::to('tracking-order')}}" class="order" title="Kiểm tra đơn hàng"><i class="fa fa-check-circle text-success iconss" aria-hidden="true"></i></a></li>
+                            <li><a href="{{URL::to('view-data')}}" class="order" title="Cập nhật thông tin"><i class="fa fa-address-book text-info iconss" aria-hidden="true"></i></a></li>
+                            <li><a href="{{URL::to('view-favorite')}}" class="order"><i class="fa fa-heart text-danger iconss" title="Yêu thích"></i></a></li>
+                            <li><a href="{{route('get.cart')}}" title="Giỏ hàng" class="order"><i class="fa fa-shopping-bag text-warning iconss"></i></a></li>
+                            <li><a href="{{URL::to('adu')}}" title="Mã giảm giá" class="order"><i class="fa fa-gift text-danger iconss"></i></a></li>
                         </ul>
                     </div>
                 </div>

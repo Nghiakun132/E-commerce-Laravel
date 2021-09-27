@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label for="">Menu</label>
                         <select name="a_menu_id" class="form-control">
-                            <option value="a_menu_id">
+                            <option value="">
                                 ____Chọn menu____
                             </option>
                             @foreach ($menus as $item)

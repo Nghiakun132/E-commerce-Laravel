@@ -25,6 +25,20 @@ class BackendStaffRequest extends FormRequest
     {
         return [
             'email'=>'required|unique:admins,email,'.$this->id,
+            'phone' =>'required',
+            'password' =>'required',
+            'name' =>'required',
+            'address' =>'required',
+        ];
+    }
+    public function messages(){
+        return [
+            'email.required' => 'Dữ liệu không được để trống',
+            'name.required' => 'Dữ liệu không được để trống',
+            'phone.required' => 'Dữ liệu không được để trống',
+            'password.required' => 'Dữ liệu không được để trống',
+            'address.required' => 'Dữ liệu không được để trống',
+            'email.unique' => 'Dữ liệu đã tồn tại',
         ];
     }
 }

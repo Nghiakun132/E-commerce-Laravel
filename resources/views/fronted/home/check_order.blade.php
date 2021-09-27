@@ -35,7 +35,7 @@
                     @foreach ($order as $order)
                         <tr>
                             <td>{{ $order->id }}</td>
-                            <td>{{ $order->order_total . 'đ' }}</td>
+                            <td>{{ $order->order_total*1000 . 'đ' }}</td>
                             <td>
                                 @if ($order->transport == 1)
                                     Giao hàng nhanh

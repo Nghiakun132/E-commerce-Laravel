@@ -48,7 +48,7 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng tiền</div>
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng doanh thu </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     <?php
                                     $total = Session::get('total');
@@ -94,7 +94,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-uppercase mb-1">Thành viên mới</div>
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">Khách hàng</div>
                                 <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 nhap">
                                     <?php
                                     $user = Session::get('users');
@@ -140,20 +140,6 @@
                 <div class="card mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Số lượng </h6>
-                        {{-- <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button" id="dropdownMenuLink"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Month <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Select Periode</div>
-                                <a class="dropdown-item" href="#">Today</a>
-                                <a class="dropdown-item" href="#">Week</a>
-                                <a class="dropdown-item active" href="#">Month</a>
-                                <a class="dropdown-item" href="#">This Year</a>
-                            </div>
-                        </div> --}}
                     </div>
                     <div class="card-body">
                         @foreach ($sp as $pd)
@@ -165,17 +151,26 @@
                                             / {{ $pd->pro_kho }}
                                             Sản phẩm</b></div>
                                 </div>
-                                <div class="progress" style="height: 12px;">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%"
+                                <?php
+                                $bg = array('bg-info','bg-primary','bg-secondary','bg-danger','bg-success','bg-warning','bg-dark');
+                                $adu = $bg[rand(0,count($bg)-1)];
+                                ?>
+                                <?php
+                                $pt =  ($pd->pro_kho - $pd->pro_number);
+                                // echo $pt;
+
+                                ?>
+                                <div class="progress" style="height: 18px;">
+                                    <div class="progress-bar <?php echo $adu ?> progress-bar-striped progress-bar-animated" role="progressbar" style="width: <?php echo (100 - $pt).'%' ?> "
                                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-                    <div class="card-footer text-center">
+                    {{-- <div class="card-footer text-center">
                         <a class="m-0 small text-primary card-link" href="#">View More <i
                                 class="fas fa-chevron-right"></i></a>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>
@@ -188,7 +183,7 @@
                             thêm <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="table-responsive">
-                        <table class="table align-items-center table-flush">
+                        <table class="table align-items-center table-flush table-hover">
                             <thead class="thead-light">
                                 <tr>
                                     <th>Mã đơn hàng</th>
@@ -266,18 +261,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="card">
-                        <img src="././././public/uploads/2021/09/04/2021-09-04__avatar.jpg" width="300px" height="300px"
-                            alt="" class="img-thumbnail">
-                    </div> Bùi Hữu Nghĩa B1809377
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 
 @stop
