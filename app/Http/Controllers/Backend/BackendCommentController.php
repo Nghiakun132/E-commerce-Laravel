@@ -25,7 +25,6 @@ class BackendCommentController extends Controller
             ->join('products', 'products.pro_slug', '=', 'comment.product_slug')
             ->select('comment.*', 'users.name', 'products.pro_avatar', 'products.pro_name')
             ->get();
-        // dd($comment);
         $view = [
             'comment' => $comment,
         ];

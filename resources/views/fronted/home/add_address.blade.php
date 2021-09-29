@@ -1,7 +1,6 @@
 @extends('layout.app_fronted')
 @section('content')
 @section('title', 'Thêm địa chỉ')
-
 <div class="container">
     <div class="row">
         <div class="col-lg-3"></div>
@@ -19,5 +18,4 @@
         <div class="col-lg-3"></div>
     </div>
 </div>
-
 @stop

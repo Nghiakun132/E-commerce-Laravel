@@ -27,6 +27,7 @@ class ProductDetailController extends Controller
     }
     public function comment(Request $request){
         $id = Session::get('user_id');
+        if($id != null){
         $proda_slug = Session::get('slug');
         // dd($proda_slug);
             $data= array();
@@ -36,7 +37,10 @@ class ProductDetailController extends Controller
             $data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
             DB::table('comment')->insert($data);
         return Redirect()->back();
+     }else{
+        return Redirect()->route('login');
      }
+    }
      public function like_comment($id){
         $like = array();
         $data = DB::table('comment')->where('id', $id)->select('comment.liked')->first();

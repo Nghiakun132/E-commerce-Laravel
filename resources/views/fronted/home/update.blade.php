@@ -20,10 +20,6 @@
                         <label for="">Email</label>
                         <input type="text" class="form-control" name="email" value="{{ $value->email }}">
                     </div>
-                    {{-- <div class="form-group">
-                        <label for="">Địa chỉ</label>
-                        <input type="text" class="form-control" name="address" value="{{ $value->address }}">
-                    </div> --}}
                     <div class="form-group">
                         <label for="">Mật khẩu</label>
                         <input type="password" class="form-control" name="password" value="{{ $value->password }}">
@@ -36,13 +32,8 @@
                 </form>
             @endforeach
         </div>
-        {{-- <div class="col-lg-3">
-
-        </div> --}}
         <div class="col-lg-3">
-
         </div>
         </div>
     </div>
-</div>
 @stop

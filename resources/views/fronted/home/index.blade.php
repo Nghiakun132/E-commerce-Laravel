@@ -2,47 +2,45 @@
 @section('title','Trang chủ')
 @section('content')
 <style>
-
+    @keyframes quay3{
+        from {
+            transform:rotate(0deg)
+        }
+        to {
+            transform:rotate(5deg)
+        }
+    }
+    @keyframes quay32{
+        from {
+            transform:rotate(0deg)
+        }
+        to {
+            transform:rotate(-5deg)
+        }
+    }
+    .qa:hover img{
+        animation: quay3 1s linear infinite;
+    }
+    .qa2:hover img{
+        animation: quay32 1s linear infinite;
+    }
 </style>
 <div class="nghia">
-
-    <!-- Categories Section Begin -->
     <section class="categories">
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
+                    @foreach ($categoriesGlobal as $value4 )
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="././public/img/categories/cat-1.jpg">
-                            <h5><a href="#">Nước uống</a></h5>
+                        <div class="categories__item set-bg" data-setbg="{{url_file2($value4->c_avatar)}}">
+                            <h5><a href="{{URL::to('danh-muc',$value4->c_slug)}}">{{$value4->c_name}}</a></h5>
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="././public/img/categories/cat-2.jpg">
-                            <h5><a href="#">Trái cây</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="././public/img/categories/cat-3.jpg">
-                            <h5><a href="#">Rau củ</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="././public/img/categories/cat-4.jpg">
-                            <h5><a href="#">Hải sản</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="././public/img/categories/cat-5.jpg">
-                            <h5><a href="#">Mì tôm</a></h5>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </section>
-    <!-- Categories Section End -->
-
-    <!-- Featured Section Begin -->
     <section class="featured spad">
         <div class="container">
             <div class="row">
@@ -52,7 +50,7 @@
                     </div>
                     <div class="featured__controls">
                         <ul>
-                            <li class="active" data-filter="*">All</li>
+                            <li class="active" data-filter="*">Tất cả</li>
                             @foreach ($categoriesGlobal as $item)
                             <li data-filter=".{{$item->c_slug}}">{{$item->c_name}}</li>
                             @endforeach
@@ -81,28 +79,22 @@
             </div>
         </div>
     </section>
-    <!-- Featured Section End -->
-
-    <!-- Banner Begin -->
     <div class="banner">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="banner__pic">
+                    <div class="banner__pic qa">
                         <img src="././public/img/banner/banner-1.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="banner__pic">
+                    <div class="banner__pic qa2">
                         <img src="././public/img/banner/banner-2.jpg" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Banner End -->
-
-    <!-- Latest Product Section Begin -->
     <section class="latest-product spad">
         <div class="container">
             <div class="row">
@@ -272,9 +264,6 @@
             </div>
         </div>
     </section>
-    <!-- Latest Product Section End -->
-
-    <!-- Blog Section Begin -->
     <section class="from-blog spad">
         <div class="container">
             <div class="row">
@@ -307,10 +296,6 @@
     </section>
 </div>
 @stop
-
-
-
-
 
 
 

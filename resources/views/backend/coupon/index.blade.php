@@ -34,15 +34,15 @@
 <div class="container-fluid">
     <h2 class="heading">Mã giảm giá</h2>
     <a href="{{ URL::to('admin/coupon/add-coupon') }}"><button class="btn btn-success mb-2">Thêm mã giảm giá</button></a>
-    <table class="table table-hover bg-info">
-        <tr class="text-warning">
+    <table class="table table-hover table-info">
+        <tr class="text-danger">
             <th>ID</th>
             <th>Tên</th>
             <th>Mã</th>
             <th>Số lượng</th>
             <th>Giảm</th>
             <th>Thời gian</th>
-            <th>Hành động</th>
+            <th>Hành động<  /th>
         </tr>
         @foreach ($coupon as $cp)
             <tr>
@@ -53,8 +53,7 @@
                 <td>{{ $cp->cp_condition * 100 . '%' }}</td>
                 <td>{{ $cp->cp_time }}</td>
                 <td>
-                    <a href=""><i class="fas fa-edit text-warning"></i></a>
-                    <a href=""><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
+                    <a href="{{URL::to('admin/coupon/delete-coupon',$cp->cp_id)}}"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
                 </td>
             </tr>
         @endforeach

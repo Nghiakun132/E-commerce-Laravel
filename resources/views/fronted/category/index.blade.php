@@ -7,9 +7,9 @@
     }
     @keyframes fade {
         to{
-            transform:rotateX(0deg)
+            transform:rotate(0deg)
         }from{
-            transform: rotateX(360deg)
+            transform: rotate(360deg)
         }
     }
 </style>
@@ -149,13 +149,6 @@
                                             <option value="{{Request::url()}}?sort_by=giamdan">Giá giảm đàn</option>
                                         </select>
                                     </form>
-                                    {{-- <div class="nice-select" tabindex="0">
-                                        <span class="current">Default</span>
-                                        <ul class="list">
-                                            <li data-value="0" class="option selected">Default</li>
-                                            <li data-value="0" class="option">Default</li>
-                                        </ul>
-                                    </div> --}}
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4">
@@ -208,7 +201,6 @@
     $(document).ready(function() {
         $('#sort').on('change', function(){
             var url = $(this).val();
-            // alert(url);
             if(url){
                 window.location = url;
             }else{

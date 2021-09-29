@@ -26,7 +26,7 @@
 
     }
 
-    .delete:hover {
+    .delete:hover i{
         color: rgb(228, 11, 11) !important;
     }
 
@@ -35,9 +35,9 @@
 <h2 class="heading">Bình luận</h2>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-12 bg-secondary">
-            <table class="table table-hover table-sm text-center">
-                <thead class="text-warning">
+        <div class="col-lg-12 ">
+            <table class="table table-hover table-md text-center table-primary">
+                <thead class="text-danger">
                     <tr>
                         <th>ID</th>
                         <th>Tên</th>
@@ -60,7 +60,7 @@
                             <td>{{ $comment->created_at }}</td>
                             <td><a onclick="return confirm('Bạn có chắc muốn xóa không')" class="delete"
                                     href="{{ URL::to('admin/comment/delete-comment', $comment->id) }}"><i
-                                        class="fa fa-trash text-warning" aria-hidden="true"></i></a></td>
+                                        class="fa fa-trash text-danger" aria-hidden="true"></i></a></td>
                         </tr>
                     @endforeach
                 </tbody>

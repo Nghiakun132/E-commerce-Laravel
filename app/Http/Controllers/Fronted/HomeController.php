@@ -37,6 +37,9 @@ class HomeController extends Controller
         $blog = DB::table('articles')->limit(3)->inRandomOrder()->get();
         return view($this->folder.'index',compact('products','topViews','product','blog'));
     }
+    public function map(){
+        return view($this->folder.'map');
+    }
     public function login() {
         return view('fronted.home.login');
     }

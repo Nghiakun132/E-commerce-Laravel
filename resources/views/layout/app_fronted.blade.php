@@ -159,7 +159,7 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="{{route('get.home')}}">Trang chủ</a></li>
-                            <li><a href="">Shop</a></li>
+                            <li><a href="{{route('get.map')}}" title="Địa chỉ ">Shop</a></li>
                             <li><a href="#">Trang</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="">Giỏ hàng</a></li>
@@ -188,7 +188,7 @@
                     }
                     @keyframes quay{
                         from {
-                            transform: rotate(0deg)
+                            transform: 20(0deg)
                         }
                         to {
                             transform: rotate(360deg)
@@ -202,7 +202,7 @@
                             <li><a href="{{URL::to('view-data')}}" class="order" title="Cập nhật thông tin"><i class="fa fa-address-book text-info iconss" aria-hidden="true"></i></a></li>
                             <li><a href="{{URL::to('view-favorite')}}" class="order"><i class="fa fa-heart text-danger iconss" title="Yêu thích"></i></a></li>
                             <li><a href="{{route('get.cart')}}" title="Giỏ hàng" class="order"><i class="fa fa-shopping-bag text-warning iconss"></i></a></li>
-                            <li><a href="{{URL::to('adu')}}" title="Mã giảm giá" class="order"><i class="fa fa-gift text-danger iconss"></i></a></li>
+                            {{-- <li><a href="{{URL::to('adu')}}" title="Mã giảm giá" class="order"><i class="fa fa-gift text-danger iconss"></i></a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -270,12 +270,7 @@
             </div>
         </div>
     </section>
-    <!-- Hero Section Begin -->
     @yield('content')
-
-    <!-- Blog Section End -->
-
-    <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
             <div class="row">
@@ -337,9 +332,6 @@
             </div>
         </div>
     </footer>
-    <!-- Footer Section End -->
-
-    <!-- Js Plugins -->
     <script src="{{ asset('././public/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{ asset('././public/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('././public/js/jquery.nice-select.min.js')}}"></script>

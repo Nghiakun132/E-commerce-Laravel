@@ -1,9 +1,8 @@
-<table class="table table-hover table-info">
+<table class="table table-hover  table-info">
     <thead class="text-danger">
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Slug</th>
             <th>Time</th>
             <th>Time update</th>
             <th>Action</th>
@@ -14,7 +13,6 @@
         <tr>
             <td>{{$item->id}}</td>
             <td>{{$item->c_name}}</td>
-            <td>{{$item->c_slug}}</td>
             <td>{{$item->created_at}}</td>
             <td>{{$item->updated_at}}</td>
             <td>

@@ -109,8 +109,6 @@
                         <li>Thuế <span>{{ Cart::tax(0,',','.'). 'đ' }}</span></li>
                         <li>Phí vận chuyển<span>Miễn phí</span></li>
                         <li>Voucher giảm giá<span><?php echo $code*100 .'%' ?></span></li>
-                        {{-- <li>Giảm giá<span>{{Cart::total (0,',','.') * ($code*1000)}}</span></li> --}}
-                        {{-- <li>Giảm giá<span>{{$code}}</span></li> --}}
                         @if($code > 0)
                         <li>Tổng tiền
                             <span>{{ Cart::total (0,',','.')-(Cart::total (0,',','.')*$code). 'đ' }}
@@ -124,13 +122,6 @@
                         @endif
                     </ul>
                    <a href="{{URL::to('order-place')}}" class="primary-btn" >Tiến hành thanh toán</a>
-                    {{-- <script>
-                        $(document).ready(function() {
-                            $('.orders').click(function() {
-                                alert('Bạn đã thanh toán thành công');
-                            });
-                        });
-                    </script> --}}
                 </div>
             </div>
         </div>

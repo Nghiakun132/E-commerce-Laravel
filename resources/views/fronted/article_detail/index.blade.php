@@ -69,9 +69,6 @@
                                     <span>Admin</span>
                                 </div>
                             </div>
-
-                            {{-- @endforeach --}}
-
                         </div>
                         <div class="col-lg-6">
                             <div class="blog__details__widget">
@@ -154,5 +151,4 @@
         </div>
     </div>
 </section>
-
 @stop

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Session;
 
@@ -42,5 +43,9 @@ class BackendCouponController extends Controller
         $coupon->cp_time = Carbon::now('Asia/Ho_Chi_Minh');
         $coupon ->save();
         return Redirect()->route('get_backend.coupon.index');
+    }
+    public function delete_coupon($id){
+        Coupon::where('cp_id', $id)->delete();
+        return Redirect()->back();
     }
 }

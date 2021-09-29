@@ -84,8 +84,14 @@ class CartController extends Controller
         }
     }
     public function delete_coupon(){
+        $id_code = Session::get('cp_id');
+        if($id_code){
             session::forget('cp_condition');
             session::forget('cp_id');
             return Redirect()->back()->with('success','Xóa mã giảm giá thành công');
+    }else{
+        return Redirect()->back()->with('code_error','Bạn không có nhập mã giảm giá');
     }
+}
+
 }

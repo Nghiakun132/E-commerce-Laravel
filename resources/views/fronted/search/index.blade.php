@@ -17,8 +17,6 @@
         </div>
     </div>
 </section>
-
-
 <div class="container">
     <hr>
         <div class="filter__item">
@@ -38,9 +36,6 @@
                                 </div>
                             </div>
                         </div>
-                            {{-- <div class="col-lg-12">
-            <h3 class="mt-2 mb-3 text-center text-danger">Kết quả tìm kiếm: <span>{{$count}} sản phẩm</span></h3>
-        </div> --}}
     </div>
     <div class="row">
         @foreach ($products as $product)
@@ -62,8 +57,6 @@
             </div>
         @endforeach
     </div>
-    {{-- {{$products->links()}} --}}
-
 </div>
 <script type="text/javascript">
     $(document).ready(function() {

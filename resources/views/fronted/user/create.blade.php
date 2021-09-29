@@ -22,7 +22,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<!-- main -->
 	<div class="main-w3layouts wrapper">
 		<h1>Form đăng ký</h1>
 		<div class="main-agileinfo">
@@ -49,9 +48,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<p>Đã có tài khoản <a href="{{route('get.user.index')}}"> Đăng nhập ngay!</a></p>
 			</div>
 		</div>
-		<!-- copyright -->
-
-		<!-- //copyright -->
 		<ul class="colorlib-bubbles">
 			<li></li>
 			<li></li>
@@ -66,6 +62,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<li></li>
 		</ul>
 	</div>
-	<!-- //main -->
 </body>
 </html>

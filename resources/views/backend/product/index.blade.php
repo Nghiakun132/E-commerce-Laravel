@@ -36,15 +36,13 @@
         }
     </style>
     <h2 class="heading">Danh sách sản phẩm</h2>
-    {{-- <a href="{{URL::to('admin/product/add-img')}}" class="btn btn-xs btn-success ml-2">Thêm hình ảnh sản
-                phẩm</a></h3> --}}
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <a href="{{ route('get_backend.product.create') }}" class="btn btn-xs btn-success mb-2">Thêm sản
                     phẩm</a>
-                    <input class="form-control" id="myInput" type="text" placeholder="Search..">
-                <table class="table table-hover">
+                    <input class="form-control mb-2" id="myInput" type="text" placeholder="Tìm nhanh..">
+                <table class="table table-hover table-info">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -85,11 +83,10 @@
                                 </td>
                                 <td>
                                     <a onclick="return confirm('Bạn có chắc muốn xóa không')" href="{{ route('get_backend.product.delete', $item->id) }}"
-                                        class="btn btn-danger">Delete</a>
-                                    <a href="{{ route('get_backend.product.update', $item->id) }}"
-                                        class="btn btn-primary">Update</a>
+                                       ><i style="font-size:23px;margin:4px" class="fa fa-trash text-danger" aria-hidden="true"></i></a>
+                                    <a href="{{ route('get_backend.product.update', $item->id) }}"><i style="font-size:23px;margin:4px" class="fas fa-edit text-success"></i></a>
                                     <a href="{{ route('get_backend.product.add', $item->id) }}"
-                                        class="btn btn-primary">Thêm ảnh</a>
+                                        ><i style="font-size:23px;margin:4px" class="fas fa-images"></i></a>
                                 </td>
                             </tr>
                         @endforeach

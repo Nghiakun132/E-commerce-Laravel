@@ -31,9 +31,15 @@ class BackendCategoryController extends Controller
 
     public function store(BackendCategoryRequest $request) {
         $this->AuthLogin();
-        $data = $request->except('_token');
+        $data = $request->except('_token','c_avatar');
         $data['c_slug'] = Str::slug($request->c_name);
-        $data['create_at'] = Carbon::now('Asia/Ho_Chi_Minh');
+        $data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
+        if ($request->c_avatar) {
+            $image = upload_image('c_avatar');
+            if(isset($image['code'])){
+                $data['c_avatar'] = $image['name'];
+            }
+        }
         $categories = Category::create($data);
         return redirect()->back();
     }
@@ -57,9 +63,15 @@ class BackendCategoryController extends Controller
     }
     public function update(BackendCategoryRequest $request,$id){
         $this->AuthLogin();
-        $data = $request->except('_token');
+        $data = $request->except('_token','c_avatar');
         $data['c_slug'] = Str::slug($request->c_name);
-        $data['update_at'] = Carbon::now('Asia/Ho_Chi_Minh');
+        $data['updated_at'] = Carbon::now('Asia/Ho_Chi_Minh');
+        if ($request->c_avatar) {
+            $image = upload_image('c_avatar');
+            if(isset($image['code'])){
+                $data['c_avatar'] = $image['name'];
+            }
+        }
         Category::find($id)->update($data);
         return redirect()->route(route:'get_backend.category.index');
     }

@@ -3,7 +3,6 @@
         <tr>
             <th>ID</th>
             <th>Tên</th>
-            <th>Slug</th>
             <th>Thời gian</th>
             <th>Thời gian cập nhật</th>
             <th>Action</th>
@@ -14,7 +13,6 @@
         <tr>
             <td>{{$item->id}}</td>
             <td>{{$item->mn_name}}</td>
-            <td>{{$item->mn_slug}}</td>
             <td>{{$item->created_at}}</td>
             <td>{{$item->updated_at}}</td>
             <td>

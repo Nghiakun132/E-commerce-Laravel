@@ -93,7 +93,6 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Tên bài viết</th>
-                                    <th>Slug</th>
                                     <th>Mô tả</th>
                                     <th>Nội dung</th>
                                     <th>Thời gian viết</th>
@@ -106,7 +105,6 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->a_name }}</td>
-                                        <td>{{ $item->a_slug }}</td>
                                         <td>{{ $item->a_description }}</td>
                                         <td>{{ $item->a_content }}</td>
                                         <td>{{ $item->created_at }}</td>

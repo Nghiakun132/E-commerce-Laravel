@@ -24,20 +24,12 @@
                 <tr>
                     <th>Tên</th>
                     <th>Email</th>
-                    {{-- <th>Địa chỉ</th> --}}
                     <th>Số điện thoại</th>
                 </tr>
                 @foreach ($user as $user)
                 <tr>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
-                    {{-- <td>
-                        <select>
-                            @foreach ($address as $address)
-                            <option>{{$address->address}}</option>
-                            @endforeach
-                        </select>
-                    </td> --}}
                     <td>{{$user->phone}}</td>
                 </tr>
                 @endforeach
@@ -49,10 +41,4 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
 @stop

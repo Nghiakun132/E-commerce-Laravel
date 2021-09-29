@@ -17,8 +17,8 @@
     }
 </style>
 <h2 class="heading">Danh sách thành viên</h2>
-    <table class="table table-hover bg-secondary">
-        <thead class="text-warning">
+    <table class="table table-hover table-secondary">
+        <thead class="text-danger">
         <tr>
             <th>ID</th>
             <th>Tên</th>
@@ -38,15 +38,15 @@
                 <td>{{ $value->phone }}</td>
                 <td>
                     @if( $value->status == 0)
-                        <a  title="Tài khoản hoạt động"  href="{{URL::to('admin/user/change-status-user',$value->id)}}"><i class="fa fa-thumbs-up ml-2 text-success" style="font-size:21px" aria-hidden="true"></i></a>
+                        <a  title="Tài khoản hoạt động"  href="{{URL::to('admin/user/change-status-user',$value->id)}}"><i  class="fa fa-thumbs-up ml-2 text-success" style="font-size:23px" aria-hidden="true"></i></a>
                     @else
-                        <a title="Tài khoản bị khóa"  href="{{URL::to('admin/user/change-status-user',$value->id)}}"><i class="fa fa-thumbs-down text-danger" style="font-size:21px"  aria-hidden="true"></i></a>
+                        <a title="Tài khoản bị khóa"  href="{{URL::to('admin/user/change-status-user',$value->id)}}"><i class="fa fa-thumbs-down text-danger" style="font-size:23px"  aria-hidden="true"></i></a>
                     @endif
                 </td>
                 <td>
-                    <a href="{{ URL::to('admin/user/detail/' . $value->id) }}" ><i class="fa fa-address-book mr-2 text-success"
+                    <a href="{{ URL::to('admin/user/detail/' . $value->id) }}" ><i style="font-size:23px;margin:4px" class="fa fa-address-book mr-2 text-success"
                             aria-hidden="true"></i></a>
-                    <a href="{{ URL::to('admin/user/delete/' . $value->id) }}" onclick="return confirm('Bạn có chắc muốn xóa không')"><i class="fa fa-trash text-danger"
+                    <a href="{{ URL::to('admin/user/delete/' . $value->id) }}" onclick="return confirm('Bạn có chắc muốn xóa không')"><i style="font-size:23px;margin:4px" class="fa fa-trash text-danger"
                             aria-hidden="true"></i></a>
                 </td>
             </tr>

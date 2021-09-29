@@ -7,15 +7,14 @@
     }
     .www{
         font-weight: bold;
-        color: #fff;
     }
 </style>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-2"></div>
-        <div class="col-lg-8 card bg-primary">
-            <table class="table table-hover text-center">
-                <thead class="text-warning">
+        <div class="col-lg-8">
+            <table class="table table-hover text-center table-primary">
+                <thead class="text-danger">
                     <tr>
                         <th>Tên</th>
                         <th>Địa chỉ</th>

@@ -114,10 +114,13 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
         Route::get('','BackendCouponController@index')->name('get_backend.coupon.index');
         Route::get('add-coupon','BackendCouponController@add_coupon');
         Route::post('add','BackendCouponController@add');
+        Route::get('delete-coupon/{id}','BackendCouponController@delete_coupon');
     });
     Route::prefix('staff')->group(function(){
         Route::get('','AdminController@index')->name('get_backend.staff.index');
         Route::get('add-staff','AdminController@add_staff')->name('get_backend.staff.add_account');
         Route::post('add-account','AdminController@add_account');
+        Route::get('promotion/{id}','AdminController@promotion');
+        Route::get('delete-account/{id}','AdminController@delete_account');
     });
 });

@@ -17,8 +17,6 @@
         </div>
     </div>
 </section>
-<!-- Breadcrumb Section End -->
-<!-- Blog Section Begin -->
 <section class="blog spad">
     <div class="container">
         <div class="row">

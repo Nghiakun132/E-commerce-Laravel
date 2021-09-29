@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' =>'Fronted'],function () {
     //Trang chu
     Route::get('','HomeController@index')->name('get.home');
+    //shop
+    Route::get('map','HomeController@map')->name('get.map');
     //Cập nhật thông tin
     Route::get('update-tt','HomeController@update_tt');
     Route::post('update','HomeController@update');

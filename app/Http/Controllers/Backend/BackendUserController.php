@@ -22,12 +22,7 @@ class BackendUserController extends Controller
     public function index(){
         $this->AuthLogin();
         $user = DB::table('users')
-        // ->join('address','address.user_id','=','users.id')->distinct()
-        // ->select('address.address','users.*')
-        // ->groupBy('id')
         ->get();
-        // $address = DB::table('address')->where('user_id',$user->id)->get();
-        // dd($user);
         $data = [
             'user' => $user,
         ];
@@ -54,7 +49,7 @@ class BackendUserController extends Controller
     public function detail($id) {
         $this->AuthLogin();
         $user = DB::table('users')->where('id',$id)->first();
-        $product_bought = DB::table('order')->where('user_id',$id)->sum('order_total');
+        $product_bought = DB::table('order')->where('user_id',$id)->where('order_status','<>',4)->sum('order_total');
         // ->join('order_detail','order_detail.order_id','=','order.id')
         // ->join('products','products.id','=','order_detail.product_id')
         // ->get();
@@ -65,6 +60,7 @@ class BackendUserController extends Controller
         ->join('order_detail','order_detail.order_id','=','order.id')
         ->join('products','products.id','=','order_detail.product_id')
         ->select('order_detail.*','products.pro_avatar','order.*')
+        // ->where('order.order_status','<>','4')
         ->get();
         // dd($product_detail_bought);
         return view($this->folder.'detail',compact('user_address','user','product_bought','product_detail_bought'));

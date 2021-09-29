@@ -32,22 +32,6 @@
                 </table>
              <a href="{{URL::to('add-address')}}"><button class="btn btn-primary">Thêm địa chỉ</button></a>
             </div>
-        {{-- <div class="col-lg-3">
-        </div>
-        <div class="col-lg-6">
-            <form action="">
-                @foreach ($user as $value)
-                <div class="form-check">
-                        <label for="address">
-                            <input type="radio" name="default" value="{{$value->status}}" {{old( $value->status==1 ) ? 'checked = '.'"checked"':''}} id="address" class="form-check-input">{{$value->address }}
-                        </label>
-                </div>
-                @endforeach
-                <button class="btn btn-primary">Cập nhật</button>
-            </form>
-        </div>
-        <div class="col-lg-3">
-        </div> --}}
     </div>
 </div>
 @stop
