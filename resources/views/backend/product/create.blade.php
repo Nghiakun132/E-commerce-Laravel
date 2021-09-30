@@ -96,13 +96,13 @@
                                 <small class="form-text text-danger"> {{ $errors->first('pro_kho') }}</small>
                             @endif
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="">Số lượng</label>
                             <input type="number" class="form-control" placeholder="Số lượng" name="pro_number">
                             @if ($errors->first('pro_number'))
                                 <small class="form-text text-danger"> {{ $errors->first('pro_number') }}</small>
                             @endif
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="">Đơn vị </label>
                             <select name="pro_unit" class="form-control">

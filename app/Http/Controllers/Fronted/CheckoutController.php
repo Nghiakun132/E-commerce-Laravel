@@ -93,7 +93,7 @@ class CheckoutController extends Controller
         // $order['address'] = $address->address;
         $order['transport'] = rand(1, 9);
         $order['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
-        $insert = DB::table('order')->insertGetId($order);
+        $insert = DB::table('orders')->insertGetId($order);
         //bought
         $user_id = Session::get('user_id');
         $address = DB::table('address')->where('user_id',$user_id)->where('status',1)->first();

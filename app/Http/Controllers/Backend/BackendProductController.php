@@ -52,6 +52,7 @@ class BackendProductController extends Controller
         $this->AuthLogin();
         $data = $request->except('_token', 'pro_avatar');
         $data['pro_slug'] = Str::slug($request->pro_name);
+        $data['pro_number'] = $request->pro_kho;
         $data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         if ($request->pro_avatar) {
             $image = upload_image('pro_avatar');
@@ -64,7 +65,7 @@ class BackendProductController extends Controller
         $admin_id = Session::get('id');
         $import = array();
         $import['ip_admin_id'] =$admin_id;
-        $import['ip_price_total']=$request->pro_price * $request->pro_number;
+        $import['ip_price_total']=$request->pro_price * $request->pro_kho;
         $import['ip_created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         $ip_id = DB::table('import_product')->insertGetId($import);
         $id_product= DB::table('products')->orderBy('id', 'DESC')->first();
@@ -72,7 +73,7 @@ class BackendProductController extends Controller
         $import_product_details =array();
         $import_product_details['ipd_ip_id'] = $ip_id;
         $import_product_details['ipd_product_id']=$id_product->id;
-        $import_product_details['ipd_product_qty']=$request->pro_number;
+        $import_product_details['ipd_product_qty']=$request->pro_kho;
         $import_product_details['ipd_price']=$request->pro_price;
         $import_product_details['created_at']=Carbon::now('Asia/Ho_Chi_Minh');
         DB::table('import_product_details')->insert($import_product_details);

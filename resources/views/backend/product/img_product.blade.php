@@ -4,27 +4,32 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-3"></div>
+            <div class="col-lg-3">
+                <a href="{{ URL::to('admin/product') }}" ><span class="badge badge-danger display-2">Quay lại</span></a>
+            </div>
             <div class="col-lg-6 card">
-                <form action="{{URL::to('admin/product/add-image')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                        <label for="">Danh mục</label>
+                    <form action="{{ URL::to('admin/product/add-image') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="">Danh mục</label>
                             <select name="product_slug" id="" class="form-control">
-                                <option value="{{$product->pro_slug}}">{{$product->pro_name}}</option>
+                                <option value="{{ $product->pro_slug }}">{{ $product->pro_name }}</option>
                             </select>
-                    </div>
-                    <div class="form-group">
-                        <label for=""></label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" accept="image/*" id="customFile" name="pro_avatar">
-                            <label for="customFile" class="custom-file-label">Chọn ảnh từ máy tính</label>
-                            <button type="submit" class="btn btn-primary mt-2">Xử lý</button>
                         </div>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <label for=""></label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" accept="image/*" id="customFile"
+                                    name="pro_avatar">
+                                <label for="customFile" class="custom-file-label">Chọn ảnh từ máy tính</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">Xử lý</button>
+                    </form>
+
             </div>
         </div>
-        <div class="col-lg-3"></div>
+        <div class="col-lg-3">
+        </div>
     </div>
 @stop

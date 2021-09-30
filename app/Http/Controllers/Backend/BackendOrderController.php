@@ -24,8 +24,8 @@ class BackendOrderController extends Controller
         $this->AuthLogin();
         $order = DB::table('product_bought')
         ->join('users','product_bought.pk_user_id','=','users.id')
-        ->join('order','order.id','=','product_bought.pk_order_id')
-        ->orderBy('order.id','asc')
+        ->join('orders','orders.id','=','product_bought.pk_order_id')
+        ->orderBy('orders.id','asc')
         ->get();
         $view=[
             // 'address' => $address,
@@ -36,12 +36,12 @@ class BackendOrderController extends Controller
 
         public function view_detail($id){
             $this->AuthLogin();
-        $order_detail =DB::table('order')
-        ->join('users','order.user_id','=','users.id')
-        ->join('order_detail','order.id','=','order_detail.order_id')
+        $order_detail =DB::table('orders')
+        ->join('users','orders.user_id','=','users.id')
+        ->join('order_detail','orders.id','=','order_detail.order_id')
         ->where('order_detail.order_id','=',$id)
-        ->select('order.*','order_detail.*','users.*')
-        ->orderBy('order.id','asc')->get();
+        ->select('orders.*','order_detail.*','users.*')
+        ->orderBy('orders.id','asc')->get();
         $view_detail=[
             'order_detail' => $order_detail,
         ];
@@ -51,7 +51,7 @@ class BackendOrderController extends Controller
 
         public function delete_order($id){
             $this->AuthLogin();
-           DB::table('order')
+           DB::table('orders')
             ->where('id', $id)->delete();
             DB::table('order_detail')
             ->where('order_id', $id)->delete();
@@ -59,7 +59,7 @@ class BackendOrderController extends Controller
         }
         public function change_status($id){
             $this->AuthLogin();
-            $status = DB::table('order')->select('order_status')->where('id', $id)->first();
+            $status = DB::table('orders')->select('order_status')->where('id', $id)->first();
             // $status = int($status);
             // dd($status);
             if($status->order_status == 0){
@@ -71,7 +71,7 @@ class BackendOrderController extends Controller
             }
             $data['time_confirm']=Carbon::now('Asia/Ho_Chi_Minh');
             $data['admin_id'] = Session::get('id');
-            DB::table('order')
+            DB::table('orders')
             ->where('id', $id)->update($data);
             return Redirect()->route('get_backend.order.index');
         }

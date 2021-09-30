@@ -5,20 +5,21 @@
         body {
             background-color: rgba(243, 193, 193, 0.671);
         }
+
         .nhap {
             color: red !important;
             animation: nhapnhay 1s linear infinite;
         }
 
         /* @keyframes myAnimation {
-                        from {
-                            color: red !important;
-                        }
+                            from {
+                                color: red !important;
+                            }
 
-                        to {
-                            color: rgb(20, 221, 20) !important;
-                        }
-                    } */
+                            to {
+                                color: rgb(20, 221, 20) !important;
+                            }
+                        } */
         @keyframes nhapnhay {
             from {
                 color: rgb(46, 12, 241);
@@ -43,7 +44,7 @@
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
                         <div class="row align-items-center">
@@ -56,8 +57,15 @@
                                     ?>
                                 </div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
-                                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                    <span>Since last month</span>
+                                    <?php
+                                        $doanhthu=$total*1000 -$import;
+                                    ?>
+                                    @if ($doanhthu > 0)
+                                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i><?php echo $doanhthu; ?></span>
+                                    @else
+                                    <span class="text-danger mr-2"><i class="fa fa-arrow-down"></i><?php echo $doanhthu.'đ'; ?> </span>
+                                    @endif
+                                    {{-- <span>Since last month</span> --}}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -67,7 +75,26 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng tiền nhập hàng</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($import) . 'đ' }}</div>
+                                <div class="mt-2 mb-0 text-muted text-xs">
+                                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 1.10%</span>
+                                    {{-- <span>Since yesterday</span> --}}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-comments fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -78,7 +105,7 @@
                                 </div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                    <span>Since last month</span>
+                                    {{-- <span>Since last month</span> --}}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -89,7 +116,7 @@
                 </div>
             </div>
             <!-- New User Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -103,7 +130,7 @@
                                 </div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                                    <span>Since last month</span>
+                                    {{-- <span>Since last month</span> --}}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -115,7 +142,7 @@
             </div>
 
             <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -124,7 +151,26 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $comment }}</div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 1.10%</span>
-                                    <span>Since yesterday</span>
+                                    {{-- <span>Since yesterday</span> --}}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-comments fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-uppercase mb-1">Bình luận</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $comment }}</div>
+                                <div class="mt-2 mb-0 text-muted text-xs">
+                                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 1.10%</span>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -146,23 +192,23 @@
                             <div class="mb-3">
                                 <div class="medium text-gray-500">
                                     <span>{{ $pd->pro_name }}</span>
-                                    <div class="medium float-right"><b>Đã bán {{ $pd->pro_kho - $pd->pro_number }} sản
-                                            phẩm
+                                    <div class="medium float-right"><b>Đã bán {{ $pd->pro_kho - $pd->pro_number }}
                                             / {{ $pd->pro_kho }}
-                                            Sản phẩm</b></div>
+                                            Sản phẩm</b>
+                                        </div>
                                 </div>
                                 <?php
-                                $bg = array('bg-info','bg-primary','bg-secondary','bg-danger','bg-success','bg-warning','bg-dark');
-                                $adu = $bg[rand(0,count($bg)-1)];
+                                $bg = ['bg-info', 'bg-primary', 'bg-secondary', 'bg-danger', 'bg-success', 'bg-warning', 'bg-dark'];
+                                $adu = $bg[rand(0, count($bg) - 1)];
                                 ?>
                                 <?php
-                                $pt =  ($pd->pro_kho - $pd->pro_number);
-                                // echo $pt;
-
+                                $pt = $pd->pro_kho - $pd->pro_number;
+                                $ptcl = $pt / $pd->pro_kho*100;
                                 ?>
                                 <div class="progress" style="height: 18px;">
-                                    <div class="progress-bar <?php echo $adu ?> progress-bar-striped progress-bar-animated" role="progressbar" style="width: <?php echo (100 - $pt).'%' ?> "
-                                        aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar <?php echo $adu; ?> progress-bar-striped progress-bar-animated"
+                                        role="progressbar" style="width: <?php echo 100 - $ptcl . '%'; ?> " aria-valuenow="80"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         @endforeach

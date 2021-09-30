@@ -117,7 +117,7 @@ class HomeController extends Controller
     public function tracking_order(){
         $this->AuthLogin();
         $id = Session::get('user_id');
-        $order = DB::table('order')->where('user_id',$id)->get();
+        $order = DB::table('orders')->where('user_id',$id)->get();
         $view =[
             'order' =>$order,
         ];
@@ -125,10 +125,10 @@ class HomeController extends Controller
     }
 
     public function tracking_order_details($id){
-            $order = DB::table('order')
-            ->join('order_detail','order_detail.order_id','=','order.id')
+            $order = DB::table('orders')
+            ->join('order_detail','order_detail.order_id','=','orders.id')
             ->join('products','order_detail.product_id','=','products.id')
-            ->select('order.id','order_detail.*','products.pro_avatar')
+            ->select('orders.id','order_detail.*','products.pro_avatar')
             ->where('order_detail.order_id',$id)
             ->get();
             // dd($order);
@@ -214,7 +214,7 @@ class HomeController extends Controller
         $data = array();
         $user_id = Session::get('user_id');
         $data['order_status'] = 4;
-        DB::table('order')->where('user_id',$user_id)->where('id',$id)->update($data);
+        DB::table('orders')->where('user_id',$user_id)->where('id',$id)->update($data);
         $order_detail = DB::table('order_detail')->where('order_id',$id)->get();
         $soluong = array();
         foreach ($order_detail as $v2) {

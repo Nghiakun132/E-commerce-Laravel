@@ -49,20 +49,13 @@ class BackendUserController extends Controller
     public function detail($id) {
         $this->AuthLogin();
         $user = DB::table('users')->where('id',$id)->first();
-        $product_bought = DB::table('order')->where('user_id',$id)->where('order_status','<>',4)->sum('order_total');
-        // ->join('order_detail','order_detail.order_id','=','order.id')
-        // ->join('products','products.id','=','order_detail.product_id')
-        // ->get();
-        // dd($product_bought);
-        // $total = DB:
+        $product_bought = DB::table('orders')->where('user_id',$id)->where('order_status','<>',4)->sum('order_total');
         $user_address = DB::table('address')->where('user_id',$id)->get();
-        $product_detail_bought = DB::table('order')->where('user_id',$id)
-        ->join('order_detail','order_detail.order_id','=','order.id')
+        $product_detail_bought = DB::table('orders')->where('user_id',$id)
+        ->join('order_detail','order_detail.order_id','=','orders.id')
         ->join('products','products.id','=','order_detail.product_id')
-        ->select('order_detail.*','products.pro_avatar','order.*')
-        // ->where('order.order_status','<>','4')
+        ->select('order_detail.*','products.pro_avatar','orders.*')
         ->get();
-        // dd($product_detail_bought);
         return view($this->folder.'detail',compact('user_address','user','product_bought','product_detail_bought'));
     }
 }
