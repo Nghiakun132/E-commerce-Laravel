@@ -40,6 +40,21 @@ if (!function_exists('url_file2')) {
         }
     }
 }
+if (!function_exists('url_file3')) {
+    function url_file3($image, $folder = '')
+    {
+        if (!$image) {
+            return '/image/no-image.jpg';
+        }
+        $explode = explode('__', $image);
+
+
+        if (isset($explode[0])) {
+            $time = str_replace('_', '/', $explode[0]);
+            return '../../'.'public'.'/uploads' . $folder . '/' . date('Y/m/d', strtotime($time)) . '/' . $image;
+        }
+    }
+}
 //up  load anh
 
 if (!function_exists('upload_image')) {

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{asset('././public/css/user.css')}}">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -57,7 +58,7 @@
             top: 116% !important;
         }
     </style>
-    <link href="navbar-top-fixed.css" rel="stylesheet">
+    {{-- <link href="navbar-top-fixed.css" rel="stylesheet"> --}}
 </head>
 
 <body>
@@ -89,7 +90,7 @@
                         }
                         ?></a>&nbsp;&nbsp;&nbsp;
                     <div class="dropdown-menu dropdown-menu-right bg-success">
-                        <a class="dropdown-item view" href="{{URL::to('admin/change-info',$id)}}">Thay đổi thông tin</a>
+                        <a class="dropdown-item view" href="{{URL::to('admin/change-info',$id)}}">Thông tin</a>
                         <a class="dropdown-item view" title="Đăng xuất" href="{{ URL::to('admin/logout') }}">Đăng xuất</a>
                     </div>
                 </h3>

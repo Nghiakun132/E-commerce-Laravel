@@ -76,7 +76,7 @@ class BackendArticleController extends Controller
     public function update(Request $request, $id){
 
         $this->AuthLogin();
-        $data = array();
+            $data = array();
             $data = $request->except('_token','a_avatar');
             $data['a_name'] = $request->a_name;
             $data['a_menu_id'] = $request->a_menu_id;

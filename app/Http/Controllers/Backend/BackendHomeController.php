@@ -40,7 +40,7 @@ class BackendHomeController extends Controller
             ->limit(5)->distinct()->get();
             $comment = DB::table('comment')->count('id');
             $sp = DB::table('products')->get();
-            $import = DB::table('import_product')->sum('ip_price_total');
+            $import = DB::table('import_product')->where('ip_status',1)->sum('ip_price_total');
                 $view =[
                 'order' => $order,
                 'admins' => $admins,
@@ -77,8 +77,14 @@ class BackendHomeController extends Controller
         return redirect()->route('get_backend.login');
     }
     public function change_info($id){
+        $admin_id = session::get('id');
         $info = DB::table('admins')->where('id',$id)->first();
-        return view('backend.change_info',compact('info'));
+        $team = DB::table('admins')->where('id','<>',$id)->get();
+        $count_imported = DB::table('import_product')->where('ip_admin_id',$id)->count('ip_id');
+        $count_order = DB::table('orders')->where('admin_id',$admin_id)->where('order_status','<>',4)->count('id');
+        $count_total = DB::table('orders')->where('admin_id',$admin_id)->where('order_status','<>',4)->sum('order_total');
+        // dd($count_order);
+        return view('backend.change_info',compact('info','count_imported','count_total','count_order','team'));
     }
     public function change(BackendStaffRequest $request,$id){
         $data =array();

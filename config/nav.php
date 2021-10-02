@@ -37,6 +37,10 @@ return [
                 'name' => 'Nhân viên',
                 'route' => 'get_backend.staff.index'
             ],
+            [
+                'name' => 'Quản lý nhập hàng',
+                'route' => 'get_backend.import.index'
+            ],
         ]
     ]
 ];

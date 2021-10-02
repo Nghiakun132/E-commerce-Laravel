@@ -47,7 +47,7 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
         Route::get('add-img/{id}','BackendProductController@add_img')->name('get_backend.product.add');
         Route::post('add-image','BackendProductController@add_image');
         Route::get('update/{id}','BackendProductController@edit')->name('get_backend.product.update');
-        Route::post('update/{id}','BackendProductController@update');
+        Route::post('update-product/{id}','BackendProductController@update_product');
 
         Route::get('delete/{id}','BackendProductController@delete')->name('get_backend.product.delete');
         Route::get('change-status/{id}','BackendProductController@change_status');
@@ -122,5 +122,9 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
         Route::post('add-account','AdminController@add_account');
         Route::get('promotion/{id}','AdminController@promotion');
         Route::get('delete-account/{id}','AdminController@delete_account');
+    });
+    Route::prefix('import')->group(function(){
+        Route::get('','BackendImportController@index')->name('get_backend.import.index');
+        Route::get('change-status/{ip_id}','BackendImportController@change_status');
     });
 });

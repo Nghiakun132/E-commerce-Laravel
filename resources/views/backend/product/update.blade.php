@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4 card">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{URL::to('admin/product/update-product',$product->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="">Tên:</label>
@@ -66,15 +66,14 @@
                         <input type="number" class="form-control" placeholder="Số lượng" name="pro_kho"
                             value="{{ old('pro_number', $product->pro_kho ?? 0) }}">
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="">Số lượng hiện tại</label>
                         <input type="number" class="form-control" placeholder="Số lượng" name="pro_number"
                             value="{{ old('pro_number', $product->pro_number ?? 0) }}">
                         @if ($errors->first('pro_number'))
                             <small class="form-text text-danger"> {{ $errors->first('pro_number') }}</small>
                         @endif
-                    </div>
-
+                    </div> --}}
                     <div class="form-group">
                         <label for="">Giảm giá </label>
                         <input type="text" class="form-control" name="pro_sale" value="{{ $product->pro_sale }}">

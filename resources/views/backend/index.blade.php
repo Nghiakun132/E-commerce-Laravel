@@ -208,7 +208,7 @@
                                 <div class="progress" style="height: 18px;">
                                     <div class="progress-bar <?php echo $adu; ?> progress-bar-striped progress-bar-animated"
                                         role="progressbar" style="width: <?php echo 100 - $ptcl . '%'; ?> " aria-valuenow="80"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                        aria-valuemin="0" aria-valuemax="100" title="Còn lại <?php echo $pd->pro_number?> sản phẩm"></div>
                                 </div>
                             </div>
                         @endforeach
