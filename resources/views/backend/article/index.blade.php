@@ -88,7 +88,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="p-2">
-                        <table class="table table-hover table-info">
+                        <table class="table table-hover table-secondary">
                             <thead class="text-danger">
                                 <tr>
                                     <th>ID</th>

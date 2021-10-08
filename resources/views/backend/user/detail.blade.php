@@ -2,13 +2,15 @@
 @section('content')
 @section('title', 'Danh sách thành viên')
 <style>
-    body {
-        background-color: rgba(226, 181, 226, 0.5);
+   body {
+        background-image: url('../../../public/img/a.jpg');
+    }
     }
     .www{
         font-weight: bold;
     }
 </style>
+<h2 class="heading">âcsjcjasncjsan</h2>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-2"></div>

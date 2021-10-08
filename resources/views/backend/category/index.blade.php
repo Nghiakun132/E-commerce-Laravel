@@ -2,9 +2,7 @@
 @section('title', 'Danh sách danh mục')
 @section('content')
     <style>
-        body {
-            background-color: rgba(201, 28, 28, 0.15);
-        }
+
 
         .heading {
             color: rgb(46, 12, 241);

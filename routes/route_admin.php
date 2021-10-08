@@ -7,6 +7,7 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
     Route::get('','BackendHomeController@index')->name('get_backend.home');
     Route::get('change-info/{id}','BackendHomeController@change_info');
     Route::post('change/{id}','BackendHomeController@change');
+    Route::post('change-password/{id}','BackendHomeController@change_password');
     Route::post('adminlogin','BackendHomeController@adminlogin');
 
     //login

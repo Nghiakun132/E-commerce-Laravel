@@ -11,7 +11,7 @@
                             <h2>Chi tiết sản phẩm</h2>
                             <div class="breadcrumb__option">
                                 <a href="{{ route('get.home') }}">Trang chủ</a>
-                                <span>Danh mục --- </span>
+                                <span>Danh mục -</span>
                                 <span>Chi tiết</span>
                             </div>
                         </div>
@@ -122,26 +122,26 @@
                                     <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
                                         aria-selected="false">Thông tin sản phẩm</a>
                                 </li>
-
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                    <div class="product__details__tab__desc">
-                                        <h6>Mô tả</h6>
-                                        <p>{{ $product->pro_description }}
-                                        </p>
-
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div class="tab-pane active" id="tabs-2" role="tabpanel">
                                     <div class="product__details__tab__desc">
                                         <h6>Thông tin sản phẩm</h6>
                                         <p>
-                                            {{ $product->pro_content }}
+                                            {{ $product->pro_description }}
                                         </p>
 
                                     </div>
                                 </div>
+                                <div class="tab-pane " id="tabs-1" role="tabpanel">
+                                    <div class="product__details__tab__desc">
+                                        <h6>Mô tả</h6>
+                                        <p>{{ $product->pro_content}}
+                                        </p>
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

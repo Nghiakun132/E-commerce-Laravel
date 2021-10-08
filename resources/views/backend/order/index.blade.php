@@ -7,8 +7,8 @@
     <table class="table table-hover">
         <tr>
             <th>Id</th>
-            {{-- <th>User_id</th> --}}
             <th>Tên</th>
+            <th>Số điện thoại</th>
             <th>Địa chỉ</th>
             <th>Tổng tiền</th>
             <th>Đơn vị vận chuyển</th>
@@ -21,8 +21,8 @@
             <tr>
 
                 <td>{{ $value->id }}</td>
-                {{-- <td>{{ $value->user_id }}</td> --}}
                 <td>{{ $value->name }}</td>
+                <td>{{ $value->phone }}</td>
                 <td>{{ $value->pk_address }}</td>
                 <td>{{ ($value->order_total) * 1000 .'đ' }}</td>
                 <td>

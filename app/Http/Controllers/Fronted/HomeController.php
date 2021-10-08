@@ -47,41 +47,36 @@ class HomeController extends Controller
         $keywords = $request->tukhoa;
         $products = Product::where('pro_name','like','%'.$keywords.'%')->get();
         $count = count($products);
-        // $view=[
-        //     'products' => $products,
-        //     'count' => $count,
-        // ];
         return view('fronted.search.index',compact('products','count'));
     }
-    public function update_tt(){
-        $this->AuthLogin();
-        $id = Session::get('user_id');
-        $user = DB::table('users')
-        // ->join('address','address.user_id','=','users.id')
-        ->where('users.id',$id)->limit(1)->get();
-        // dd($user);
-        // $address = DB::table('address')->where('user_id',$id)->get();
-        $view =[
-            // 'address' => $address,
-            'user' => $user,
-        ];
-        return view('fronted.home.update',$view);
-    }
+    // public function update_tt(){
+    //     $this->AuthLogin();
+    //     $id = Session::get('user_id');
+    //     $user = DB::table('users')
+    //     // ->join('address','address.user_id','=','users.id')
+    //     ->where('users.id',$id)->first();
+    //     // dd($user);
+    //     // $address = DB::table('address')->where('user_id',$id)->get();
+    //     $view =[
+    //         // 'address' => $address,
+    //         'user' => $user,
+    //     ];
+    //     return view('fronted.home.update',$view);
+    // }
     public function update(Request $request){
         $user_id = Session::get('user_id');
         $data= array();
-        $data2 =array();
         $data['name']  = $request->name;
         $data['email'] = $request->email;
-        $data['password'] = md5($request->password,false);
+        $data['password'] = md5($request->password);
         $data['phone'] = $request->phone;
         $data['updated_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         DB::table('users')->where('id',$user_id)->update($data);
-        $data2['address'] = $request->address;
-        // $data2['user_id'] = $user_id;
-        $data2['updated_at'] = Carbon::now('Asia/Ho_Chi_Minh');
-        DB::table('address')->where('user_id',$user_id)->update($data2);
-        return Redirect()->Route('get.home');
+        // $data2['address'] = $request->address;
+        // // $data2['user_id'] = $user_id;
+        // $data2['updated_at'] = Carbon::now('Asia/Ho_Chi_Minh');
+        // DB::table('address')->where('user_id',$user_id)->update($data2);
+        return Redirect()->back();
     }
     public function add_favorite($id){
         $this->AuthLogin();
@@ -137,9 +132,9 @@ class HomeController extends Controller
             ];
         return view('fronted.home.check_order_detail',$view);
     }
-    public function add_address(){
-        return view('fronted.home.add_address');
-    }
+    // public function add_address(){
+    //     return view('fronted.home.add_address');
+    // }
     public function add(Request $request){
         $id = Session::get('user_id');
         // dd($id);
@@ -148,7 +143,7 @@ class HomeController extends Controller
         $data['user_id'] = $id;
         $data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         DB::table('address')->insert($data);
-        return Redirect()->Route('get.home');
+        return Redirect()->back();
         // return view('fronted.home.view');
         // return view('fronted.home.index');
     }
@@ -156,13 +151,8 @@ class HomeController extends Controller
         $this->AuthLogin();
         $id = Session::get('user_id');
         $user = DB::table('users')
-        // ->join('address','address.user_id','=','users.id')
         ->where('users.id',$id)->limit(1)->get();
-        // dd($user);
-        // $address = DB::table('address')->where('address.user_id',$id)->get();
-        // dd($address);
         $view =[
-            // 'address' => $address,
             'user' => $user,
         ];
         return view('fronted.home.view',$view);
@@ -174,8 +164,8 @@ class HomeController extends Controller
         ->join('address','address.user_id','=','users.id')
         ->select('users.name', 'users.phone','address.*')
         ->where('users.id',$id)->get();
+        // dd($user);
         $view =[
-            // 'address' => $address,
             'user' => $user,
         ];
         return view('fronted.home.update_address',$view);
@@ -188,11 +178,10 @@ class HomeController extends Controller
         $data = array();
         $data['address'] = $request->address_new;
         DB::table('address')->where('id', $id)->update($data);
-        return Redirect()->Route('get.home');
+        return Redirect()->back();
     }
     public function change_address($id){
         $user_id = Session::get('user_id');
-        // // dd($user_id);
         $status = DB::table('address')->where('user_id', $user_id)->where('id',$id)->first();
         $status2 = DB::table('address')->where('user_id', $user_id)->first();
         $data = array();

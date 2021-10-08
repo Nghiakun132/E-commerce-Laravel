@@ -3,7 +3,7 @@
 @section('content')
 <style>
     body {
-        background-color: rgba(201, 28, 28, 0.15);
+        background-image: url('../../../public/img/a.jpg');
     }
     .heading {
         color: rgb(46, 12, 241);
@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="col-sm-5 ">
-            <div class="card p-3 bg-info">
+            <div class="card p-3">
                 <h4>Thêm mới || Cập nhật</h4>
                @include('backend.category.form',['route' => route('get_backend.category.update',$category->id)])
             </div>

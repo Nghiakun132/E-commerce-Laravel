@@ -19,7 +19,8 @@
 <div class="container">
     <div class="row">
         <h3>Thông tin</h3>
-        <div class="col-lg-12 card mt-2 mb-2">
+        <div class="col-lg-12 mt-2 mb-2">
+            <div class="card">
             <table class="table table-hover">
                 <tr>
                     <th>Tên</th>
@@ -34,11 +35,48 @@
                 </tr>
                 @endforeach
             </table>
-            <ul class="nav">
-            <li class="nav-item mr-2"><a href="{{URL::to('update-tt')}}"><button class="btn btn-primary">Thay đổi thông tin</button></a></li>
+        </div>
+            <ul class="nav mt-2">
+            <li class="nav-item mr-2"><a href="#" data-toggle="modal" data-target="#myModal"><button class="btn btn-primary">Thay đổi thông tin</button></a></li>
             <li class="nav-item"><a href="{{URL::to('update-address')}}"><button class="btn btn-primary">Sổ địa chỉ</button></a></li>
         </ul>
         </div>
     </div>
 </div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form action="{{ URL::to('update') }}" method="post">
+                @csrf
+                <div class="form-group">
+                    <label for="">Tên</label>
+                    <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+                </div>
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" name="email" value="{{ $user->email }}">
+                </div>
+                <div class="form-group">
+                    <label for="">Mật khẩu</label>
+                    <input type="password" class="form-control" name="password" value="{{ $user->password }}">
+                </div>
+                <div class="form-group">
+                    <label for="">Số điện thoại</label>
+                    <input type="text" class="form-control" name="phone" value="{{ $user->phone }}">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Cập nhật</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
 @stop

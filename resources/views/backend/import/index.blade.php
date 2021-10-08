@@ -1,10 +1,17 @@
 @extends('layout.app_backend')
 @section('content')
+<style>
+    .heading{
+        text-align: center;
+    }
+</style>
+<h2 class="heading">Nhập hàng</h2>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <table class="table table-hover">
-                    <thead>
+                <div class="table-responsive-lg">
+                    <table class="table table-hover table-secondary">
+                    <thead class="table-primary">
                         <tr>
                             <th>ID</th>
                             <th>Tên sản phẩm</th>
@@ -43,6 +50,7 @@
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>
     </div>
 

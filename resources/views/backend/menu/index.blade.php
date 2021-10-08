@@ -32,7 +32,7 @@
         </div>
         <div class="col-sm-5">
             <div class="card p-3 bg">
-                <h3 class="text-success">Thêm mới || Cập nhật</h3>
+                <h3 class="text-danger">Thêm mới || Cập nhật</h3>
                @include('backend.menu.form',['route' => route('get_backend.menu.store')])
             </div>
         </div>

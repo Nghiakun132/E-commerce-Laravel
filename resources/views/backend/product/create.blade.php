@@ -46,7 +46,7 @@
                         <div class="p-3">
                             <div class="form-group">
                                 <label for="">Tên:</label>
-                                <input type="text" class="form-control" placeholder="Tên" name="pro_name">
+                                <input type="text" class="form-control"  name="pro_name">
                                 @if ($errors->first('pro_name'))
                                     <small class="form-text text-danger"> {{ $errors->first('pro_name') }}</small>
                                 @endif
@@ -70,28 +70,28 @@
 
                             <div class="form-group">
                                 <label for="">Mô tả</label>
-                                <textarea name="pro_description" class="form-control " cols="30" rows="3"></textarea>
+                                <textarea name="pro_description" class="form-control " cols="30" rows="1"></textarea>
                                 @if ($errors->first('pro_description'))
                                     <small class="form-text text-danger"> {{ $errors->first('pro_description') }}</small>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label for="">Nội dung</label>
-                                <textarea name="pro_content" class="form-control " cols="30" rows="3"></textarea>
+                                <textarea name="pro_content" class="form-control " cols="30" rows="1"></textarea>
                                 @if ($errors->first('pro_content'))
                                     <small class="form-text text-danger"> {{ $errors->first('pro_content') }}</small>
                                 @endif
                             </div>
                         <div class="form-group">
                             <label for="">Giá</label>
-                            <input type="text" class="form-control" placeholder="Giá" name="pro_price">
+                            <input type="text" class="form-control"  name="pro_price">
                             @if ($errors->first('pro_price'))
                                 <small class="form-text text-danger"> {{ $errors->first('pro_price') }}</small>
                             @endif
                         </div>
                         <div class="form-group">
                             <label for="">Số lượng nhập</label>
-                            <input type="number" class="form-control" placeholder="Số lượng kho" name="pro_kho">
+                            <input type="number" class="form-control" name="pro_kho">
                             @if ($errors->first('pro_kho'))
                                 <small class="form-text text-danger"> {{ $errors->first('pro_kho') }}</small>
                             @endif

@@ -23,10 +23,10 @@ Route::group(['namespace' =>'Fronted'],function () {
     //shop
     Route::get('map','HomeController@map')->name('get.map');
     //Cập nhật thông tin
-    Route::get('update-tt','HomeController@update_tt');
+    // Route::get('update-tt','HomeController@update_tt');
     Route::post('update','HomeController@update');
     Route::get('view-data','HomeController@view_data');
-    Route::get('add-address','HomeController@add_address');
+    // Route::get('add-address','HomeController@add_address');
     Route::get('update-address','HomeController@update_address');
     Route::post('add','HomeController@add');
     Route::get('edit-address/{id}','HomeController@edit_address');

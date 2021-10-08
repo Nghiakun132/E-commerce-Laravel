@@ -3,7 +3,7 @@
 @section('content')
     <style>
         body {
-            background-color: rgba(243, 193, 193, 0.671);
+            background-image: url('public/img/a.jpg');
         }
 
         .nhap {
@@ -12,14 +12,14 @@
         }
 
         /* @keyframes myAnimation {
-                            from {
-                                color: red !important;
-                            }
+                                from {
+                                    color: red !important;
+                                }
 
-                            to {
-                                color: rgb(20, 221, 20) !important;
-                            }
-                        } */
+                                to {
+                                    color: rgb(20, 221, 20) !important;
+                                }
+                            } */
         @keyframes nhapnhay {
             from {
                 color: rgb(46, 12, 241);
@@ -31,6 +31,7 @@
         }
 
     </style>
+
     <div class="container-fluid" id="container-wrapper">
         <div class="row mb-2">
             <div class="col-lg-4">
@@ -58,12 +59,14 @@
                                 </div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
                                     <?php
-                                        $doanhthu=$total*1000 -$import;
+                                    $doanhthu = $total * 1000 - $import;
                                     ?>
                                     @if ($doanhthu > 0)
-                                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i><?php echo $doanhthu; ?></span>
+                                        <span class="text-success mr-2"><i
+                                                class="fa fa-arrow-up"></i><?php echo $doanhthu; ?></span>
                                     @else
-                                    <span class="text-danger mr-2"><i class="fa fa-arrow-down"></i><?php echo $doanhthu.'đ'; ?> </span>
+                                        <span class="text-danger mr-2"><i class="fa fa-arrow-down"></i><?php echo $doanhthu . 'đ'; ?>
+                                        </span>
                                     @endif
                                     {{-- <span>Since last month</span> --}}
                                 </div>
@@ -81,7 +84,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng tiền nhập hàng</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($import) . 'đ' }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($import) . 'đ' }}
+                                </div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 1.10%</span>
                                     {{-- <span>Since yesterday</span> --}}
@@ -195,7 +199,7 @@
                                     <div class="medium float-right"><b>Đã bán {{ $pd->pro_kho - $pd->pro_number }}
                                             / {{ $pd->pro_kho }}
                                             Sản phẩm</b>
-                                        </div>
+                                    </div>
                                 </div>
                                 <?php
                                 $bg = ['bg-info', 'bg-primary', 'bg-secondary', 'bg-danger', 'bg-success', 'bg-warning', 'bg-dark'];
@@ -203,12 +207,13 @@
                                 ?>
                                 <?php
                                 $pt = $pd->pro_kho - $pd->pro_number;
-                                $ptcl = $pt / $pd->pro_kho*100;
+                                $ptcl = ($pt / $pd->pro_kho) * 100;
                                 ?>
                                 <div class="progress" style="height: 18px;">
                                     <div class="progress-bar <?php echo $adu; ?> progress-bar-striped progress-bar-animated"
                                         role="progressbar" style="width: <?php echo 100 - $ptcl . '%'; ?> " aria-valuenow="80"
-                                        aria-valuemin="0" aria-valuemax="100" title="Còn lại <?php echo $pd->pro_number?> sản phẩm"></div>
+                                        aria-valuemin="0" aria-valuemax="100" title="Còn lại <?php echo $pd->pro_number; ?> sản phẩm">
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
@@ -276,38 +281,12 @@
                         </table>
                     </div>
                     <div class="card-footer"></div>
+
                 </div>
-                {{-- <div class="card mt-2">
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-warning">Khách hàng mua nhiều nhất</h6>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>Tên</th>
-                                    <th>Địa chỉ</th>
-                                    <th>Tổng tiền</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($top as $value9)
-                                    <tr>
-                                        <td>{{ $value9->name }}</td>
-                                        <td>{{ $value9->address }}</td>
-                                        <td>{{ ($value9->pd_total) *1000 . 'đ' }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card-footer"></div>
-                </div> --}}
+                <hr>
+
             </div>
         </div>
     </div>
-
-
-
 
 @stop

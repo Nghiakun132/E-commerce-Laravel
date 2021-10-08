@@ -3,7 +3,7 @@
 @section('content')
     <style>
         body {
-            background-color: rgba(236, 176, 248, 0.61);
+            background-color: rgba(201, 28, 28, 0.15);
         }
         label {
             font-size: 20px;
@@ -16,7 +16,7 @@
             <div class="col-lg-4 card">
                 <form action="{{URL::to('admin/product/update-product',$product->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group mt-2">
                         <label for="">Tên:</label>
                         <input type="text" class="form-control" placeholder="Tên" name="pro_name"
                             value="{{ old('pro_name', $product->pro_name ?? '') }}">
@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <label for="">Mô tả</label>
                         <textarea name="pro_description" class="form-control " cols="30"
-                            rows="3">{{ old('pro_description', $product->pro_description ?? '') }}</textarea>
+                            rows="1">{{ old('pro_description', $product->pro_description ?? '') }}</textarea>
                         @if ($errors->first('pro_description'))
                             <small class="form-text text-danger"> {{ $errors->first('pro_description') }}</small>
                         @endif
@@ -48,7 +48,7 @@
                     <div class="form-group">
                         <label for="">Nội dung</label>
                         <textarea name="pro_content" class="form-control " cols="30"
-                            rows="3">{{ old('pro_content', $product->pro_content ?? '') }}</textarea>
+                            rows="1">{{ old('pro_content', $product->pro_content ?? '') }}</textarea>
                         @if ($errors->first('pro_content'))
                             <small class="form-text text-danger"> {{ $errors->first('pro_content') }}</small>
                         @endif

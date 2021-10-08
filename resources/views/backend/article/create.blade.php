@@ -2,9 +2,9 @@
 @section('title', 'Thêm bài viết')
 @section('content')
     <style>
-        body {
-            background-color: rgba(223, 183, 183, 0.404);
-        }
+    body {
+        background-image: url('../../../public/img/a.jpg');
+    }
         .heading {
         color: rgb(46, 12, 241);
         font-weight: bold;

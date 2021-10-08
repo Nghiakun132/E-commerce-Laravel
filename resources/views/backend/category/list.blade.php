@@ -1,4 +1,4 @@
-<table class="table table-hover  table-info">
+<table class="table table-hover table-secondary">
     <thead class="text-danger">
         <tr>
             <th>ID</th>
