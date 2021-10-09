@@ -31,7 +31,8 @@
         }
 
     </style>
-
+    <div style="margin-top: 16px">
+    </div>
     <div class="container-fluid" id="container-wrapper">
         <div class="row mb-2">
             <div class="col-lg-4">
@@ -68,7 +69,6 @@
                                         <span class="text-danger mr-2"><i class="fa fa-arrow-down"></i><?php echo $doanhthu . 'đ'; ?>
                                         </span>
                                     @endif
-                                    {{-- <span>Since last month</span> --}}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -88,7 +88,6 @@
                                 </div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 1.10%</span>
-                                    {{-- <span>Since yesterday</span> --}}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -109,7 +108,6 @@
                                 </div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                    {{-- <span>Since last month</span> --}}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -119,7 +117,6 @@
                     </div>
                 </div>
             </div>
-            <!-- New User Card Example -->
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
@@ -134,7 +131,6 @@
                                 </div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                                    {{-- <span>Since last month</span> --}}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -145,7 +141,6 @@
                 </div>
             </div>
 
-            <!-- Pending Requests Card Example -->
             <div class="col-xl-2 col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
@@ -155,7 +150,6 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $comment }}</div>
                                 <div class="mt-2 mb-0 text-muted text-xs">
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 1.10%</span>
-                                    {{-- <span>Since yesterday</span> --}}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -184,8 +178,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Area Chart -->
-            <!-- Pie Chart -->
             <div class="col-xl-4 col-lg-5">
                 <div class="card mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -218,14 +210,9 @@
                             </div>
                         @endforeach
                     </div>
-                    {{-- <div class="card-footer text-center">
-                        <a class="m-0 small text-primary card-link" href="#">View More <i
-                                class="fas fa-chevron-right"></i></a>
-                    </div> --}}
                 </div>
 
             </div>
-            <!-- Invoice Example -->
             <div class="col-xl-8 col-lg-7 mb-4">
                 <div class="card">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -235,7 +222,7 @@
                     </div>
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush table-hover">
-                            <thead class="thead-light">
+                            <thead class="table-warning">
                                 <tr>
                                     <th>Mã đơn hàng</th>
                                     <th>Tên</th>
@@ -289,4 +276,7 @@
         </div>
     </div>
 
+
 @stop
+
+

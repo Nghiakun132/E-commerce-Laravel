@@ -33,28 +33,31 @@
 </style>
 <div class="container-fluid">
     <h2 class="heading">Mã giảm giá</h2>
-    <a href="{{ URL::to('admin/coupon/add-coupon') }}"><button class="btn btn-success mb-2">Thêm mã giảm giá</button></a>
     <table class="table table-hover table-info">
         <tr class="text-danger">
             <th>ID</th>
-            <th>Tên</th>
             <th>Mã</th>
-            <th>Số lượng</th>
+            <th>Tên chủ sở hữu</th>
             <th>Giảm</th>
-            <th>Thời gian</th>
-            <th>Hành động<  /th>
+            <th>Hạn dùng</th>
+            <th>Trạng thái</th>
+            <th>Thời gian tạo</th>
         </tr>
         @foreach ($coupon as $cp)
             <tr>
                 <td>{{ $cp->cp_id }}</td>
-                <td>{{ $cp->cp_name }}</td>
                 <td>{{ $cp->cp_code }}</td>
-                <td>{{ $cp->cp_qty }}</td>
-                <td>{{ $cp->cp_condition * 100 . '%' }}</td>
-                <td>{{ $cp->cp_time }}</td>
+                <td>{{ $cp->name }}</td>
+                <td>{{ $cp->cp_value*100 . '%' }}</td>
+                <td>{{ $cp->cp_expiry }}</td>
                 <td>
-                    <a href="{{URL::to('admin/coupon/delete-coupon',$cp->cp_id)}}"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
+                    @if($cp->cp_status==0)
+                        Chưa sử dụng
+                    @else
+                        Đã sử dụng
+                    @endif
                 </td>
+                <td>{{ $cp->created_at }}</td>
             </tr>
         @endforeach
     </table>

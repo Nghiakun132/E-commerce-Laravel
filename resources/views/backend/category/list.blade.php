@@ -2,10 +2,10 @@
     <thead class="text-danger">
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Time update</th>
-            <th>Action</th>
+            <th>Tên</th>
+            <th>Thời gian tạo</th>
+            <th>Thời gian cập nhật</th>
+            <th>Hành động</th>
         </tr>
     </thead>
     <tbody>

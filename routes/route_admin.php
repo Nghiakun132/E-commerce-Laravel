@@ -113,9 +113,6 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
     //coupon
     Route::prefix('coupon')->group(function(){
         Route::get('','BackendCouponController@index')->name('get_backend.coupon.index');
-        Route::get('add-coupon','BackendCouponController@add_coupon');
-        Route::post('add','BackendCouponController@add');
-        Route::get('delete-coupon/{id}','BackendCouponController@delete_coupon');
     });
     Route::prefix('staff')->group(function(){
         Route::get('','AdminController@index')->name('get_backend.staff.index');

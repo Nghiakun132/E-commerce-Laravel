@@ -88,13 +88,11 @@
                     $success = Session::get('success');
                     $code_error= Session::get('code_error');
                     if ($success){
-                    ?>
-                    <span class="text-success"><?php echo $success; ?></span>
-                    <?php }else{ ?>
-                    <span class="text-danger"><?php echo $code_error; ?></span>
-                    <?php
+                        echo "<script type='text/javascript'>alert('$success');</script>";
+                    }elseif($code_error){
+                        echo "<script type='text/javascript'>alert('$code_error');</script>";
                     }
-                         ?>
+                        ?>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -108,18 +106,14 @@
                         </form>
                         <?php
                             $message = Session::get('message');
-                            $message_error = Session::get('message_error');
+                            $message_2 = Session::get('message_2');
                             $message_error2 = Session::get('message_error2');
-                            if($message){?>
-                        <span style="font-size:18px" class="text-success"><?php echo $message; ?></span>
-                        <?php
-                            }else if($message_error){
-                            ?>
-                        <span style="font-size:18px" class="text-danger"><?php echo $message_error; ?></span>
-                        <?php }else{
-                                ?>
-                        <span style="font-size:18px" class="text-danger"><?php echo $message_error2; ?></span>
-                        <?php
+                            if($message){
+                            echo "<script type='text/javascript'>alert('$message');</script>";
+                            }elseif($message_error2){
+                            echo "<script type='text/javascript'>alert('$message_error2');</script>";
+                            }elseif($message_2){
+                            echo "<script type='text/javascript'>alert('$message_2');</script>";
                             }
                             ?>
                     </div>
@@ -128,13 +122,17 @@
             <div class="col-lg-6">
                 <div class="shoping__checkout">
                     <?php
-                    $code = Session::get('cp_condition');
+                    $code = Session::get('cp_value');
                     ?>
                     <h5>Tổng giỏ hàng</h5>
                     <ul>
                         <li>Thuế <span>{{ Cart::tax(0, ',', '.') . 'đ' }}</span></li>
                         <li>Phí vận chuyển<span>Miễn phí</span></li>
-                        <li>Voucher giảm giá<span><?php echo $code * 100 . '%'; ?></span></li>
+                        @if ($code)
+                        <li>Voucher giảm giá<span><?php echo $code*100 . '%'; ?></span></li>
+                        @else
+                        <li>Voucher giảm giá<span>0%</span></li>
+                        @endif
                         @if ($code > 0)
                             <li>Tổng tiền
                                 <span>{{ Cart::total(0, ',', '.') - Cart::total(0, ',', '.') * $code . 'đ' }}

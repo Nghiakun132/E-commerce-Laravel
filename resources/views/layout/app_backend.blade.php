@@ -15,11 +15,11 @@
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        {{-- <link rel="stylesheet" href="{{asset('././public/css/user.css')}}"> --}}
         <link href="{{asset('././public/test/css/material-dashboard.css?v=2.1.2')}}" rel="stylesheet" />
         <link href="{{asset('././public/test/demo/demo.css')}}" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="{{asset('././public/css/user.css')}}">
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 </head>
 <style>
     body {
@@ -41,7 +41,7 @@
                 @foreach (config('nav.admin.top') as $item)
               <li class="nav-item ">
                 <a class="nav-link" href="{{ route($item['route']) }}">
-                  {{-- <i class="material-icons">dashboard</i> --}}
+                  <i class="material-icons">{{ $item['icons'] }}</i>
                   {{ $item['name'] }}
                 </a>
                 @endforeach
@@ -111,12 +111,12 @@
     <script src="{{ asset('././public/test/js/core/popper.min.js')}}"></script>
     <script src="{{ asset('././public/test/js/core/bootstrap-material-design.min.js')}}"></script>
     <script src="{{ asset('././public/test/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
-    {{-- <script src="{{ asset('././public/test/js/plugins/moment.min.js')}}"></script> --}}
-    {{-- <script src="{{ asset('././public/test/js/plugins/sweetalert2.js')}}"></script> --}}
-    {{-- <script src="{{ asset('././public/test/js/plugins/jquery.validate.min.js')}}"></script> --}}
-    {{-- <script src="{{ asset('././public/test/js/plugins/jquery.bootstrap-wizard.js')}}"></script> --}}
+    <script src="{{ asset('././public/test/js/plugins/moment.min.js')}}"></script>
+    <script src="{{ asset('././public/test/js/plugins/sweetalert2.js')}}"></script>
+    <script src="{{ asset('././public/test/js/plugins/jquery.validate.min.js')}}"></script>
+    <script src="{{ asset('././public/test/js/plugins/jquery.bootstrap-wizard.js')}}"></script>
 
-    {{-- <script src="{{ asset('././public/test/js/plugins/bootstrap-selectpicker.js')}}"></script>
+    <script src="{{ asset('././public/test/js/plugins/bootstrap-selectpicker.js')}}"></script>
     <script src="{{ asset('././public/test/js/plugins/bootstrap-datetimepicker.min.js')}}"></script>
     <script src="{{ asset('././public/test/js/plugins/jquery.dataTables.min.js')}}"></script>
     <script src="{{ asset('././public/test/js/plugins/bootstrap-tagsinput.js')}}"></script>
@@ -126,7 +126,7 @@
     <script src="{{ asset('././public/test/js/plugins/nouislider.min.js')}}"></script>
     <script src="{{ asset('././public/test/js/plugins/arrive.min.js')}}"></script>
     <script src="{{ asset('././public/test/js/plugins/chartist.min.js')}}"></script>
-    <script src="{{ asset('././public/test/js/plugins/bootstrap-notify.js')}}"></script> --}}
+    <script src="{{ asset('././public/test/js/plugins/bootstrap-notify.js')}}"></script>
     <script src="{{ asset('././public/test/js/material-dashboard.js?v=2.1.2')}}" type="text/javascript"></script>
     <script src="{{ asset('././public/test/demo/demo.js')}}"></script>
 

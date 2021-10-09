@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Fronted;
 
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Cart;
@@ -31,20 +32,20 @@ class CartController extends Controller
         $id = $request->product_id;
         $product_info2 = DB::table('products')->where('id', $id)->first();
         $qty = $request->qty;
-        if($qty <= $product_info2->pro_number){
-        $product_info = DB::table('products')->where('id', $id)->first();
-        $id = $request->product_id;
-        $data['id'] = $id;
-        $data['qty'] = $qty;
-        $data['name'] = $product_info->pro_name;
-        $data['price'] = ($product_info->pro_price) - (($product_info->pro_price) * ($product_info->pro_sale));
-        $data['weight'] = $product_info->pro_height;
-        $data['options']['image'] = $product_info->pro_avatar;
-        Cart::add($data);
-        Cart::setGlobalTax(10);
-        return Redirect::to('/show-cart');
-    }else{
-            return Redirect()->back()->with('message_qty','Số lượng hàng hóa không đủ');
+        if ($qty <= $product_info2->pro_number) {
+            $product_info = DB::table('products')->where('id', $id)->first();
+            $id = $request->product_id;
+            $data['id'] = $id;
+            $data['qty'] = $qty;
+            $data['name'] = $product_info->pro_name;
+            $data['price'] = ($product_info->pro_price) - (($product_info->pro_price) * ($product_info->pro_sale));
+            $data['weight'] = $product_info->pro_height;
+            $data['options']['image'] = $product_info->pro_avatar;
+            Cart::add($data);
+            Cart::setGlobalTax(10);
+            return Redirect::to('/show-cart');
+        } else {
+            return Redirect()->back()->with('message_qty', 'Số lượng hàng hóa không đủ');
         }
         // Cart::destroy();
     }
@@ -68,30 +69,34 @@ class CartController extends Controller
     }
     public function check_coupon(Request $request)
     {
+        $id_code = Session::get('cp_id');
         $data = $request->all();
-        // dd($data);
-        $coupon = Coupon::where('cp_code', $data['coupon'])->first();
-        if($coupon != null) {
-            if($coupon->cp_qty>0){
-                session::put('cp_condition',$coupon->cp_condition);
-                session::put('cp_id',$coupon->cp_id);
-                return Redirect()->back()->with('message','Thêm mã giảm giá thành công');
-            }else{
-            return Redirect()->back()->with('message_error2','Mã giảm giá đã sử dụng hết');
-            }
-        }else{
-            return Redirect()->back()->with('message_error','Mã giảm giá không tồn tại');
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+        $coupon = Coupon::where('cp_code', $data['coupon'])
+            ->where('cp_expiry', '>', $now)
+            ->where('cp_status','<>','1')
+            ->first();
+        if ($coupon != null && $id_code ==null) {
+            session::put('cp_value', $coupon->cp_value);
+            session::put('cp_code', $coupon->cp_code);
+            session::put('cp_id', $coupon->cp_id);
+            return Redirect()->back()->with('message', 'Thêm mã giảm giá thành công');
+        }elseif ($id_code){
+            return Redirect()->back()->with('message_2', 'Bạn đã thêm mã giảm giá rồi');
+        }else {
+            return Redirect()->back()->with('message_error2', 'Mã giảm giá đã sử dụng hết hoặc hết hạn');
         }
     }
-    public function delete_coupon(){
+    public function delete_coupon()
+    {
         $id_code = Session::get('cp_id');
-        if($id_code){
-            session::forget('cp_condition');
+        if ($id_code) {
             session::forget('cp_id');
-            return Redirect()->back()->with('success','Xóa mã giảm giá thành công');
-    }else{
-        return Redirect()->back()->with('code_error','Bạn không có nhập mã giảm giá');
+            session::forget('cp_code');
+            session::forget('cp_value');
+            return Redirect()->back()->with('success', 'Xóa mã giảm giá thành công');
+        } else {
+            return Redirect()->back()->with('code_error', 'Bạn không có nhập mã giảm giá');
+        }
     }
-}
-
 }
