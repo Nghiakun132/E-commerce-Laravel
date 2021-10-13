@@ -32,6 +32,7 @@ class BackendUserController extends Controller
     public function delete($id){
         $this->AuthLogin();
         DB::table('users')->where('id',$id)->delete();
+        DB::table('address')->where('user_id',$id)->delete();
         return Redirect()->route('get_backend.user.index');
     }
     public function change_status_user($id){

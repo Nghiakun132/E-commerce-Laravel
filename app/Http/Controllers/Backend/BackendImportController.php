@@ -23,10 +23,12 @@ class BackendImportController extends Controller
         return view('backend.import.index',compact('import'));
     }
     public function change_status($ip_id){
+        // $id_admin = Session::get('id');
         $data = array();
         $import_product = DB::table('import_product')->where('ip_id', $ip_id)->first();
         if($import_product->ip_status == 0)
             $data['ip_status'] = 1;
+        // $data['ip_admin_id'] = $id_admin;
         $data['ip_confirmed'] = Carbon::now('Asia/Ho_Chi_Minh');
         DB::table('import_product')->where('ip_id', $ip_id)->update($data);
         return Redirect()->back();

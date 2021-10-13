@@ -202,7 +202,7 @@
                             <li><a href="{{URL::to('view-data')}}" class="order" title="Cập nhật thông tin"><i class="fa fa-address-book text-info iconss" aria-hidden="true"></i></a></li>
                             <li><a href="{{URL::to('view-favorite')}}" class="order"><i class="fa fa-heart text-danger iconss" title="Yêu thích"></i></a></li>
                             <li><a href="{{route('get.cart')}}" title="Giỏ hàng" class="order"><i class="fa fa-shopping-bag text-warning iconss"></i></a></li>
-                            {{-- <li><a href="{{URL::to('adu')}}" title="Mã giảm giá" class="order"><i class="fa fa-gift text-danger iconss"></i></a></li> --}}
+                            <li><a href="#" data-toggle="modal" data-target="#myModal3" title="Mã giảm giá" class="order"><i class="fa fa-gift text-danger iconss"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -341,6 +341,48 @@
     <script src="{{ asset('././public/js/owl.carousel.min.js')}}"></script>
     <script src="{{ asset('././public/js/main.js')}}"></script>
 
+    <div class="modal" id="myModal3">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h4 class="modal-title">Xem mã giảm giá </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body bg-info">
+                    <table class="table table-hover table-secondary">
+                        <thead class="table-danger">
+                            <tr>
+                                <th>Mã</th>
+                                <th>Giảm</th>
+                                <th>Thời hạn</th>
+                                <th>Tình trạng</th>
+                            </tr>
+                        </thead>
+                        <?php $user_id = session::get('user_id'); ?>
+                        @foreach ($couponGlobal as $cp)
+                        @if ($cp->cp_user_id == $user_id)
+                        <tr>
+                            <td>{{$cp->cp_code}}</td>
+                            <td>{{$cp->cp_value * 100 . '%' }}</td>
+                            <td>{{$cp->cp_expiry}}</td>
+                            <td>
+                                @if($cp->cp_status==0)
+                                    Chưa sử dụng
+                                @else
+                                    Đã sử dụng
+                                @endif
+                            </td>
+                        </tr>
+                        @endif
+                        @endforeach
+                    </table>
+                </div>
+                <div class="modal-footer bg-info">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </body>

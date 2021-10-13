@@ -6,23 +6,13 @@
             background-image: url('public/img/a.jpg');
         }
 
-        .nhap {
-            color: red !important;
+        .nhap i{
+            /* color: red !important; */
             animation: nhapnhay 1s linear infinite;
         }
-
-        /* @keyframes myAnimation {
-                                from {
-                                    color: red !important;
-                                }
-
-                                to {
-                                    color: rgb(20, 221, 20) !important;
-                                }
-                            } */
         @keyframes nhapnhay {
             from {
-                color: rgb(46, 12, 241);
+                color: red;
             }
 
             to {
@@ -71,8 +61,8 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x nhap text-primary"></i>
+                            <div class="col-auto nhap">
+                                <i class="fas fa-calendar fa-2x  text-primary"></i>
                             </div>
                         </div>
                     </div>
@@ -271,11 +261,9 @@
 
                 </div>
                 <hr>
-
             </div>
         </div>
     </div>
-
 
 @stop
 

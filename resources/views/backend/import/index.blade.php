@@ -22,7 +22,7 @@
                             <th>Ngày xác nhận</th>
                             <th>Tổng tiền</th>
                             <th>Trạng thái</th>
-                            <th>Người xác nhận</th>
+                            <th>Người nhập hàng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,10 +33,10 @@
                             <td>
                                 <img src="{{url_file($value->pro_avatar)}}" class="img-thumbnail" width="80px" height="80px"alt=""></td>
                             <td>{{$value->ipd_product_qty}}</td>
-                            <td>{{$value->ipd_price}}</td>
+                            <td>{{$value->ipd_price . 'đ'}}</td>
                             <td>{{$value->ip_created_at}}</td>
                             <td>{{$value->ip_confirmed}}</td>
-                            <td>{{$value->ip_price_total}}</td>
+                            <td>{{$value->ip_price_total . 'đ'}}</td>
                             <td>
                                 @if ($value->ip_status == 0)
                                     <a href="{{URL::to('admin/import/change-status',$value->ip_id)}}"><span class="badge badge-danger">Chưa xác nhận</span></a>

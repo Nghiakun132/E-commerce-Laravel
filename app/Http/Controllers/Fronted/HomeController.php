@@ -27,14 +27,17 @@ class HomeController extends Controller
         ->where('products.pro_status',0)
         ->limit(8)
         ->get();
-        // dd($product);
+        //san pham moi nhat
         $products = DB::table('products')->select('*')
         ->where('products.pro_status',0)
+        ->orderBy('id', 'DESC')
         ->limit(3)->get();
         $topViews = DB::table('products')->select('*')
         ->where('products.pro_status',0)
         ->orderBy('pro_view','DESC')->limit(3)->get();
         $blog = DB::table('articles')->limit(3)->inRandomOrder()->get();
+        // $mostSell = DB::table('products')->orderBy('pro_kho-pro_number','DESC')->limit(3)->get();
+        // dd($mostSell);
         return view($this->folder.'index',compact('products','topViews','product','blog'));
     }
     public function map(){
@@ -66,17 +69,31 @@ class HomeController extends Controller
     public function update(Request $request){
         $user_id = Session::get('user_id');
         $data= array();
+        $data = $request->except('_token', 'avatar');
         $data['name']  = $request->name;
         $data['email'] = $request->email;
-        $data['password'] = md5($request->password);
+        // $data['password'] = md5($request->password);
         $data['phone'] = $request->phone;
         $data['updated_at'] = Carbon::now('Asia/Ho_Chi_Minh');
+        if ($request->avatar) {
+            $image = upload_image('avatar');
+            if (isset($image['code'])) {
+                $data['avatar'] = $image['name'];
+            }
+        }
         DB::table('users')->where('id',$user_id)->update($data);
         // $data2['address'] = $request->address;
         // // $data2['user_id'] = $user_id;
         // $data2['updated_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         // DB::table('address')->where('user_id',$user_id)->update($data2);
         return Redirect()->back();
+    }
+    public function update_password(Request $request){
+            $user_id = session::get('user_id');
+            $data= array();
+            $data['password'] = md5($request->password);
+            DB::table('users')->where('id',$user_id)->update($data);
+        return redirect()->back();
     }
     public function add_favorite($id){
         $this->AuthLogin();
@@ -112,7 +129,8 @@ class HomeController extends Controller
     public function tracking_order(){
         $this->AuthLogin();
         $id = Session::get('user_id');
-        $order = DB::table('orders')->where('user_id',$id)->get();
+        $order = DB::table('orders')->where('user_id',$id)
+        ->get();
         $view =[
             'order' =>$order,
         ];
@@ -151,7 +169,7 @@ class HomeController extends Controller
         $this->AuthLogin();
         $id = Session::get('user_id');
         $user = DB::table('users')
-        ->where('users.id',$id)->limit(1)->get();
+        ->where('users.id',$id)->first();
         $view =[
             'user' => $user,
         ];
@@ -216,5 +234,12 @@ class HomeController extends Controller
         }
         // dd($order_detail);
         return redirect()->back();
+    }
+    //ma giam gia
+    public function view_coupon(){
+        $user_id = Session::get('user_id');
+        $coupon = DB::table('coupon')->where('cp_user_id', $user_id)->get();
+
+        return view('fronted.user.coupon',compact('coupon'));
     }
 }

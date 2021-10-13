@@ -44,6 +44,15 @@
         .input_form input[type="text"]{
             color: red !important;
         }
+        .delete:hover i {
+            color: #f10000e8 !important;
+        }
+        .update:hover i {
+            color: #35ff0de8 !important;
+        }
+        .add:hover i {
+            color: #d408fde8;
+        }
     </style>
     <h2 class="heading">Danh sách sản phẩm</h2>
     <div class="container-fluid">
@@ -96,12 +105,12 @@
                                     </td>
                                     <td>
                                         <a onclick="return confirm('Bạn có chắc muốn xóa không')"
-                                            href="{{ route('get_backend.product.delete', $item->id) }}"><i
+                                            href="{{ route('get_backend.product.delete', $item->id) }}" class="delete"><i
                                                 style="font-size:23px;margin:4px" class="fa fa-trash text-danger"
                                                 aria-hidden="true"></i></a>
-                                        <a href="{{ route('get_backend.product.update', $item->id) }}"><i
+                                        <a href="{{ route('get_backend.product.update', $item->id) }}" class="update"><i
                                                 style="font-size:23px;margin:4px" class="fas fa-edit text-success"></i></a>
-                                        <a href="{{ route('get_backend.product.add', $item->id) }}"><i
+                                        <a href="{{ route('get_backend.product.add', $item->id) }}" class="add"><i
                                                 style="font-size:23px;margin:4px" class="fas fa-images"></i></a>
                                     </td>
                                 </tr>

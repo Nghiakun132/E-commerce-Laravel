@@ -80,6 +80,7 @@
                                 <a title="Hủy đơn hàng" onclick="return confirm('Bạn có chắc muốn hủy đơn hàng không')" href="{{URL::to('cancel-order',$order->id)}}"><i class="fa fa-times-circle-o text-danger ml-2 delete" style="font-size:30px" aria-hidden="true"></i></a>
                                 @endif
                             </td>
+
                         </tr>
                     @endforeach
             </table>

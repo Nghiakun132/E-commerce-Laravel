@@ -25,6 +25,7 @@ Route::group(['namespace' =>'Fronted'],function () {
     //Cập nhật thông tin
     // Route::get('update-tt','HomeController@update_tt');
     Route::post('update','HomeController@update');
+    Route::post('update-password','HomeController@update_password');
     Route::get('view-data','HomeController@view_data');
     // Route::get('add-address','HomeController@add_address');
     Route::get('update-address','HomeController@update_address');
@@ -33,7 +34,7 @@ Route::group(['namespace' =>'Fronted'],function () {
     Route::post('edit/{id}','HomeController@edit');
     Route::get('change-address/{id}','HomeController@change_address');
     Route::get('delete-address/{id}','HomeController@delete_address');
-
+    // Route::get('view-coupon','HomeController@view_coupon');
     //favorite
     Route::get('add-favorite/{id}','HomeController@add_favorite');
     Route::get('view-favorite','HomeController@view_favorite')->name('fronted.home.favorite');

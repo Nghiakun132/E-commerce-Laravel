@@ -53,11 +53,11 @@
                                             <form action="{{ URL::to('/update-qty') }}" method="post">
                                                 @csrf
                                                 <div class="pro-qtyy">
-                                                    <input type="text" name="cart_qty" value="{{ $value->qty }}">
+                                                    <input type="text" id="product_qty" name="cart_qty" value="{{ $value->qty }}">
                                                     <input type="hidden" name="product_rowid"
                                                         value="{{ $value->rowId }}">
                                                 </div>
-                                                <button type="submit" name="update-qty" class="btn btn-info btn-sm">Cập
+                                                <button type="submit" id="product_submit" name="update-qty" class="btn btn-info btn-sm">Cập
                                                     nhật</button>
                                             </form>
                                         </div>
@@ -83,16 +83,18 @@
             <div class="col-lg-12">
                 <div class="shoping__cart__btns">
                     <a href="{{ route('get.home') }}" class="primary-btn cart-btn">Tiếp tục mua hàng</a>
-                    <a href="{{ URL::to('delete-coupon') }}" class="primary-btn cart-btn">Xóa mã giảm giá</a>
+                    <a href="{{ URL::to('delete-coupon') }}"
+                        onclick="return confirm('Bạn có muốn xóa mã giảm giá này không')"
+                        class="primary-btn cart-btn">Xóa mã giảm giá</a>
                     <?php
                     $success = Session::get('success');
-                    $code_error= Session::get('code_error');
-                    if ($success){
+                    $code_error = Session::get('code_error');
+                    if ($success) {
                         echo "<script type='text/javascript'>alert('$success');</script>";
-                    }elseif($code_error){
+                    } elseif ($code_error) {
                         echo "<script type='text/javascript'>alert('$code_error');</script>";
                     }
-                        ?>
+                    ?>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -101,21 +103,29 @@
                         <h5>Mã giảm giá</h5>
                         <form action="{{ URL::to('check-coupon') }}" method="post">
                             @csrf
-                            <input type="text" placeholder="Nhập mã giảm giá" name="coupon">
+                            <?php $cp_code = Session::get('cp_code'); ?>
+                            <input type="text" placeholder=
+                            "<?php if($cp_code)
+                                    echo $cp_code;
+                            else{
+                                echo 'Nhập mã giảm giá';
+                            }
+                            ?>"
+                            name="coupon">
                             <button type="submit" class="btn btn-success">Nhập</button>
                         </form>
                         <?php
-                            $message = Session::get('message');
-                            $message_2 = Session::get('message_2');
-                            $message_error2 = Session::get('message_error2');
-                            if($message){
+                        $message = Session::get('message');
+                        $message_2 = Session::get('message_2');
+                        $message_error2 = Session::get('message_error2');
+                        if ($message) {
                             echo "<script type='text/javascript'>alert('$message');</script>";
-                            }elseif($message_error2){
+                        } elseif ($message_error2) {
                             echo "<script type='text/javascript'>alert('$message_error2');</script>";
-                            }elseif($message_2){
+                        } elseif ($message_2) {
                             echo "<script type='text/javascript'>alert('$message_2');</script>";
-                            }
-                            ?>
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -129,9 +139,9 @@
                         <li>Thuế <span>{{ Cart::tax(0, ',', '.') . 'đ' }}</span></li>
                         <li>Phí vận chuyển<span>Miễn phí</span></li>
                         @if ($code)
-                        <li>Voucher giảm giá<span><?php echo $code*100 . '%'; ?></span></li>
+                            <li>Voucher giảm giá<span><?php echo $code * 100 . '%'; ?></span></li>
                         @else
-                        <li>Voucher giảm giá<span>0%</span></li>
+                            <li>Voucher giảm giá<span>0%</span></li>
                         @endif
                         @if ($code > 0)
                             <li>Tổng tiền
@@ -151,4 +161,5 @@
         </div>
     </div>
 </section>
+
 @stop

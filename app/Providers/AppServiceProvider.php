@@ -3,12 +3,13 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\Menu;
 use App\Models\Product;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use PhpParser\Node\Stmt\TryCatch;
-
+// use Session;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -29,17 +30,19 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         try{
+            // $user_id = Session::get('user_id');
             Paginator::defaultView('view-name');
             Paginator::defaultSimpleView('view-name');
             Paginator::useBootstrap();
             $categoriesGlobal = Category::all();
             $menuGlobal = Menu::all();
             $productsGlobal = Product::all();
+            $CouponGlobal = Coupon::all();
         }catch (\Exception $exception){
-
         }
         \View::share('categoriesGlobal',$categoriesGlobal ?? []);
         \View::share('menuGlobal',$menuGlobal ?? []);
         \View::share('productsGlobal',$productsGlobal ?? []);
+        \View::share('couponGlobal',$CouponGlobal ?? []);
     }
 }

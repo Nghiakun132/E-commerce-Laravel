@@ -19,8 +19,11 @@ class ProductDetailController extends Controller
         $img = DB::table('anh')->where('product_slug',$slug)->get();
         $comment = DB::table('comment')
         ->join('users','users.id','=','comment.user_id')
-        ->select('users.name','comment.*')
+        ->select('users.name','comment.*','users.avatar')
         ->where('product_slug',$slug)->limit(20)->get();
+        $pro_view = DB::table('products')->select('pro_view')->where('pro_slug',$slug)->first();
+        $data['pro_view'] = $pro_view->pro_view + 1;
+        DB::table('products')->where('pro_slug',$slug)->update($data);
         Session::put('slug',$slug);
         // dd($proda_slug);
         return view('fronted.product_detail.index',compact('product','related','img','comment'));

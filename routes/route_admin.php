@@ -126,3 +126,4 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
         Route::get('change-status/{ip_id}','BackendImportController@change_status');
     });
 });
+

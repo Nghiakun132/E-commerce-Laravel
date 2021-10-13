@@ -132,11 +132,10 @@ class BackendProductController extends Controller
             $import['ip_price_total'] = $request->pro_price * $request->pro_kho;
             $import['ip_created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
             $ip_id = DB::table('import_product')->insertGetId($import);
-            $id_product = DB::table('products')->orderBy('id', 'DESC')->first();
             //add import_product_details
             $import_product_details = array();
             $import_product_details['ipd_ip_id'] = $ip_id;
-            $import_product_details['ipd_product_id'] = $id_product->id;
+            $import_product_details['ipd_product_id'] = $id;
             $import_product_details['ipd_product_qty'] = $request->pro_kho;
             $import_product_details['ipd_price'] = $request->pro_price;
             $import_product_details['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
@@ -147,7 +146,9 @@ class BackendProductController extends Controller
     public function delete($id)
     {
         $this->AuthLogin();
+        $image = DB::table('products')->select('pro_slug')->where('id', $id)->first();
         \DB::table('products')->where('id', $id)->delete();
+        \DB::table('anh')->where('product_slug',$image->pro_slug)->delete();
         return redirect()->route(route: 'get_backend.product.index');
     }
     public function change_status($id)

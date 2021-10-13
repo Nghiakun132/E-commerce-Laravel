@@ -102,13 +102,17 @@
             <div class="col-lg-6">
                 <div class="shoping__checkout">
                     <?php
-                    $code = Session::get('cp_condition');
+                    $code = Session::get('cp_value');
                     ?>
                     <h5>Tổng giỏ hàng</h5>
                     <ul>
                         <li>Thuế <span>{{ Cart::tax(0,',','.'). 'đ' }}</span></li>
                         <li>Phí vận chuyển<span>Miễn phí</span></li>
-                        <li>Voucher giảm giá<span><?php echo $code*100 .'%' ?></span></li>
+                        @if ($code)
+                        <li>Voucher giảm giá<span><?php echo $code*100 . '%'; ?></span></li>
+                        @else
+                        <li>Voucher giảm giá<span>0%</span></li>
+                        @endif
                         @if($code > 0)
                         <li>Tổng tiền
                             <span>{{ Cart::total (0,',','.')-(Cart::total (0,',','.')*$code). 'đ' }}

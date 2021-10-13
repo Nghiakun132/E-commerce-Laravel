@@ -67,7 +67,8 @@
                                 <div class="product__details__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <input type="text" id="qty" value="1" name="qty" min="1" max="{{$product->pro_number}}">
+                                            <input type="text" id="qty" value="1" name="qty" min="1"
+                                                max="{{ $product->pro_number }}">
                                         </div>
                                     </div>
                                 </div>
@@ -81,9 +82,12 @@
                             </form>
                             <?php
                             $message4 = Session::get('message_qty');
-                            if($message4){
+                            $message5 = Session::get('message_qty2');
+                            if ($message4) {
                                 echo "<script type='text/javascript'>alert('$message4');</script>";
-                             } ?>
+                            } elseif ($message5) {
+                                echo "<script type='text/javascript'>alert('$message5');</script>";
+                            } ?>
                             <ul>
                                 <li>
                                     <b>
@@ -130,18 +134,16 @@
                                         <p>
                                             {{ $product->pro_description }}
                                         </p>
-
                                     </div>
                                 </div>
                                 <div class="tab-pane " id="tabs-1" role="tabpanel">
                                     <div class="product__details__tab__desc">
                                         <h6>Mô tả</h6>
-                                        <p>{{ $product->pro_content}}
+                                        <p>{{ $product->pro_content }}
                                         </p>
 
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -179,35 +181,28 @@
             </div>
         </section>
         <section class="comment">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="heading">
-                        <h2>Bình luận</h2>
+            <div class="container mt-3">
+                <h2>Bình luận</h2>
+                @foreach ($comment as $comment)
+                    <div class="media border p-3">
+                        <img src="{{url_file($comment->avatar)}}" class="mr-3 mt-3 rounded-circle" style="width:80px;">
+                        <div class="media-body">
+                            <h4>{{$comment->name}}<small><i class="ml-2">{{$comment->created_at}}</i></small></h4>
+                            <p style="font-size: 18px">{{$comment->comment}}</p>
+                            <a href="{{URL::to('like-comment',$comment->id)}}"><i class="fa fa-thumbs-up text-info" aria-hidden="true"></i>
+                            <span>{{$comment->liked}}</span></a>
+                        </div>
                     </div>
-                        <ul class="nav flex-column">
-                            @foreach ($comment as $comment)
-                                <li class="nav-item">
-                                    <h4 class="comment_name">{{ $comment->name }}</h4>
-                                    <p class="comment_content">{{ $comment->comment }}</p>
-                                    <a href="{{route('like-comment',$comment->id)}}" class="like_comment"><i class="fa fa-thumbs-up pl"
-                                            aria-hidden="true"></i></a><span>{{$comment->liked}}</span>   <span>{{ $comment->created_at }}</span>
-                                        <hr>
-                                        </li>
-                            @endforeach
-                        </ul>
-                    <div class="comment_write">
-                        <form action="{{ route('comment') }}" method="POST">
-                            @csrf
-                            <div class="form-group">
-                                <textarea class="form-control" name="comment" cols="50" rows="5"></textarea>
-                            </div>
-                            <button class="btn btn-primary" type="submit">Bình luận</button>
-                        </form>
-                    </div>
-                </div>
+                @endforeach
+                <div class="comment_write">
+                    <form action="{{ route('comment') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <textarea class="form-control" name="comment" cols="50" rows="5"></textarea>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Bình luận</button>
+                    </form>
                 </div>
             </div>
-        </section>
     </div>
 @stop

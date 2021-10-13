@@ -104,7 +104,7 @@
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 @foreach ($products as $item2)
-                                <a href="#" class="latest-product__item">
+                                <a href="{{URL::to('chi-tiet',$item2->pro_slug)}}" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="{{url_file2($item2->pro_avatar)}}" width="80px" height="80px" alt="">
                                     </div>
@@ -116,33 +116,17 @@
                                 @endforeach
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
+                                @foreach ($products as $item2)
+                                <a href="{{URL::to('chi-tiet',$item2->pro_slug)}}" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="././public/img/latest-product/lp-1.jpg" alt="">
+                                        <img src="{{url_file2($item2->pro_avatar)}}" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <h6>{{$item2->pro_name}}</h6>
+                                        <span>{{number_format(($item2->pro_price),0,',','.').'đ'}}</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="././public/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="././public/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -153,7 +137,7 @@
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 @foreach ($topViews as $view)
-                                <a href="#" class="latest-product__item">
+                                <a href="{{URL::to('chi-tiet',$view->pro_slug)}}" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="{{url_file2($view->pro_avatar)}}" alt="">
                                     </div>
@@ -165,40 +149,24 @@
                                 @endforeach
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
+                                @foreach ($topViews as $view)
+                                <a href="{{URL::to('chi-tiet',$view->pro_slug)}}" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="././public/img/latest-product/lp-1.jpg" alt="">
+                                        <img src="{{url_file2($view->pro_avatar)}}" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <h6>{{$view->pro_name}}</h6>
+                                        <span>{{number_format(($view->pro_price),0,',','.').'đ'}}</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="././public/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="././public/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
-                        <h4>Review Products</h4>
+                        <h4>Sản phẩm bán nhiều nhất</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 <a href="#" class="latest-product__item">
@@ -295,6 +263,13 @@
         </div>
     </section>
 </div>
+<?php
+    $congratulation = Session::get('congratulation');
+    if($congratulation){
+        echo "<script type='text/javascript'>alert('$congratulation');</script>";
+        Session::forget('congratulation');
+    }
+?>
 @stop
 
 
