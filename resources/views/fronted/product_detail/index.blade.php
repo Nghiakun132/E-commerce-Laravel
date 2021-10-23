@@ -56,7 +56,7 @@
                                 @for ($i = 1; $i <= $product->pro_review_star; $i++)
                                     <i class="fa fa-star"></i>
                                 @endfor
-                                <span>({{ $product->pro_view }} reviews)</span>
+                                <span>({{ $product->pro_view }} lượt xem)</span>
                             </div>
                             <form action="{{ URL::to('/save-cart') }}" method="post">
                                 @csrf
@@ -78,7 +78,7 @@
                                 @else
                                     <button type="submit" class="btn btn-success btn-lg " disabled>ADD TO CARD</button>
                                 @endif
-                                <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                                <a href="{{URL::to('add-favorite',$product->id)}}" class="heart-icon"><span class="icon_heart_alt"></span></a>
                             </form>
                             <?php
                             $message4 = Session::get('message_qty');
@@ -182,7 +182,8 @@
         </section>
         <section class="comment">
             <div class="container mt-3">
-                <h2>Bình luận</h2>
+                <h2>Bình luận </h2>
+                <span>Có {{$countComment}} bình luận</span>
                 @foreach ($comment as $comment)
                     <div class="media border p-3">
                         <img src="{{url_file($comment->avatar)}}" class="mr-3 mt-3 rounded-circle" style="width:80px;">

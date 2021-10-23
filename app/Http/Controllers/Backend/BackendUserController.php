@@ -23,8 +23,10 @@ class BackendUserController extends Controller
         $this->AuthLogin();
         $user = DB::table('users')
         ->get();
+        $countUsers =  DB::table('users')->count('id');
         $data = [
             'user' => $user,
+            'countUsers' => $countUsers
         ];
         return view($this->folder.'index',$data);
     }

@@ -26,10 +26,12 @@ class BackendArticleController extends Controller
     }
     public function index(){
         $this->AuthLogin();
+        $countArticles = Article::count('id');
         $articles = Article::orderBy('id')
         ->paginate(20);
 
         $viewData = [
+            'countArticles' => $countArticles,
             'articles' => $articles
         ];
         return view($this->folder.'index',$viewData);
@@ -66,7 +68,7 @@ class BackendArticleController extends Controller
     public function edit($id) {
         $this->AuthLogin();
         $menus = DB::table('menus')->get();
-        $articles = DB::table('articles')->where('id', $id)->get();
+        $articles = DB::table('articles')->where('id', $id)->first();
         $view=[
             'articles' => $articles,
             'menus' => $menus,

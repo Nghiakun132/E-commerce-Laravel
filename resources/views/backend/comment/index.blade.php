@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-lg-12 ">
             <table class="table table-hover table-md text-center table-primary">
-                <thead class="text-danger">
+                <thead class="text-secondary  table-danger">
                     <tr>
                         <th>ID</th>
                         <th>Tên</th>
@@ -49,6 +49,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if ($countComment > 0 )
                     @foreach ($comment as $comment)
                         <tr>
                             <td>{{ $comment->id }}</td>
@@ -63,6 +64,15 @@
                                         class="fa fa-trash text-danger" aria-hidden="true"></i></a></td>
                         </tr>
                     @endforeach
+                        @else
+                        <tr>
+                            <td colspan="12">
+                                <h3 class ="text-center text-danger">
+                                    Chưa có bình luận
+                                </h3>
+                            </td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>

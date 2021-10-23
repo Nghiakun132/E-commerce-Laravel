@@ -22,10 +22,13 @@ class BackendMenuController extends Controller
     }
     public function index(){
         $this->AuthLogin();
-        $menus = Menu::orderBy('id')->get();
+        $menus = Menu::orderBy('id')->where('mn_status', 1)->get();
+        $count = Menu::where('mn_status', 1)->count('id');
         $viewData = [
             'menus' => $menus,
+            'count' => $count,
         ];
+        // dd($count);
         return view($this->folder.'index',$viewData);
     }
 

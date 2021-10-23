@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use Session;
 use Cart;
 
-session_start();
+// session_start();
 
 class CheckoutController extends Controller
 {
@@ -114,15 +114,6 @@ class CheckoutController extends Controller
             $order2['product_price'] = $value->price;
             $order2['product_qty'] = $value->qty;
             DB::table('order_detail')->insert($order2);
-        }
-
-        $soluong = array();
-        foreach ($content as $v2) {
-            $id = $v2->id;
-            $qty = DB::table('products')->select('pro_number')->where('id', $id)->first();
-            $sl = $v2->qty;
-            $soluong['pro_number'] = $qty->pro_number - $sl;
-            DB::table('products')->where('id', $id)->update($soluong);
         }
         // add voucher
         // nếu có voucher > 500

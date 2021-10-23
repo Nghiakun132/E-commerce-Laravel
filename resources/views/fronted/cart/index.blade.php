@@ -36,6 +36,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if($count  > 0)
                             @foreach ($content as $value)
                                 <tr>
                                     <td class="shoping__cart__item">
@@ -74,6 +75,15 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="12">
+                                        <h3 class="text-center text-danger">
+                                            Hiện tại giỏ hàng đang rỗng! Hãy thêm gì đó vào giỏ hàng
+                                        </h3>
+                                    </td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>

@@ -27,8 +27,10 @@ class BackendOrderController extends Controller
         ->join('orders','orders.id','=','product_bought.pk_order_id')
         ->orderBy('orders.id','asc')
         ->get();
+        $countOrder = count($order);
         $view=[
             // 'address' => $address,
+            'countOrder' => $countOrder,
             'order' => $order,
         ];
         return view('backend.order.index',$view);
@@ -59,11 +61,20 @@ class BackendOrderController extends Controller
         }
         public function change_status($id){
             $this->AuthLogin();
+            //thay doi trang thai don hang
             $status = DB::table('orders')->select('order_status')->where('id', $id)->first();
-            // $status = int($status);
-            // dd($status);
+            $order_detail = DB::table('order_detail')->where('order_id', $id)->get();
+
             if($status->order_status == 0){
+                foreach ($order_detail as $v2) {
+                    $product_id = $v2->product_id;
+                    $qty = DB::table('products')->select('pro_number')->where('id', $product_id)->first();
+                    $sl = $v2->product_qty;
+                    $soluong['pro_number'] = $qty->pro_number - $sl;
+                    DB::table('products')->where('id', $product_id)->update($soluong);
+                }
                 $data['order_status'] = 1;
+
             }else if($status->order_status == 1){
                 $data['order_status'] = 2;
             }else if($status->order_status== 2){

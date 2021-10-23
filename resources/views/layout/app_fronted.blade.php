@@ -29,9 +29,9 @@
 
 <body>
     <!-- Page Preloder -->
-    {{-- <div id="preloder">
+    <div id="preloder">
         <div class="loader"></div>
-    </div> --}}
+    </div>
 
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
@@ -57,23 +57,37 @@
                 </ul>
             </div>
             <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Đăng nhập</a>
+                <?php
+                $userId = Session::get('user_id');
+                $userName = Session::get('user_name');
+                if($userId != NULL) {
+            ?>
+            <a href="{{URL::to('logout')}}"><i class="fa fa-user"></i> Đăng xuất:
+            <?php
+                echo $userName;
+            ?>
+        </a>
+            <?php
+                }else{
+            ?>
+            <a href="{{URL::to('login-checkout')}}"><i class="fa fa-user"></i>Đăng nhập</a>
+
+            <?php
+            }
+            ?>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="{{route('get.home')}}">Trang chủ</a></li>
-                <li><a href="">Shop</a></li>
+                <li><a href="{{route('get.map')}}">Shop</a></li>
                 <li><a href="#">Trang</a>
                     <ul class="header__menu__dropdown">
-                        <li><a href="#">Shop Details</a></li>
-                        <li><a href="#">Shoping Cart</a></li>
-                        <li><a href="#">Check Out</a></li>
-                        <li><a href="#">Blog Details</a></li>
+                        <li><a href="{{route('get.cart')}}">Giỏ hàng</a></li>
                     </ul>
                 </li>
                 <li><a href="">Blog</a></li>
-                <li><a href="">Contact</a></li>
+                <li><a href="https://www.facebook.com/nghiakun132" target="_blank">liên hệ</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>

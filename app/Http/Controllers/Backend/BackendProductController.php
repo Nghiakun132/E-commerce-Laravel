@@ -30,23 +30,27 @@ class BackendProductController extends Controller
         $this->AuthLogin();
         $products = Product::orderBy('id')
             ->paginate(20);
+            $countProduct = Product::count('id');
+            $categories = Category::all();
 
         $viewData = [
             'products' => $products,
+            'countProduct' => $countProduct,
+            'categories' => $categories,
         ];
         return view($this->folder . 'index', $viewData);
     }
-    public function create()
-    {
-        $this->AuthLogin();
-        $product = DB::table('products')->get();
-        $categories = Category::all();
-        $viewData = [
-            'product' => $product,
-            'categories' => $categories,
-        ];
-        return view($this->folder . 'create', $viewData);
-    }
+    // public function create()
+    // {
+    //     $this->AuthLogin();
+    //     $product = DB::table('products')->get();
+    //     $categories = Category::all();
+    //     $viewData = [
+    //         'product' => $product,
+    //         'categories' => $categories,
+    //     ];
+    //     return view($this->folder . 'create', $viewData);
+    // }
     public function store(BackendProductRequest $request)
     {
         //add product

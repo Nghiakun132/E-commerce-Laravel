@@ -39,10 +39,12 @@ Route::group(['namespace' =>'Fronted'],function () {
     Route::get('add-favorite/{id}','HomeController@add_favorite');
     Route::get('view-favorite','HomeController@view_favorite')->name('fronted.home.favorite');
     Route::get('delete-favorite/{id}','HomeController@delete_favorite');
+    Route::get('delete-all-favorite','HomeController@delete_all_favorite');
     //check-order
-    Route::get('tracking-order','HomeController@tracking_order');
+    Route::get('tracking-order','HomeController@tracking_order')->name('fronted.home.tracking_order');
     Route::get('tracking-order-details/{id}','HomeController@tracking_order_details');
-    Route::get('cancel-order/{id}','HomeController@cancel_order');
+    Route::get('cancel/{id}','HomeController@cancel');
+    Route::post('cancel-order/{id}','HomeController@cancel_order');
     //Danh muc sp
     Route::get('danh-muc/{slug}','CategoryController@index')->name('get.category');
     //chi tiet sp

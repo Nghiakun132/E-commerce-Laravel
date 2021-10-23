@@ -26,20 +26,19 @@ class AdminController extends Controller
     public function add_account(BackendStaffRequest $request)
     {
         $data = $request->all();
-        $account = new Admin;
-        $account->name = $data['name'];
-        $account->email = $data['email'];
-        $account->phone = $data['phone'];
-        $account->address = $data['address'];
-        $account->password = md5($data['password']);
-        $account->created_at = Carbon::now('Asia/Ho_Chi_Minh');
-        $account->save();
-        return redirect()->route('get_backend.staff.index');
+            $account = new Admin;
+            $account->name = $data['name'];
+            $account->email = $data['email'];
+            $account->phone = $data['phone'];
+            $account->address = $data['address'];
+            $account->password = md5($data['password']);
+            $account->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+            $account->save();
+            return redirect()->route('get_backend.staff.index')->with('add_success', 'Đã thêm nhân viên thành công');
     }
     public function promotion($id)
     {
         $level = DB::table('admins')->where('id', $id)->select('level')->first();
-        // dd($level);
         $data = array();
         if ($level->level == 2) {
             $data['level'] = 1;
@@ -49,7 +48,8 @@ class AdminController extends Controller
         DB::table('admins')->where('id', $id)->update($data);
         return redirect()->back();
     }
-    public function delete_account($id) {
+    public function delete_account($id)
+    {
         DB::table('admins')->where('id', $id)->delete();
         return redirect()->back();
     }

@@ -27,7 +27,9 @@ class BackendCouponController extends Controller
         ->join('users','users.id','=','coupon.cp_user_id')
         ->select('users.name','coupon.*')
         ->get();
+        $countCoupon  = count($coupon);
         $view =[
+            'countCoupon' => $countCoupon,
             'coupon' => $coupon,
         ];
         return view('backend.coupon.index',$view);

@@ -23,8 +23,10 @@ class BackendCategoryController extends Controller
     public function index(){
         $this->AuthLogin();
         $categories = Category::orderBy('id')->get();
+        $countCategories = Category::count('id');
         $viewData = [
             'categories' => $categories,
+            'countCategories' => $countCategories
         ];
         return view($this->folder.'index',$viewData);
     }

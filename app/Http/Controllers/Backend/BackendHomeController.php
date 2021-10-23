@@ -41,12 +41,14 @@ class BackendHomeController extends Controller
             ->join('orders', 'orders.id', '=', 'product_bought.pk_order_id')
             ->orderBy('orders.id', 'desc')
             ->limit(5)->distinct()->get();
+        $countOrder = count($order);
         $comment = DB::table('comment')->count('id');
         $sp = DB::table('products')->get();
         $import = DB::table('import_product')->where('ip_status', 1)->sum('ip_price_total');
         // $order_new = DB::table('orders')->where('order_status',0)->count('id');
         $view = [
             // 'order_new'=>$order_new,
+            'countOrder' => $countOrder,
             'order' => $order,
             'admins' => $admins,
             'sp' => $sp,

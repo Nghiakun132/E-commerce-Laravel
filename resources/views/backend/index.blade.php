@@ -6,10 +6,11 @@
             background-image: url('public/img/a.jpg');
         }
 
-        .nhap i{
+        .nhap i {
             /* color: red !important; */
             animation: nhapnhay 1s linear infinite;
         }
+
         @keyframes nhapnhay {
             from {
                 color: red;
@@ -207,8 +208,11 @@
                 <div class="card">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Đơn hàng gần nhất</h6>
-                        <a class="m-0 float-right btn btn-danger btn-sm" href="{{ route('get_backend.order.index') }}">Xem
-                            thêm <i class="fas fa-chevron-right"></i></a>
+                        @if ($countOrder > 0)
+                            <a class="m-0 float-right btn btn-danger btn-sm"
+                                href="{{ route('get_backend.order.index') }}">Xem
+                                thêm <i class="fas fa-chevron-right"></i></a>
+                        @endif
                     </div>
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush table-hover">
@@ -219,41 +223,51 @@
                                     <th>Địa chỉ</th>
                                     <th>Tổng tiền</th>
                                     <th>Trạng thái</th>
-                                    <th>Action</th>
+                                    <th>Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($order as $value)
+                                @if ($countOrder > 0)
+                                    @foreach ($order as $value)
+                                        <tr>
+                                            <td><a
+                                                    href="{{ URL::to('admin/order/view-detail', $value->id) }}">{{ $value->id }}</a>
+                                            </td>
+                                            <td>{{ $value->name }}</td>
+                                            <td>{{ $value->pk_address }}</td>
+                                            <td>{{ $value->pd_total * 1000 . 'đ' }}</td>
+                                            <td>
+                                                @if ($value->order_status == 0)
+                                                    <a id="del"
+                                                        href="{{ URL::to('admin/order/change-status', $value->id) }}">
+                                                        <span class="badge badge-success ac">Đang xử lý</span></a>
+                                                @elseif ($value->order_status == 1)
+                                                    <a id="del"
+                                                        href="{{ URL::to('admin/order/change-status', $value->id) }}"><span
+                                                            class="badge badge-warning ac">Đã xác nhận</span></a>
+                                                @elseif ($value->order_status == 2)
+                                                    <a id="del"
+                                                        href="{{ URL::to('admin/order/change-status', $value->id) }}"><span
+                                                            class="badge badge-primary ac">Đang vận chuyển</span></a>
+                                                @elseif ($value->order_status == 3)
+                                                    <span class="badge badge-info ac">Đã giao hàng</span>
+                                                @else
+                                                    <span class="badge badge-danger ac">Đã hủy</span>
+                                                @endif
+                                            </td>
+                                            <td><a href="{{ URL::to('admin/order/view-detail', $value->id) }}"
+                                                    class="btn btn-sm btn-primary">Xem chi tiết</a></td>
+                                        </tr>
+                                    @endforeach
+                                @else
                                     <tr>
-                                        <td><a
-                                                href="{{ URL::to('admin/order/view-detail', $value->id) }}">{{ $value->id }}</a>
+                                        <td colspan="12">
+                                            <h3 class="text-center text-danger">
+                                                Chưa có đơn hàng
+                                            </h3>
                                         </td>
-                                        <td>{{ $value->name }}</td>
-                                        <td>{{ $value->pk_address }}</td>
-                                        <td>{{ $value->pd_total * 1000 . 'đ' }}</td>
-                                        <td>
-                                            @if ($value->order_status == 0)
-                                                <a id="del"
-                                                    href="{{ URL::to('admin/order/change-status', $value->id) }}">
-                                                    <span class="badge badge-success ac">Đang xử lý</span></a>
-                                            @elseif ($value->order_status == 1)
-                                                <a id="del"
-                                                    href="{{ URL::to('admin/order/change-status', $value->id) }}"><span
-                                                        class="badge badge-warning ac">Đã xác nhận</span></a>
-                                            @elseif ($value->order_status == 2)
-                                                <a id="del"
-                                                    href="{{ URL::to('admin/order/change-status', $value->id) }}"><span
-                                                        class="badge badge-primary ac">Đang vận chuyển</span></a>
-                                            @elseif ($value->order_status == 3)
-                                                <span class="badge badge-info ac">Đã giao hàng</span>
-                                            @else
-                                                <span class="badge badge-danger ac">Đã hủy</span>
-                                            @endif
-                                        </td>
-                                        <td><a href="{{ URL::to('admin/order/view-detail', $value->id) }}"
-                                                class="btn btn-sm btn-primary">Xem chi tiết</a></td>
                                     </tr>
-                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -266,5 +280,3 @@
     </div>
 
 @stop
-
-

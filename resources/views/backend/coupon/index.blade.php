@@ -43,6 +43,7 @@
             <th>Trạng thái</th>
             <th>Thời gian tạo</th>
         </tr>
+        @if ($countCoupon > 0)
         @foreach ($coupon as $cp)
             <tr>
                 <td>{{ $cp->cp_id }}</td>
@@ -60,6 +61,13 @@
                 <td>{{ $cp->created_at }}</td>
             </tr>
         @endforeach
+        @else
+        <tr>
+            <td colspan="12">
+                <h3 class="text-center">Không có mã giảm giá</h3>
+            </td>
+        </tr>
+        @endif
     </table>
 </div>
 @stop

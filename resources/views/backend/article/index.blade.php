@@ -84,9 +84,9 @@
     <a href="{{ route('get_backend.article.create') }}" class="btn btn-xs btn-success mb-2 mb">Thêm bài
         viết</a>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
+        {{-- <div class="row"> --}}
+            {{-- <div class="col-lg-12"> --}}
+                <div class="table-responsive-md card">
                     <div class="p-2">
                         <table class="table table-hover table-secondary">
                             <thead class="text-danger">
@@ -101,6 +101,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if($countArticles > 0 )
                                 @foreach ($articles as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
@@ -121,6 +122,13 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                @else
+                                <tr>
+                                    <td colspan="12">
+                                        <h3 class="text-center text-danger"></h3>
+                                    </td>
+                                </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>

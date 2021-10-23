@@ -14,13 +14,12 @@ class CategoryController extends Controller
     public function index(Request $request, $slug)
     {
         $category = Category::where('c_slug', $slug)->first();
+        // dd($category->c_view);
+        $cview['c_view'] = $category->c_view + 1;
+        DB::table('categories')->where('c_slug',$slug)->update($cview);
         $product = Product::where('pro_category_id', $category->id)
             ->where('products.pro_status', 0)
             ->Paginate(10);
-        // $product = DB::table('products')->where('pro_category_id', $category->id)
-        // ->where('products.pro_status', 0)
-        // ->paginate(10);
-            // dd($product);
         $sales = DB::table('products')
             ->where('pro_category_id', $category->id)
             ->where('pro_sale', '>', 0)

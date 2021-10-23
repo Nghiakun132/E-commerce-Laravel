@@ -55,8 +55,9 @@ class CartController extends Controller
     public function show_cart()
     {
         $this->AuthLogin();
+        $count = count(Cart::content());
         $category = DB::table('categories')->orderBy('id', 'desc')->get();
-        return view('fronted.cart.index')->with('category', $category);
+        return view('fronted.cart.index',compact('count'))->with('category', $category);
     }
     public function delete_cart($rowId)
     {
