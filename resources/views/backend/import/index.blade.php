@@ -5,8 +5,72 @@
         text-align: center;
     }
 </style>
+<div class="container-fluid">
 <h2 class="heading">Nhập hàng</h2>
-    <div class="container-fluid">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            DataTable Example
+            <a href="" data-bs-toggle="modal" data-bs-target="#myModal"><button class="btn btn-primary">Thêm</button></a>
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead class="table-success">
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Ảnh</th>
+                        <th>Số lượng</th>
+                        <th>Giá nhập</th>
+                        <th>Ngày nhập</th>
+                        <th>Ngày xác nhận</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Người nhập hàng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Ảnh</th>
+                        <th>Số lượng</th>
+                        <th>Giá nhập</th>
+                        <th>Ngày nhập</th>
+                        <th>Ngày xác nhận</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Người nhập hàng</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach ($import as $value)
+                    <tr>
+                        <td>{{$value->ip_id}}</td>
+                        <td>{{$value->pro_name}}</td>
+                        <td>
+                            <img src="{{url_file($value->pro_avatar)}}" class="img-thumbnail" width="80px" height="80px"alt=""></td>
+                        <td>{{$value->ipd_product_qty}}</td>
+                        <td>{{$value->ipd_price . 'đ'}}</td>
+                        <td>{{$value->ip_created_at}}</td>
+                        <td>{{$value->ip_confirmed}}</td>
+                        <td>{{$value->ip_price_total . 'đ'}}</td>
+                        <td>
+                            @if ($value->ip_status == 0)
+                                <a href="{{URL::to('admin/import/change-status',$value->ip_id)}}"><span class="badge bg-danger">Chưa xác nhận</span></a>
+                            @else
+                                <span class="badge bg-success">Đã xác nhận</span>
+                            @endif
+                        </td>
+                        <td>{{$value->name}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    {{-- <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="table-responsive-lg">
@@ -52,6 +116,6 @@
             </div>
         </div>
         </div>
-    </div>
+    </div> --}}
 
 @stop

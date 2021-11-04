@@ -13,14 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="{{ asset('././public/css/bootstrap.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('././public/css/font-awesome.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('././public/css/elegant-icons.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('././public/css/nice-select.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('././public/css/jquery-ui.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('././public/css/owl.carousel.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('././public/css/slicknav.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('././public/css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('././css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('././css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('././css/elegant-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('././css/nice-select.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('././css/jquery-ui.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('././css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('././css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('././css/style.css') }}" type="text/css">
 </head>
 <body>
 <style>
@@ -75,12 +75,12 @@ if ($message) {
         <title>Trang đăng nhập</title>
         <!--Made with love by Mutiullah Samim -->
         <!--Bootsrap 4 CDN-->
-    <link rel="icon" href="{{ asset('././././public/img/2.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('././././img/2.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <!--Fontawesome CDN-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <!--Custom styles-->
-        <link rel="stylesheet" type="text/css" href="../././public/css/login.css">
+        <link rel="stylesheet" type="text/css" href=".././public/css/login.css">
     </head>
     <body>
         <?php $messages = Session::get('message'); ?>

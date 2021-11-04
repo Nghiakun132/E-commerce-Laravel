@@ -1,139 +1,165 @@
 @extends('layout.app_backend')
 @section('title', 'Danh sách bài viết')
 @section('content')
-    <style>
-        body {
-            background-color: rgba(201, 28, 28, 0.15);
-        }
-
-        .heading {
-            color: rgb(46, 12, 241);
-            font-weight: bold;
-            font-size: 44px;
-            text-shadow: 0px 0px 3px #610d0d;
-            text-align: center;
-            animation: nhapnhay 0.8s linear infinite;
-        }
-
-        @keyframes nhapnhay {
-            from {
-                color: rgb(97, 247, 11);
-            }
-
-            to {
-                color: rgb(9, 24, 241);
-            }
-
-        }
-
-        @keyframes nhapnhay2 {
-            from {
-                color: rgb(175, 253, 130),
-                    );
-            }
-
-            to {
-                color: rgb(9, 24, 241);
-            }
-
-            from {
-                background-color: red
-            }
-
-            to {
-                background-color: rgb(43, 228, 6)
-            }
-        }
-
-        .mb {
-            margin-left: 16px;
-            animation: nhapnhay2 1.4s linear infinite;
-
-        }
-
-        @keyframes nhapnhay3 {
-            from {
-                color: rgb(247, 9, 9)
-            }
-
-            to {
-                color: rgb(16, 248, 8)
-            }
-        }
-
-        @keyframes nhapnhay4 {
-            from {
-                color: rgb(227, 250, 18)
-            }
-
-            to {
-                color: rgb(245, 12, 140)
-            }
-        }
-
-        .nhap {
-            animation: nhapnhay3 1.4s linear infinite;
-        }
-
-        .nhap4 {
-            animation: nhapnhay4 1.4s linear infinite;
-        }
-
-    </style>
-    <h2 class="heading">Danh sách bài viết</h2>
-    <a href="{{ route('get_backend.article.create') }}" class="btn btn-xs btn-success mb-2 mb">Thêm bài
-        viết</a>
     <div class="container-fluid">
-        {{-- <div class="row"> --}}
-            {{-- <div class="col-lg-12"> --}}
-                <div class="table-responsive-md card">
-                    <div class="p-2">
-                        <table class="table table-hover table-secondary">
-                            <thead class="text-danger">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Tên bài viết</th>
-                                    <th>Mô tả</th>
-                                    <th>Nội dung</th>
-                                    <th>Thời gian viết</th>
-                                    <th>Thời gian cập nhật</th>
-                                    <th>Hành động</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if($countArticles > 0 )
-                                @foreach ($articles as $item)
-                                    <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->a_name }}</td>
-                                        <td>{{ $item->a_description }}</td>
-                                        <td>{{ $item->a_content }}</td>
-                                        <td>{{ $item->created_at }}</td>
-                                        <td>{{ $item->updated_at }}</td>
-                                        <td>
-                                            <a class="nhap" onclick="return confirm('Bạn có chắc muốn xóa không')"
-                                                href="{{ URL::to('admin/article/delete-article', $item->id) }}"><i
-                                                    style="font-size:19px" class="fa fa-trash"
-                                                    aria-hidden="true"></i></a>
-                                            <a class="nhap4"
-                                                href="{{ URL::to('admin/article/edit-article', $item->id) }}"><i
-                                                    style="font-size:19px;" class="fa fa-pen"
-                                                    aria-hidden="true"></i></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                @else
-                                <tr>
-                                    <td colspan="12">
-                                        <h3 class="text-center text-danger"></h3>
-                                    </td>
-                                </tr>
+        <h2 class="heading">Danh sách bài viết</h2>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                DataTable Example
+                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"><button
+                        class="btn btn-primary">Thêm</button></a>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead class="table-success">
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên bài viết</th>
+                            <th>Mô tả</th>
+                            <th>Nội dung</th>
+                            <th>Thời gian viết</th>
+                            <th>Thời gian cập nhật</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên bài viết</th>
+                            <th>Mô tả</th>
+                            <th>Nội dung</th>
+                            <th>Thời gian viết</th>
+                            <th>Thời gian cập nhật</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach ($articles as $item)
+                            <tr>
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->a_name }}</td>
+                                <td>{{ $item->a_description }}</td>
+                                <td>{{ $item->a_content }}</td>
+                                <td>{{ $item->created_at }}</td>
+                                <td>{{ $item->updated_at }}</td>
+                                <td>
+                                    <a class="nhap" onclick="return confirm('Bạn có chắc muốn xóa không')"
+                                        href="{{ URL::to('admin/article/delete-article', $item->id) }}"><i
+                                            style="font-size:19px" class="fa fa-trash" aria-hidden="true"></i></a>
+                                    <a class="nhap4"
+                                        href="{{ URL::to('admin/article/edit-article', $item->id) }}"><i
+                                            style="font-size:19px;" class="fa fa-pen" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <form action="{{ URL::to('admin/article/add-article') }}" method="POST"
+                            enctype="multipart/form-data" class="m-3">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="">Tên:</label>
+                                <input type="text" class="form-control" name="a_name">
+                                @if ($errors->first('a_name'))
+                                    <small class="form-text text-danger"> {{ $errors->first('a_name') }}</small>
                                 @endif
-                            </tbody>
-                        </table>
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Menu</label>
+                                <select name="a_menu_id" class="form-select">
+                                    <option value="a_menu_id">
+                                        ____Chọn menu____
+                                    </option>
+                                    @foreach ($menus as $item)
+                                        <option value="{{ $item->id }}">{{ $item->mn_name }}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Mô tả</label>
+                                <textarea name="a_description" class="form-control " cols="30" rows="3"></textarea>
+                                @if ($errors->first('a_description'))
+                                    <small class="form-text text-danger"> {{ $errors->first('a_description') }}</small>
+                                @endif
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Nội dung</label>
+                                <textarea name="a_content" class="form-control " cols="30" rows="3"></textarea>
+                                @if ($errors->first('a_content'))
+                                    <small class="form-text text-danger"> {{ $errors->first('a_content') }}</small>
+                                @endif
+                            </div>
+                            <div class="mb-3">
+                                <label for="customFile" class="form-control">Chọn ảnh</label>
+                                <input type="file" class="custom-file-input" accept="image/*" id="customFile"
+                                    name="a_avatar">
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2">Xử lý</button>
+                        </form>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+    {{-- <a href="{{ route('get_backend.article.create') }}" class="btn btn-xs btn-success mb-2 mb">Thêm bài
+        viết</a>
+    <div class="container-fluid">
+        <div class="table-responsive-md card">
+            <div class="p-2">
+                <table class="table table-hover table-secondary">
+                    <thead class="text-danger">
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên bài viết</th>
+                            <th>Mô tả</th>
+                            <th>Nội dung</th>
+                            <th>Thời gian viết</th>
+                            <th>Thời gian cập nhật</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($articles as $item)
+                            <tr>
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->a_name }}</td>
+                                <td>{{ $item->a_description }}</td>
+                                <td>{{ $item->a_content }}</td>
+                                <td>{{ $item->created_at }}</td>
+                                <td>{{ $item->updated_at }}</td>
+                                <td>
+                                    <a class="nhap" onclick="return confirm('Bạn có chắc muốn xóa không')"
+                                        href="{{ URL::to('admin/article/delete-article', $item->id) }}"><i
+                                            style="font-size:19px" class="fa fa-trash" aria-hidden="true"></i></a>
+                                    <a class="nhap4"
+                                        href="{{ URL::to('admin/article/edit-article', $item->id) }}"><i
+                                            style="font-size:19px;" class="fa fa-pen" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div> --}}
 @stop

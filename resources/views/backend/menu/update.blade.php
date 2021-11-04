@@ -1,41 +1,28 @@
 @extends('layout.app_backend')
 @section("title",'Cập nhật Menu')
 @section('content')
-<style>
-    body {
-        background-color: rgba(202, 144, 199, 0.329);
-    }
-    @keyframes nhapnhay{
-        from {
-            color: red;
-        }to {
-            color: rgb(24, 236, 52);
-        }
-    }
-    .heading{
-        font-size: 44px;
-        text-align: center;
-        text-shadow: 2px 0px 0px #0c0;
-        animation: nhapnhay 1.2s linear infinite;
-    }
-    .bg{
-        background-color: rgba(170, 143, 143, 0.527);
-    }
-</style>
-    <h2 class="heading">Danh sách menu</h2>
+<div class="container-fluid">
     <div class="row">
-        <div class="col-sm-7 ">
-            <div class="card bg">
-                <div class="p-3">
-                @include('backend.menu.list')
-                </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h3>Thay đổi</h3>
+            <div class="card">
+                <form class="m-4" action="{{ URL::to('/admin/menu/update',$menu->id) }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="">Name:</label>
+                        <input type="text" class="form-control" placeholder="Name" name="mn_name"
+                            value="{{ old('mn_name', $menu->mn_name ?? '') }}">
+                        @if ($errors->first('mn_name'))
+                            <small class="form-text text-danger"> {{ $errors->first('mn_name') }}</small>
+                        @endif
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Xử lý</button>
+                </form>
             </div>
         </div>
-        <div class="col-sm-5">
-            <div class="card p-3 bg">
-                <h3 class="text-success">Thêm mới || Cập nhật</h3>
-               @include('backend.menu.form',['route' => route('get_backend.menu.update',$menu->id)])
-            </div>
-        </div>
+        <div class="col-md-3"></div>
     </div>
+</div>
 @stop

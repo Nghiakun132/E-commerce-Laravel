@@ -29,10 +29,11 @@ class BackendArticleController extends Controller
         $countArticles = Article::count('id');
         $articles = Article::orderBy('id')
         ->paginate(20);
-
+        $menus = Menu::all();
         $viewData = [
             'countArticles' => $countArticles,
-            'articles' => $articles
+            'articles' => $articles,
+            'menus' => $menus,
         ];
         return view($this->folder.'index',$viewData);
     }

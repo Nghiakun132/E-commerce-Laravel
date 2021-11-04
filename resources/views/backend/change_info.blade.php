@@ -3,7 +3,7 @@
 @section('title', 'Xem thông tin')
 <style>
     body {
-        background-image: url('../../public/img/a.jpg');
+        background-image: url('../../img/a.jpg');
     }
 
 </style>
@@ -90,56 +90,50 @@
                     </div>
                     <div class="card-body">
                         <h6 class="card-category text-gray">
-                        @if($info->level ==0)
-                            Giám đốc
+                            @if ($info->level == 0)
+                                Giám đốc
 
-                        @elseif($info->level ==1)
-                            Quản lý
-                        @else
-                            Nhân viên
-                        @endif
+                            @elseif($info->level ==1)
+                                Quản lý
+                            @else
+                                Nhân viên
+                            @endif
                         </h6>
-                        <h4 class="card-title">{{$info->name}}</h4>
+                        <h4 class="card-title">{{ $info->name }}</h4>
                         <p class="card-description">
-                            {{$info->slogan}}
+                            {{ $info->slogan }}
                         </p>
-                        <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-round">Thay đổi mật khẩu</a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            class="btn btn-primary btn-round">Thay đổi mật khẩu</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="modal" id="myModal">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Thay đổi mật khẩu </h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="{{ URL::to('admin/change-password', $info->id) }}" method="POST">
                     @csrf
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label for="">Mật khẩu mới</label>
                         <input type="password" id="new" name="new_password" class="form-control">
                     </div>
-                    <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
-                            <button type="submit" id="submit" class="btn btn-primary btn-round text-center">Cập
-                                nhật</button>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
+
+                    <button type="submit" id="submit" class="btn btn-primary btn-round text-center">Cập
+                        nhật</button>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 @stop
-
-
