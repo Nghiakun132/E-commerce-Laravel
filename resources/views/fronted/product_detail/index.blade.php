@@ -74,9 +74,9 @@
                                 </div>
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 @if ($product->pro_number != 0)
-                                    <button type="submit" class="btn btn-success btn-lg">ADD TO CARD</button>
+                                    <button type="submit" class="btn btn-success btn-lg">Thêm vào giỏ hàng</button>
                                 @else
-                                    <button type="submit" class="btn btn-success btn-lg " disabled>ADD TO CARD</button>
+                                    <button type="submit" class="btn btn-success btn-lg " disabled>Thêm vào giỏ hàng</button>
                                 @endif
                                 <a href="{{URL::to('add-favorite',$product->id)}}" class="heart-icon"><span class="icon_heart_alt"></span></a>
                             </form>

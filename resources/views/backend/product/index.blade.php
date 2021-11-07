@@ -62,11 +62,10 @@
     </style> --}}
     <h2 class="heading">Danh sách sản phẩm</h2>
     <div class="container-fluid">
-        <h2>Sản phẩm</h2>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                DataTable Example
+                Sản phẩm
                 <a href="" data-bs-toggle="modal" data-bs-target="#myModal"><button class="btn btn-primary">Thêm</button></a>
             </div>
             <div class="card-body">

@@ -19,26 +19,6 @@
 </section>
 <div class="container">
     <div class="row">
-        {{-- <h3>Thông tin</h3>
-        <div class="col-lg-12 mt-2 mb-2">
-            <div class="card">
-                <table class="table table-hover">
-                    <tr>
-                        <th>Tên</th>
-                        <th>Email</th>
-                        <th>Số điện thoại</th>
-                    </tr>
-                    @foreach ($user as $user)
-                    <tr>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{$user->phone}}</td>
-                    </tr>
-                    @endforeach
-                </table>
-            </div>
-
-        </div> --}}
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="card mt-2 mb-2">
@@ -47,15 +27,19 @@
                         alt="">
                 </div>
                 <div class="info">
-                    <h4 class="text-center">{{$user->name}}</h4>
-                    <h5 class="text-center">{{$user->email}}</h5>
-                    <h5 class="text-center">{{$user->phone}}</h5>
+                    <h4 class="text-center">{{ $user->name }}</h4>
+                    <h5 class="text-center">{{ $user->email }}</h5>
+                    <h5 class="text-center">{{ $user->phone }}</h5>
                 </div>
                 <div>
                     <ul class="nav m-2">
-                        <li class="nav-item mr-2"><a href="#" data-toggle="modal" data-target="#myModal"><button class="btn btn-primary">Thay đổi thông tin</button></a></li>
-                        <li class="nav-item mr-2"><a href="{{URL::to('update-address')}}"><button class="btn btn-primary">Sổ địa chỉ</button></a></li>
-                        <li class="nav-item"><a href="{{URL::to('update-password')}}" data-toggle="modal" data-target="#myModal2"><button class="btn btn-primary">Thay đổi mật khẩu</button></a></li>
+                        <li class="nav-item mr-2"><a href="#" data-toggle="modal" data-target="#myModal"><button
+                                    class="btn btn-primary">Thay đổi thông tin</button></a></li>
+                        <li class="nav-item mr-2"><a href="{{ URL::to('update-address') }}"><button
+                                    class="btn btn-primary">Sổ địa chỉ</button></a></li>
+                        <li class="nav-item"><a href="{{ URL::to('update-password') }}" data-toggle="modal"
+                                data-target="#myModal2"><button class="btn btn-primary">Thay đổi mật khẩu</button></a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -109,8 +93,19 @@
                 <form action="{{ URL::to('update-password') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="">Mật khẩu</label>
-                        <input type="password" class="form-control" name="password" value="{{ $user->password }}">
+                        <label for="">Mật khẩu cũ</label>
+                        <input type="password" class="form-control" name="old_password">
+                        <p class="text-danger">{{ $errors->first('old_password') }}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mật khẩu mới</label>
+                        <input type="password" class="form-control" name="new_password">
+                        <p class="text-danger">{{ $errors->first('new_password') }}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Xác nhận mật khẩu mới</label>
+                        <input type="password" class="form-control" name="re_password">
+                        <p class="text-danger">{{ $errors->first('re_password') }}</p>
                     </div>
                     <button type="submit" class="btn btn-primary mb-2 mt-2">Cập nhật</button>
                 </form>
@@ -118,8 +113,18 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
-
         </div>
     </div>
 </div>
+<?php
+    $pw_success = Session::get('pw_success');
+    $pw_error = Session::get('pw_error');
+        if($pw_success){
+            echo '<script>alert("'.$pw_success.'")</script>';
+            Session::put('pw_success',null);
+        }elseif($pw_error){
+            echo '<script>alert("'.$pw_error.'")</script>';
+            Session::put('pw_error',null);
+        }
+?>
 @stop

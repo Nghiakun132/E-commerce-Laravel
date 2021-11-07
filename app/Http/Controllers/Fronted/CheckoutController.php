@@ -55,19 +55,19 @@ class CheckoutController extends Controller
 
     public function logout()
     {
+        DB::table('users')->where('id', Session::get('id'))->update(['status_user' => 0]);
         Session::flush();
         return Redirect()->Route('get.home');
     }
     public function login_user(Request $request)
     {
         $email = $request->email;
-        $status = DB::table('users')->select('status')->where('email', $email)->first();
         $password = md5($request->password);
-        // if($status->status ==0)
         $result = DB::table('users')->where('email', $email)->where('password', $password)->where('status', 0)->first();
         if ($result != null) {
             Session::put('user_id', $result->id);
             Session::put('user_name', $result->name);
+            DB::table('users')->where('id', $result->id)->update(['status_user' => 1]);
             return Redirect()->Route('get.home');
         } else
             return Redirect()->Route('login')->with('message', 'Tài khoản của bạn không tồn tại hoặc bị khóa');
@@ -78,22 +78,25 @@ class CheckoutController extends Controller
         $id = Session::get('user_id');
         $user = DB::table('users')->where('id', $id)->first();
         $address = DB::table('address')->where('user_id', $id)->where('status', 1)->first();
-        // Session::put('user_address', $address);
-        // dd($address);
         return view('fronted.user.payment', compact('address', 'user'));
     }
     public function order_place()
     {
         $code = session::get('cp_value');
         $code_id = session::get('cp_id');
+        $cp_code = session::get('cp_code');
         //order
         $order = array();
         $order['user_id'] = Session::get('user_id');
         $order['order_total'] = (Cart::total(0, ',', '.') - (Cart::total(0, ',', '.') * $code));
         $order['order_status'] = 0;
-        // $order['address'] = $address->address;
         $order['transport'] = rand(1, 9);
         $order['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
+        if ($cp_code) {
+            $order['order_voucher_code'] =$cp_code;
+        }else{
+            $order['order_voucher_code'] = null;
+        }
         $insert = DB::table('orders')->insertGetId($order);
         //bought
         $user_id = Session::get('user_id');
@@ -192,7 +195,7 @@ class CheckoutController extends Controller
                 Session::forget('cp_id');
                 Session::forget('cp_code');
             }
-            return Redirect()->Route('get.home');
+            return Redirect()->Route('get.home')->with('order_sucess','Cảm ơn bạn đã đặt hàng! ');
         }
     }
 }

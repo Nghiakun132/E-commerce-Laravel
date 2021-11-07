@@ -7,12 +7,12 @@
     }
 </style>
 <div class="container-fluid">
-    <h2>Order</h2>
+    <h2>Quản lý nhân viên</h2>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            DataTable Example
-            @if($staff2->level == 0)
+            Quản lý nhân viên
+                @if($staff2->level == 0)
                     <a href="{{URL::to('admin/staff/add-staff')}}" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Thêm tài khoản nhân viên"><button class="btn btn-primary">Thêm tài khoản</button></a>
                 @else
                     <a href="#" title="Bạn không có đặc quyền"><button class="btn btn-danger" disabled="disabled">Thêm tài khoản</button></a>
@@ -53,10 +53,10 @@
                         <td>{{ $value->name }}</td>
                         <td>{{ $value->phone }}</td>
                         <td>{{ $value->email }}</td>
-                        <td>@if ($value->status == 0)
-                            Đang làm
-                        @elseif ($value->status == 1)
-                            Nghỉ việc
+                        <td>@if ($value->status == 1)
+                            Đang online
+                        @elseif ($value->status == 0)
+                            Đang offline
                         @endif</td>
                         <td>
                             @if ($value->level == 0)

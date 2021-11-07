@@ -78,6 +78,11 @@ Route::group(['namespace' =>'Fronted'],function () {
     Route::get('order-place','CheckoutController@order_place');
 
 
+    
+    Route::get('forgot-password','UserController@forgot_password');
+    Route::post('forgot-password','UserController@forgot_password_post');
+    Route::get('reset-password/{token}','UserController@reset_password');
+    Route::post('reset-password/{token}','UserController@reset_password_post');
 
 
     Route::prefix('user')->group(function(){

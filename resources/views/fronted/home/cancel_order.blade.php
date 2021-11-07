@@ -15,7 +15,7 @@
                 <tr>
                     <td>{{$order->product_name}}</td>
                     <td>{{$order->product_qty}}</td>
-                    <td>{{$order->order_total}}</td>
+                    <td>{{$order->order_total*1000 . 'đ' }}</td>
                     <td>
                         <select class="custom-select" name="reason">
                             <option value="Thay đổi ý định">Thay đổi ý định</option>

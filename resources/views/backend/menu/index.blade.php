@@ -6,7 +6,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                DataTable Example
+                Danh mục bài viết
                 <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"><button class="btn btn-primary">Thêm</button></a>
             </div>
             <div class="card-body">

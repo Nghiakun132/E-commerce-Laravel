@@ -79,7 +79,7 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="{{route('get.home')}}">Trang chủ</a></li>
+                <li><a href="{{route('get.home')}}">Trang chủ</a></li>
                 <li><a href="{{route('get.map')}}">Shop</a></li>
                 <li><a href="#">Trang</a>
                     <ul class="header__menu__dropdown">
@@ -172,7 +172,7 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="{{route('get.home')}}">Trang chủ</a></li>
+                            <li><a href="{{route('get.home')}}">Trang chủ</a></li>
                             <li><a href="{{route('get.map')}}" title="Địa chỉ ">Shop</a></li>
                             <li><a href="#">Trang</a>
                                 <ul class="header__menu__dropdown">

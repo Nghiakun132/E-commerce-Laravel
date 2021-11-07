@@ -111,7 +111,6 @@
                                                             </ul>
                                                         </div>
                                                         <div class="product__discount__item__text">
-                                                            {{-- <span>Dried Fruit</span> --}}
                                                             <h5><a
                                                                     href="{{ URL::to('chi-tiet', $sale->pro_slug) }}">{{ $sale->pro_name }}</a>
                                                             </h5>

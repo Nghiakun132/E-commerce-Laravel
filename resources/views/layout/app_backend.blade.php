@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
+        <title>@yield('title')</title>
+    <link rel="icon" href="{{ asset('././././public/img/2.ico')}}" type="image/x-icon">
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{asset('public/backend/css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -49,7 +50,7 @@
                             <div class="sb-sidenav-menu-heading">Core</div>
                             @foreach (config('nav.admin.top') as $item)
                             <a class="nav-link" href="{{route($item['route'])}}">
-                                <div class="sb-nav-link-icon"><i class="{{$item['icons']}}"></i></div>
+                                <div class="sb-nav-link-icon"><?php echo $item['icons']?></div>
                                 {{$item['name'];}}
                             </a>
                             @endforeach
@@ -62,11 +63,11 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2021</div>
+                            <div class="text-muted">Bùi Hữu Nghĩa B1809377</div>
                             <div>
-                                <a href="#">Privacy Policy</a>
+                                <a href="#">Chính sách</a>
                                 &middot;
-                                <a href="#">Terms &amp; Conditions</a>
+                                <a href="#"> &amp; Điều kiện</a>
                             </div>
                         </div>
                     </div>

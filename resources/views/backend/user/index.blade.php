@@ -41,7 +41,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            DataTable Example
+            Danh sách khách hàng
         </div>
         <div class="card-body">
             <table id="datatablesSimple">
@@ -51,6 +51,7 @@
                         <th>Tên</th>
                         <th>Email</th>
                         <th>Số điện thoại</th>
+                        <th>Đang</th>
                         <th>Trạng thái</th>
                         <th>Action</th>
                     </tr>
@@ -61,6 +62,7 @@
                         <th>Tên</th>
                         <th>Email</th>
                         <th>Số điện thoại</th>
+                        <th>Đang</th>
                         <th>Trạng thái</th>
                         <th>Action</th>
                     </tr>
@@ -72,6 +74,12 @@
                 <td>{{ $value->name }}</td>
                 <td>{{ $value->email }}</td>
                 <td>{{ $value->phone }}</td>
+                <td>@if ($value->status_user == 0)
+                        Offline
+                        @else
+                        Online
+                @endif
+            </td>
                 <td>
                     @if ($value->status == 0)
                         <a title="Tài khoản hoạt động"

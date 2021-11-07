@@ -4,27 +4,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Trang đăng nhập</title>
+        <title>Quên mật khẩu</title>
     <link rel="icon" href="{{ asset('././././img/2.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="./public/css/login.css">
     </head>
     <body>
-
         <div class="container">
             <div class="d-flex justify-content-center h-100">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Đăng nhập</h3>
-                        <div class="d-flex justify-content-end social_icon">
-                            <span><i class="fab fa-facebook-square"></i></span>
-                            <span><i class="fab fa-google-plus-square"></i></span>
-                            <span><i class="fab fa-twitter-square"></i></span>
-                        </div>
+                        <h3>Quên mật khẩu</h3>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{URL::to('login-user')}}">
+                        <form method="POST" action="{{URL::to('forgot-password')}}">
                             @csrf
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
@@ -32,46 +26,17 @@
                                 </div>
                                 <input type="text" class="form-control" placeholder="email" name="email">
                             </div>
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                </div>
-                                <input type="password" class="form-control" placeholder="password" name="password" >
-                            </div>
-                            <div class="row align-items-center remember">
-                                <input type="checkbox">Remember Me
-                            </div>
-
                             <div class="form-group">
                                 <input type="submit" value="Login" class="btn float-right login_btn">
                             </div>
                         </form>
 
                     </div>
-                    <div class="card-footer">
-                        <div class="d-flex justify-content-center links link">
-                            Chưa có tài khoản<a href="{{route('get.user.create')}}">Đăng ký ngay!</a>
-                        </div>
-                        <div class="d-flex justify-content-center links link">
-                            <a href="{{URL::to('forgot-password')}}">Quên mật khẩu</a>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
     </body>
-    <?php
-        $messages = Session::get('message');
-        $change_password = Session::get('change_password');
-        if($messages){
-            echo '<script type="text/javascript">alert("'.$messages.'")</script>';
-            Session::put('message',null);
-        }elseif($change_password){
-            echo '<script type="text/javascript">alert("'.$change_password.'")</script>';
-            Session::put('change_password',null);
-        }
-
-    ?>
     <style>
         .link a{
             color: rgb(20, 196, 228);
@@ -82,4 +47,15 @@
             color: rgb(140, 255, 9);
         }
     </style>
+    <?php
+        $email = Session::get('email_error');
+        $email_success = Session::get('email_success');
+        if($email){
+            echo "<script>alert('$email')</script>";
+            Session::put('email_error',null);
+        }elseif($email_success){
+            echo "<script>alert('$email_success')</script>";
+            Session::put('email_success',null);
+        }
+    ?>
 </html>

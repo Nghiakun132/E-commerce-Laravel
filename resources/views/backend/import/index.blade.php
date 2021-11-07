@@ -1,5 +1,6 @@
 @extends('layout.app_backend')
 @section('content')
+@section('title','Nhập hàng')
 <style>
     .heading{
         text-align: center;
@@ -10,8 +11,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            DataTable Example
-            <a href="" data-bs-toggle="modal" data-bs-target="#myModal"><button class="btn btn-primary">Thêm</button></a>
+            Nhập hàng
         </div>
         <div class="card-body">
             <table id="datatablesSimple">

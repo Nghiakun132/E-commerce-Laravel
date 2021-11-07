@@ -25,6 +25,7 @@ class BackendOrderController extends Controller
         $order = DB::table('product_bought')
         ->join('users','product_bought.pk_user_id','=','users.id')
         ->join('orders','orders.id','=','product_bought.pk_order_id')
+        // ->join('order_cancel','order_cancel.order_id','=','orders.id')
         ->orderBy('orders.id','asc')
         ->get();
         $countOrder = count($order);

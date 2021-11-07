@@ -170,7 +170,7 @@
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 @foreach ($topViewsCategory as $value7)
-                                <a href="#" class="latest-product__item">
+                                <a href="{{URL::to('danh-muc',$value7->c_slug)}}" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="{{url_file2($value7->c_avatar)}}" alt="">
                                     </div>
@@ -231,9 +231,13 @@
 </div>
 <?php
     $congratulation = Session::get('congratulation');
+    $order_sucess = Session::get('order_sucess');
     if($congratulation){
         echo "<script type='text/javascript'>alert('$congratulation');</script>";
         Session::forget('congratulation');
+    }elseif ($order_sucess) {
+        echo "<script type='text/javascript'>alert('$order_sucess');</script>";
+        Session::forget('order_sucess');
     }
 ?>
 @stop
