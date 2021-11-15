@@ -51,10 +51,29 @@ class BackendProductController extends Controller
     //     ];
     //     return view($this->folder . 'create', $viewData);
     // }
-    public function store(BackendProductRequest $request)
+    public function store(Request $request)
     {
         //add product
         $this->AuthLogin();
+
+        $this->validate($request,
+            [
+                'pro_name' => 'required|unique:products,pro_name',
+                'pro_category_id' => 'required',
+                'pro_price' => 'required',
+                'pro_kho' => 'required',
+                'pro_unit' => 'required',
+                'pro_avatar' => 'required',
+            ],
+            [
+                'pro_name.required' => 'Bạn chưa nhập tên sản phẩm',
+                'pro_name.unique' => 'Tên sản phẩm đã tồn tại',
+                'pro_category_id.required' => 'Bạn chưa chọn danh mục',
+                'pro_price.required' => 'Bạn chưa nhập giá sản phẩm',
+                'pro_kho.required' => 'Bạn chưa nhập số lượng sản phẩm',
+                'pro_unit.required' => 'Bạn chưa nhập đơn vị tính',
+                'pro_avatar.required' => 'Bạn chưa chọn ảnh sản phẩm',
+            ]);
         $data = $request->except('_token', 'pro_avatar');
         $data['pro_slug'] = Str::slug($request->pro_name);
         $data['pro_number'] = $request->pro_kho;
@@ -153,7 +172,7 @@ class BackendProductController extends Controller
         $image = DB::table('products')->select('pro_slug')->where('id', $id)->first();
         \DB::table('products')->where('id', $id)->delete();
         \DB::table('anh')->where('product_slug',$image->pro_slug)->delete();
-        return redirect()->route(route: 'get_backend.product.index');
+        return redirect()->route('get_backend.product.index');
     }
     public function change_status($id)
     {

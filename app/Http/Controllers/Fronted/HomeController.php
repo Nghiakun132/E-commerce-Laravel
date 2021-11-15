@@ -55,9 +55,10 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $keywords = $request->tukhoa;
-        $products = Product::where('pro_name', 'like', '%' . $keywords . '%')->get();
+        $latesProduct = Product::orderBy('id', 'DESC')->limit(3)->get();
+        $products = Product::where('pro_name', 'like', '%' . $keywords . '%')->paginate(12);
         $count = count($products);
-        return view('fronted.search.index', compact('products', 'count'));
+        return view('fronted.search.index', compact('products', 'count', 'latesProduct'));
     }
     // public function update_tt(){
     //     $this->AuthLogin();
@@ -182,7 +183,7 @@ class HomeController extends Controller
     {
         $this->AuthLogin();
         $id = Session::get('user_id');
-        $order = DB::table('orders')->where('user_id', $id)
+        $order = DB::table('orders')->where('user_id', $id)->orderBy('id', 'desc')
             ->get();
         $countOrder = count($order);
         $view = [
@@ -292,6 +293,8 @@ class HomeController extends Controller
     public function cancel_order(Request $request, $id)
     {
         //cancel_order
+
+
         $data = array();
         $user_id = Session::get('user_id');
         $data['order_status'] = 4;
@@ -300,6 +303,23 @@ class HomeController extends Controller
         $order_cancel['order_id'] = $id;
         $order_cancel['reason'] = $request->reason;
         DB::table('order_cancel')->insert($order_cancel);
+
+        //
+
+        $order = DB::table('order_detail')->where('order_id', $id)->get();
+        foreach ($order as $v2) {
+            $soluong = array();
+            $product_id = $v2->product_id;
+            $qty = DB::table('products')->select('pro_number')->where('id', $product_id)->first();
+            $sl = $v2->product_qty;
+            $soluong['pro_number'] = $qty->pro_number + $sl;
+            DB::table('products')->where('id', $product_id)->update($soluong);
+        }
+
+
+
+
+
         return redirect()->route('fronted.home.tracking_order');
     }
     //ma giam gia

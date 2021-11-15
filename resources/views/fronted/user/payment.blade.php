@@ -16,8 +16,8 @@
                     <table>
                         <thead>
                             <tr>
-                                <th class="shoping__product">Tên</th>
-                                <th class="shoping__product">Ảnh</th>
+                                <th class="">Tên</th>
+                                <th class="">Ảnh</th>
                                 <th>Giá</th>
                                 <th>Số lượng</th>
                                 <th>Thành tiền</th>
@@ -26,10 +26,10 @@
                         <tbody>
                             @foreach ($content as $value)
                                 <tr>
-                                    <td class="shoping__cart__item">
+                                    <td class="shoping__cart__item" align="center">
                                         <h2>{{ $value->name }}</h2>
                                     </td>
-                                    <td class="shoping__cart__item">
+                                    <td class="shoping__cart__item" align="center">
                                         <img src="{{ url_file2($value->options->image) }}" width="100px"
                                             height="110px" alt="">
                                     </td>

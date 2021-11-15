@@ -1,4 +1,4 @@
-<!--
+{{-- <!--
 Author: Colorlib
 Author URL: https://colorlib.com
 License: Creative Commons Attribution 3.0 Unported
@@ -63,4 +63,111 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</ul>
 	</div>
 </body>
+</html> --}}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Đăng ký thành viên</title>
+    <link rel="icon" href="{{ asset('././././img/2.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./public/css/login.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Đăng ký</h3>
+                    <div class="d-flex justify-content-end social_icon">
+                        <span><i class="fab fa-facebook-square"></i></span>
+                        <span><i class="fab fa-google-plus-square"></i></span>
+                        <span><i class="fab fa-twitter-square"></i></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="{{ URL::to('add-user') }}" method="post">
+                        @csrf
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Nhập họ và tên" name="name">
+                        </div>
+                        <span class="text-danger">{{$errors->first('name')}}</span>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="email" class="form-control" placeholder="Nhập email" name="email">
+                        </div>
+                        <span class="text-danger">{{$errors->first('email')}}</span>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Nhập số điện thoại" name="phone">
+                        </div>
+                        <span class="text-danger">{{$errors->first('phone')}}</span>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Nhập địa chỉ" name="address">
+                        </div>
+                        <span class="text-danger">{{$errors->first('address')}}</span>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Mật khẩu" name="password">
+                        </div>
+                        <span class="text-danger">{{$errors->first('password')}}</span>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" name="re_password">
+                        </div>
+                        <span class="text-danger">{{$errors->first('re_password')}}</span>
+                        <div class="form-group">
+                            <input type="submit" value="Đăng nhập" class="btn float-right login_btn">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="card-footer">
+
+                    <div class="d-flex justify-content-center links link">
+                        Đã có tài khoản <a href="{{ URL::to('login-checkout') }}">đăng nhập ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<style>
+    .link a {
+        color: rgb(20, 196, 228);
+        text-decoration: none;
+    }
+
+    .link a:hover {
+        text-decoration: none;
+        color: rgb(140, 255, 9);
+    }
+
+</style>
+
 </html>

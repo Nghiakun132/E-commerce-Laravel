@@ -31,23 +31,7 @@ class CheckoutController extends Controller
         return view('fronted.user.index');
     }
 
-    public function add_user(register $request)
-    {
-        $data = array();
-        $data2 = array();
-        $data['name']  = $request->name;
-        $data['email'] = $request->email;
-        $data['password'] = md5($request->password, false);
-        $data['phone'] = $request->phone;
-        $data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
-        $insert = DB::table('users')->insertGetId($data);
-        $data2['address'] = $request->address;
-        $data2['user_id'] = $insert;
-        $insert2 = DB::table('address')->insert($data2);
-        Session::put('id', $insert);
-        Session::put('name', $request->name);
-        return Redirect()->Route('get.home');
-    }
+
     public function checkout()
     {
         return view('fronted.user.checkout');
@@ -55,8 +39,9 @@ class CheckoutController extends Controller
 
     public function logout()
     {
-        DB::table('users')->where('id', Session::get('id'))->update(['status_user' => 0]);
-        Session::flush();
+        DB::table('users')->where('id', Session::get('user_id'))->update(['status_user' => 0]);
+        Session::forget('user_id');
+        Session::forget('user_name');
         return Redirect()->Route('get.home');
     }
     public function login_user(Request $request)
@@ -64,13 +49,19 @@ class CheckoutController extends Controller
         $email = $request->email;
         $password = md5($request->password);
         $result = DB::table('users')->where('email', $email)->where('password', $password)->where('status', 0)->first();
+        $result2 = DB::table('users')->where('email', $email)->where('password', $password)->first();
         if ($result != null) {
             Session::put('user_id', $result->id);
             Session::put('user_name', $result->name);
             DB::table('users')->where('id', $result->id)->update(['status_user' => 1]);
             return Redirect()->Route('get.home');
-        } else
-            return Redirect()->Route('login')->with('message', 'Tài khoản của bạn không tồn tại hoặc bị khóa');
+        } elseif ($result2) {
+            if ($result == null) {
+                return Redirect()->Route('login')->with('message', 'Tài khoản của bạn đã bị khóa');
+            }
+        } else {
+            return Redirect()->Route('login')->with('message_error', 'Sai tài khoản hoặc mật khẩu');
+        }
     }
 
     public function payment()
@@ -93,8 +84,8 @@ class CheckoutController extends Controller
         $order['transport'] = rand(1, 9);
         $order['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         if ($cp_code) {
-            $order['order_voucher_code'] =$cp_code;
-        }else{
+            $order['order_voucher_code'] = $cp_code;
+        } else {
             $order['order_voucher_code'] = null;
         }
         $insert = DB::table('orders')->insertGetId($order);
@@ -118,6 +109,14 @@ class CheckoutController extends Controller
             $order2['product_qty'] = $value->qty;
             DB::table('order_detail')->insert($order2);
         }
+        foreach ($content as $v2) {
+            $product_id = $v2->id;
+            $qty = DB::table('products')->select('pro_number')->where('id', $product_id)->first();
+            $sl = $v2->qty;
+            $soluong['pro_number'] = $qty->pro_number - $sl;
+            DB::table('products')->where('id', $product_id)->update($soluong);
+        }
+
         // add voucher
         // nếu có voucher > 500
         // con không có voucher > 500000
@@ -195,7 +194,7 @@ class CheckoutController extends Controller
                 Session::forget('cp_id');
                 Session::forget('cp_code');
             }
-            return Redirect()->Route('get.home')->with('order_sucess','Cảm ơn bạn đã đặt hàng! ');
+            return Redirect()->Route('get.home')->with('order_sucess', 'Cảm ơn bạn đã đặt hàng! ');
         }
     }
 }

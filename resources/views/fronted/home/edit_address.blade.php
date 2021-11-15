@@ -1,5 +1,6 @@
 @extends('layout.app_fronted')
 @section('content')
+@section('title','Thay đổi địa chỉ')
 
     <div class="container">
         <hr>

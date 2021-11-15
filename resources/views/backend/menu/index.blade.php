@@ -1,13 +1,18 @@
 @extends('layout.app_backend')
 @section('title', 'Danh sách menu')
 @section('content')
+<style>
+    .add-add{
+        float: right;
+    }
+</style>
     <div class="container-fluid">
         <h2>Danh mục bài viết</h2>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
                 Danh mục bài viết
-                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"><button class="btn btn-primary">Thêm</button></a>
+                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" class="add-add"><button class="btn btn-primary">Thêm</button></a>
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -52,7 +57,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Thêm danh mục bài viết</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

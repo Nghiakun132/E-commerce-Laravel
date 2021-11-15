@@ -2,10 +2,11 @@
 @section('content')
 @section('title', 'Kiểm tra đơn hàng')
 <style>
-    h2{
+    h2 {
         font-weight: bold;
         color: red;
     }
+
 </style>
 <section class="breadcrumb-section set-bg" data-setbg="./././public/img/breadcrumb.jpg"
     style="background-image: url(&quot;.././public/img/breadcrumb.jpg&quot;);">
@@ -26,19 +27,21 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            @if ($countOrder  > 3 )
-            <h2>Tìm nhanh</h2>
-            <input class="form-control mt-3 mb-3" id="myInput" type="text" placeholder="Tìm nhanh">
+            @if ($countOrder > 3)
+                <h2>Tìm nhanh</h2>
+                <input class="form-control mt-3 mb-3" id="myInput" type="text" placeholder="Tìm nhanh">
             @endif
             <h2>Danh sách đơn hàng đã đặt</h2>
-            <table class="table table-hover table-secondary">
-                <tr>
-                    <th>ID</th>
-                    <th>Tổng tiền</th>
-                    <th>Đơn vị vận chuyển</th>
-                    <th>Trạng thái</th>
-                    <th>Hành động</th>
-                </tr>
+            <table class="table table-hover table-bordered">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Tổng tiền</th>
+                        <th>Đơn vị vận chuyển</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
                 <tbody id="myTable">
                     @if ($countOrder > 0)
                         @foreach ($order as $order)
@@ -96,7 +99,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                        @else
+                    @else
                         <tr>
                             <td colspan="12">
                                 <h3 class="text-center text-danger">Không có đơn hàng</h3>

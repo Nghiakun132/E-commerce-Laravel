@@ -40,9 +40,9 @@ class BackendHomeController extends Controller
         $order = DB::table('product_bought')
             ->join('users', 'product_bought.pk_user_id', '=', 'users.id')
             ->join('orders', 'orders.id', '=', 'product_bought.pk_order_id')
-            ->where('orders.order_status', '<>', 4)
+            // ->where('orders.order_status', '<>', 4)
             ->orderBy('orders.id', 'desc')
-            ->distinct()->get();
+            ->distinct()->limit(5)->get();
         $countOrder = count($order);
         $comment = DB::table('comment')->count('id');
         $sp = DB::table('products')->where('pro_status','<>',1)->get();

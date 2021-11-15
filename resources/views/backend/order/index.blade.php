@@ -91,15 +91,13 @@
                         <td>{{ $value->time_confirm }}</td>
                         <td>
                             @if ($value->order_voucher_code != null)
-                                    Co ma giam gia
+                                    Có sử dụng mã giảm giá <b>({{$value->order_voucher_code}})</b>
                             @else
-                                Khong ma giam gia
-                                    @endif
+                                Không sử dụng mã giảm giá
+                            @endif
                         </td>
-                        <td><a href="{{ URL::to('admin/order/view-detail/' . $value->id) }}" style="margin-right: 12px"><i
-                                    class="fas fa-pen"></i></a>
-                            <a href="{{ URL::to('admin/order/delete-order/' . $value->id) }}"><i class="fa fa-trash"
-                                    aria-hidden="true"></i></a>
+                        <td><a href="{{ URL::to('admin/order/view-detail/' . $value->id) }}" style="margin-right: 12px"><span class="badge bg-info">Xem chi tiết</span></a>
+                            <a href="{{ URL::to('admin/order/delete-order/' . $value->id) }}"><span class="badge bg-danger">Xóa</span></a>
                         </td>
                     </tr>
                 @endforeach

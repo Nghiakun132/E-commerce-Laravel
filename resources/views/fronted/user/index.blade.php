@@ -43,14 +43,14 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" value="Login" class="btn float-right login_btn">
+                                <input type="submit" value="Đăng nhập" class="btn float-right login_btn">
                             </div>
                         </form>
 
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-center links link">
-                            Chưa có tài khoản<a href="{{route('get.user.create')}}">Đăng ký ngay!</a>
+                            Chưa có tài khoản<a href="{{URL::to('sign-up')}}">Đăng ký ngay!</a>
                         </div>
                         <div class="d-flex justify-content-center links link">
                             <a href="{{URL::to('forgot-password')}}">Quên mật khẩu</a>
@@ -62,6 +62,7 @@
     </body>
     <?php
         $messages = Session::get('message');
+        $message_error = Session::get('message_error');
         $change_password = Session::get('change_password');
         if($messages){
             echo '<script type="text/javascript">alert("'.$messages.'")</script>';
@@ -69,6 +70,9 @@
         }elseif($change_password){
             echo '<script type="text/javascript">alert("'.$change_password.'")</script>';
             Session::put('change_password',null);
+        }elseif ($message_error) {
+            echo '<script type="text/javascript">alert("'.$message_error.'")</script>';
+            Session::put('message_error',null);
         }
 
     ?>

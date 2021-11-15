@@ -11461,7 +11461,7 @@ body {
   position: relative;
 }
 .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-nav-link-icon {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-sidenav-collapse-arrow {
   display: inline-block;
@@ -11497,7 +11497,7 @@ body {
   color: rgba(255, 255, 255, 0.25);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
-  color: red;
+  color: greenyellow;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover .sb-nav-link-icon{
     color: red;

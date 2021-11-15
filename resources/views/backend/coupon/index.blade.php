@@ -30,7 +30,6 @@
             transform: scale(44px, 44px)
         }
     }
-
 </style>
 <div class="container-fluid">
     <h2 class="heading">Mã giảm giá</h2>
@@ -38,7 +37,6 @@
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
             Mã giảm giá
-            <a href="" data-bs-toggle="modal" data-bs-target="#myModal"><button class="btn btn-primary">Thêm</button></a>
         </div>
         <div class="card-body">
             <table id="datatablesSimple">

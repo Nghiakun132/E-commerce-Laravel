@@ -10,12 +10,55 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
+use Session;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return view('fronted.user.index');
+        return view('fronted.user.create');
+    }
+
+
+    public function add_user(Request $request)
+    {
+        $this->validate($request,
+            [
+                'name' => 'required|min:3|max:100',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:8|max:32',
+                're_password' => 'required|same:password',
+                'phone' => 'required|min:10|max:11',
+                'address' => 'required',
+            ],[
+                'name.required' => 'Bạn chưa nhập tên',
+                'name.min' => 'Tên phải có độ dài từ 3 đến 100 ký tự',
+                'name.max' => 'Tên phải có độ dài từ 3 đến 100 ký tự',
+                'email.required' => 'Bạn chưa nhập email',
+                'email.email' => 'Bạn chưa nhập đúng định dạng email',
+                'email.unique' => 'Email đã tồn tại',
+                'address.required' => 'Bạn chưa nhập địa chỉ',
+                'password.required' => 'Bạn chưa nhập mật khẩu',
+                'password.min' => 'Mật khẩu phải có độ dài từ 8 đến 32 ký tự',
+                'password.max' => 'Mật khẩu phải có độ dài từ 8 đến 32 ký tự',
+                're_password.required' => 'Bạn chưa nhập lại mật khẩu',
+                're_password.same' => 'Mật khẩu nhập lại chưa đúng',
+            ]);
+
+        $data = array();
+        $data2 = array();
+        $data['name']  = $request->name;
+        $data['email'] = $request->email;
+        $data['password'] = md5($request->password, false);
+        $data['phone'] = $request->phone;
+        $data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh');
+        $insert = DB::table('users')->insertGetId($data);
+        $data2['address'] = $request->address;
+        $data2['user_id'] = $insert;
+        $insert2 = DB::table('address')->insert($data2);
+        Session::put('id', $insert);
+        Session::put('name', $request->name);
+        return Redirect()->Route('get.home');
     }
 
     public function forgot_password()

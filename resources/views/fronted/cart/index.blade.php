@@ -29,7 +29,7 @@
                         <thead>
                             <tr>
                                 <th class="shoping__product">Tên</th>
-                                <th class="shoping__product">Ảnh</th>
+                                <th>Ảnh</th>
                                 <th>Giá</th>
                                 <th>Số lượng</th>
                                 <th>Thành tiền</th>
@@ -40,9 +40,9 @@
                             @foreach ($content as $value)
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <h2>{{ $value->name }}</h2>
+                                        <h4>{{ $value->name }}</h4>
                                     </td>
-                                    <td class="shoping__cart__item">
+                                    <td class="shoping__cart__item" align="center">
                                         <img src="{{ url_file2($value->options->image) }}" width="100px"
                                             height="110px" alt="">
                                     </td>
@@ -57,6 +57,7 @@
                                                     <input type="text" id="product_qty" name="cart_qty" value="{{ $value->qty }}">
                                                     <input type="hidden" name="product_rowid"
                                                         value="{{ $value->rowId }}">
+                                                    <input type="hidden" name="product_id" value="{{$value->id}}">
                                                 </div>
                                                 <button type="submit" id="product_submit" name="update-qty" class="btn btn-info btn-sm">Cập
                                                     nhật</button>
@@ -165,11 +166,25 @@
                             </li>
                         @endif
                     </ul>
+                    @if ($count > 0)
                     <a href="{{ URL::to('payment') }}" class="primary-btn">Tiến hành thanh toán</a>
+                    @else
+                    <a href="" class="primary-btn" onclick="return alert('Không có gì trong giỏ hàng')">Tiến hành thanh toán</a>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </section>
-
+<?php
+    $message_qty = Session::get('message_qty');
+    $message_qty_success = Session::get('message_qty_success');
+    if ($message_qty) {
+        echo "<script type='text/javascript'>alert('$message_qty');</script>";
+        Session::put('message_qty', null);
+    }elseif($message_qty_success){
+        echo "<script type='text/javascript'>alert('$message_qty_success');</script>";
+        Session::put('message_qty_success', null);
+    }
+?>
 @stop

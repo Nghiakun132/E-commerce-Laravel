@@ -5,6 +5,9 @@
     body{
         background-color: rgba(236, 196, 240, 0.692);
     }
+    .add-add{
+        float: right;
+    }
 </style>
 <div class="container-fluid">
     <h2>Quản lý nhân viên</h2>
@@ -13,9 +16,9 @@
             <i class="fas fa-table me-1"></i>
             Quản lý nhân viên
                 @if($staff2->level == 0)
-                    <a href="{{URL::to('admin/staff/add-staff')}}" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Thêm tài khoản nhân viên"><button class="btn btn-primary">Thêm tài khoản</button></a>
+                    <a href="{{URL::to('admin/staff/add-staff')}}" class="add-add" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Thêm tài khoản nhân viên"><button class="btn btn-primary">Thêm tài khoản</button></a>
                 @else
-                    <a href="#" title="Bạn không có đặc quyền"><button class="btn btn-danger" disabled="disabled">Thêm tài khoản</button></a>
+                    <a href="#" title="Bạn không có đặc quyền" class="add-add"><button class="btn btn-danger" disabled="disabled">Thêm tài khoản</button></a>
                 @endif
         </div>
         <div class="card-body">
@@ -98,7 +101,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Thêm</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

@@ -37,18 +37,18 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="/"><img src=".././public/img/2.png" alt=""></a>
+            <a href="/"><img src="{{asset('/public/img/2.png')}}" alt=""></a>
         </div>
-        <div class="humberger__menu__cart">
+        {{-- <div class="humberger__menu__cart">
             <ul>
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="{{route('get.cart')}}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
-        </div>
+        </div> --}}
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
-                <img src=".././public/img/language.png" alt="">
+                <img src="{{asset('/public/img/language.png')}}" alt="">
                 <div>Tiếng Việt</div>
                 <span class="arrow_carrot-down"></span>
                 <ul>
@@ -273,10 +273,10 @@
 
                     <div class="hero__item set-bg" data-setbg="{{asset('././public/img/hero/banner.jpg')}}">
                         <div class="hero__text">
-                            <span>FRUIT FRESH</span>
-                            <h2>Vegetable <br />100% Organic</h2>
-                            <p>Free Pickup and Delivery Available</p>
-                            <a href="#" class="primary-btn">SHOP NOW</a>
+                            <span>Trái cây tươi</span>
+                            <h2>Rau củ <br />100% tự nhiên</h2>
+                            <p>Hàng hóa có sẵn và miễn phí vận chuyển</p>
+                            <a href="#" class="primary-btn">Mua ngay</a>
                         </div>
                     </div>
 

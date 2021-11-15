@@ -58,7 +58,7 @@ Route::group(['namespace' =>'Fronted'],function () {
     Route::get('bai-viet/{slug}','ArticleDetailController@index')->name('get.article_detail'); //chi tiet bai viet
     //search
     Route::post('tim-kiem','HomeController@search');
-    Route::get('adu','SearchController@adu');
+    // Route::get('adu','SearchController@adu');
 
     // giỏ hàng
     Route::get('gio-hang','CartController@index');
@@ -70,7 +70,6 @@ Route::group(['namespace' =>'Fronted'],function () {
     Route::get('delete-coupon','CartController@delete_coupon');
     //checkout
     Route::get('login-checkout','CheckoutController@login_checkout')->name('login');
-    Route::post('add-user','CheckoutController@add_user');
     Route::post('login-user','CheckoutController@login_user')->name('get.login');
     Route::get('checkout','CheckoutController@checkout');
     Route::get('logout','CheckoutController@logout');
@@ -78,19 +77,21 @@ Route::group(['namespace' =>'Fronted'],function () {
     Route::get('order-place','CheckoutController@order_place');
 
 
-    
+
     Route::get('forgot-password','UserController@forgot_password');
     Route::post('forgot-password','UserController@forgot_password_post');
     Route::get('reset-password/{token}','UserController@reset_password');
     Route::post('reset-password/{token}','UserController@reset_password_post');
 
 
-    Route::prefix('user')->group(function(){
-        Route::get('','UserController@index')->name('get.user.index');
-        Route::get('create','UserController@create')->name('get.user.create');
-        Route::post('create','UserController@store')->name('get.user.store');
-        // Route::get('ip-user','UserController@ip');
-    });
+    Route::get('sign-up','UserController@index');
+    Route::post('add-user','UserController@add_user');
+    // Route::prefix('user')->group(function(){
+    //     Route::get('','UserController@index')->name('get.user.index');
+    //     Route::get('create','UserController@create')->name('get.user.create');
+    //     Route::post('create','UserController@store')->name('get.user.store');
+    //     // Route::get('ip-user','UserController@ip');
+    // });
 
     //article
 

@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
             Paginator::defaultView('view-name');
             Paginator::defaultSimpleView('view-name');
             Paginator::useBootstrap();
-            $categoriesGlobal = Category::all();
+            $categoriesGlobal = Category::where('c_status','<>',0)->get();
             $menuGlobal = Menu::all();
             $productsGlobal = Product::all();
             $CouponGlobal = Coupon::all();

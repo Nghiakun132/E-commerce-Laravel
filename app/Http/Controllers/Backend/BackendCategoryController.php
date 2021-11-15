@@ -77,4 +77,17 @@ class BackendCategoryController extends Controller
         Category::find($id)->update($data);
         return redirect()->route(route:'get_backend.category.index');
     }
+    public function change_status($id) {
+        $this->AuthLogin();
+        $category = Category::find($id);
+        if($category->c_status == 1){
+            $category->c_status = 0;
+            $category->save();
+            return redirect()->back();
+        }else{
+            $category->c_status = 1;
+            $category->save();
+            return redirect()->back();
+        }
+    }
 }

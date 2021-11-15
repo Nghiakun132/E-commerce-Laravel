@@ -25,21 +25,22 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
         Route::post('update/{id}','BackendCategoryController@update');
 
         Route::get('delete/{id}','BackendCategoryController@delete')->name('get_backend.category.delete');
+        Route::get('change-status/{id}', 'BackendCategoryController@change_status');
 
     });
     //keyword
-    Route::prefix('keyword')->group(function(){
-        Route::get('','BackendKeywordController@index')->name('get_backend.keyword.index');
+    // Route::prefix('keyword')->group(function(){
+    //     Route::get('','BackendKeywordController@index')->name('get_backend.keyword.index');
 
-        Route::get('create','BackendKeywordController@create')->name('get_backend.keyword.create');
-        Route::post('create','BackendKeywordController@store')->name('get_backend.keyword.store');
+    //     Route::get('create','BackendKeywordController@create')->name('get_backend.keyword.create');
+    //     Route::post('create','BackendKeywordController@store')->name('get_backend.keyword.store');
 
-        Route::get('update/{id}','BackendKeywordController@edit')->name('get_backend.keyword.update');
-        Route::post('update/{id}','BackendKeywordController@update');
+    //     Route::get('update/{id}','BackendKeywordController@edit')->name('get_backend.keyword.update');
+    //     Route::post('update/{id}','BackendKeywordController@update');
 
-        Route::get('delete/{id}','BackendKeywordController@delete')->name('get_backend.keyword.delete');
+    //     Route::get('delete/{id}','BackendKeywordController@delete')->name('get_backend.keyword.delete');
 
-    });
+    // });
     //product
     Route::prefix('product')->group(function(){
         Route::get('','BackendProductController@index')->name('get_backend.product.index');
@@ -66,18 +67,18 @@ Route::group(['namespace' =>'Backend','prefix' =>'admin'],function () {
 
     });
     //tag
-    Route::prefix('tag')->group(function(){
-        Route::get('','BackendTagController@index')->name('get_backend.tag.index');
+    // Route::prefix('tag')->group(function(){
+    //     Route::get('','BackendTagController@index')->name('get_backend.tag.index');
 
-        Route::get('create','BackendTagController@create')->name('get_backend.tag.create');
-        Route::post('create','BackendTagController@store')->name('get_backend.tag.store');
+    //     Route::get('create','BackendTagController@create')->name('get_backend.tag.create');
+    //     Route::post('create','BackendTagController@store')->name('get_backend.tag.store');
 
-        Route::get('update/{id}','BackendTagController@edit')->name('get_backend.tag.update');
-        Route::post('update/{id}','BackendTagController@update');
+    //     Route::get('update/{id}','BackendTagController@edit')->name('get_backend.tag.update');
+    //     Route::post('update/{id}','BackendTagController@update');
 
-        Route::get('delete/{id}','BackendTagController@delete')->name('get_backend.tag.delete');
+    //     Route::get('delete/{id}','BackendTagController@delete')->name('get_backend.tag.delete');
 
-    });
+    // });
 //article
     Route::prefix('article')->group(function(){
         Route::get('','BackendArticleController@index')->name('get_backend.article.index');

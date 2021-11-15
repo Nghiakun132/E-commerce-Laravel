@@ -1,6 +1,11 @@
 @extends('layout.app_backend')
 @section('title', 'Danh sách bài viết')
 @section('content')
+<style>
+    .add-add{
+        float: right;
+    }
+</style>
     <div class="container-fluid">
         <h2 class="heading">Danh sách bài viết</h2>
         <div class="card mb-4">
@@ -8,7 +13,7 @@
                 <i class="fas fa-table me-1"></i>
                 Danh sách bài viết
                 <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"><button
-                        class="btn btn-primary">Thêm</button></a>
+                        class="btn btn-primary" class="add-add">Thêm</button></a>
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">

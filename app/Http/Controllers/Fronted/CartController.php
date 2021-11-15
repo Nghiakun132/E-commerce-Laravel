@@ -14,10 +14,6 @@ use Session;
 session_start();
 class CartController extends Controller
 {
-    // public function index()
-    // {
-    //     return view('fronted.cart.index');
-    // }
     public function AuthLogin()
     {
         $id = Session::get('user_id');
@@ -32,7 +28,6 @@ class CartController extends Controller
         $id = $request->product_id;
         $product_info2 = DB::table('products')->where('id', $id)->first();
         $qty = $request->qty;
-        // dd($qty);
         if ($qty <= $product_info2->pro_number && $qty >0) {
             $product_info = DB::table('products')->where('id', $id)->first();
             $id = $request->product_id;
@@ -66,10 +61,15 @@ class CartController extends Controller
     }
     public function update_qty(Request $request)
     {
+        $product_id = $request->product_id;
+        $pro_qty = DB::table('products')->where('id', $product_id)->first();
         $rowId = $request->product_rowid;
         $qty = $request->cart_qty;
+        if($qty > $pro_qty->pro_number){
+            return Redirect()->back()->with('message_qty', 'Số lượng hàng hóa không đủ');
+        }
         Cart::update($rowId, $qty);
-        return Redirect::to('/show-cart');
+        return Redirect()->back()->with('message_qty_success','Cập nhập thành công');
     }
     public function check_coupon(Request $request)
     {

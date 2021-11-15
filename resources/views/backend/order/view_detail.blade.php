@@ -18,6 +18,7 @@
                     <tr>
                         <th>Mã sản phẩm</th>
                         <th>Tên</th>
+                        <th>Ảnh</th>
                         <th>Giá</th>
                         <th>Số lượng</th>
                     </tr>
@@ -26,6 +27,7 @@
                     <tr>
                         <th>Mã sản phẩm</th>
                         <th>Tên</th>
+                        <th>Ảnh</th>
                         <th>Giá</th>
                         <th>Số lượng</th>
                     </tr>
@@ -36,6 +38,7 @@
 
                         <td>{{ $value2->product_id }}</td>
                         <td>{{ $value2->product_name }}</td>
+                        <td><img src="{{'../'.'../'.url_file($value2->pro_avatar) }}" alt="" class="img-thumbnail" height="100px" width="100px"></td>
                         <td>{{ number_format($value2->product_price, 0, ',', '.') . 'đ' }}</td>
                         <td>{{ $value2->product_qty }}</td>
                     </tr>
