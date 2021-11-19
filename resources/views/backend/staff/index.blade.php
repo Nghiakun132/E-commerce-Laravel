@@ -63,7 +63,7 @@
                         @endif</td>
                         <td>
                             @if ($value->level == 0)
-                                <span class="badge rounded-pill bg-success">Giám đốc</span>
+                                <span class="badge rounded-pill bg-success">CEO</span>
                             @elseif ($value->level == 1)
                                     @if ($staff2->level == 0)
                                         <a href="{{URL::to('admin/staff/promotion',$value->id)}}" title="Giáng chức cho nhân viên" onclick="return confirm('Bạn có chắc muốn giáng chức nhân viên này không ?')"><span class="badge rounded-pill bg-warning b">Quản lý</span></a>
@@ -84,8 +84,8 @@
                                 @if ($value->level != 0)
                                 <a href="{{URL::to('admin/staff/delete-account',$value->id)}}" onclick="return confirm('Bạn có chắc muốn xóa không')"><button class="btn btn-danger btn-sm">Xóa</button></a>
                                 @endif
-                            @else
-                                <a href="" title="Bạn không có đặc quyền"><button class="btn btn-danger" disabled="disabled">Xóa</button></a>
+                            {{-- @else
+                                <a href="" title="Bạn không có đặc quyền"><button class="btn btn-danger" disabled="disabled">Xóa</button></a> --}}
                             @endif
                         </td>
                     </tr>

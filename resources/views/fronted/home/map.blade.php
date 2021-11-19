@@ -1,6 +1,6 @@
 @extends('layout.app_fronted')
 @section('content')
-@section('title','Dia chi shop')
+@section('title','Dia chi')
 
 <div class="container-fluid">
     <div class="row">

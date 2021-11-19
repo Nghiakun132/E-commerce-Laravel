@@ -84,8 +84,8 @@
                 <div class="card">
                     <div class="card-avatar">
                         <a href="javascript:;">
-                            <img class="img-fluid img-thumbnail" src="{{ url_file3($info->avatar) }}"
-                                alt="{{ $info->name }}" >
+                            {{-- <img class="img-fluid img-thumbnail" src="{{ url_file3($info->avatar) }}"
+                                alt="{{ $info->name }}" > --}}
                         </a>
                     </div>
                     <div class="card-body">

@@ -86,15 +86,6 @@ Route::group(['namespace' =>'Fronted'],function () {
 
     Route::get('sign-up','UserController@index');
     Route::post('add-user','UserController@add_user');
-    // Route::prefix('user')->group(function(){
-    //     Route::get('','UserController@index')->name('get.user.index');
-    //     Route::get('create','UserController@create')->name('get.user.create');
-    //     Route::post('create','UserController@store')->name('get.user.store');
-    //     // Route::get('ip-user','UserController@ip');
-    // });
-
-    //article
-
 });
 //Backend
 include('route_admin.php');

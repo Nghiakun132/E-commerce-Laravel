@@ -82,7 +82,7 @@
                         <h4>Danh mục</h4>
                         <ul>
                             @foreach ($categoriesGlobal as $category)
-                            <li><a href="#">{{$category->c_name}}</a></li>
+                            <li><a href="{{URL::to('danh-muc',$category->c_slug)}}">{{$category->c_name}}</a></li>
                             @endforeach
                         </ul>
                     </div>

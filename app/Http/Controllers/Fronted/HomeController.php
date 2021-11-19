@@ -55,7 +55,7 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $keywords = $request->tukhoa;
-        $latesProduct = Product::orderBy('id', 'DESC')->limit(3)->get();
+        $latesProduct = Product::orderBy('id', 'DESC')->where('pro_status','<>',1)->limit(3)->get();
         $products = Product::where('pro_name', 'like', '%' . $keywords . '%')->paginate(12);
         $count = count($products);
         return view('fronted.search.index', compact('products', 'count', 'latesProduct'));

@@ -104,44 +104,44 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </div>
                             <input type="text" class="form-control" placeholder="Nhập họ và tên" name="name">
                         </div>
-                        <span class="text-danger">{{$errors->first('name')}}</span>
+                        <span class="text-danger"><b>{{$errors->first('name')}}</b></span>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="email" class="form-control" placeholder="Nhập email" name="email">
                         </div>
-                        <span class="text-danger">{{$errors->first('email')}}</span>
+                        <span class="text-danger"><b>{{$errors->first('email')}}</b></span>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="text" class="form-control" placeholder="Nhập số điện thoại" name="phone">
                         </div>
-                        <span class="text-danger">{{$errors->first('phone')}}</span>
+                        <span class="text-danger"><b>{{$errors->first('phone')}}</b></span>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="text" class="form-control" placeholder="Nhập địa chỉ" name="address">
                         </div>
-                        <span class="text-danger">{{$errors->first('address')}}</span>
+                        <span class="text-danger"><b>{{$errors->first('address')}}</b></span>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" class="form-control" placeholder="Mật khẩu" name="password">
                         </div>
-                        <span class="text-danger">{{$errors->first('password')}}</span>
+                        <span class="text-danger"><b>{{$errors->first('password')}}</b></span>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" name="re_password">
                         </div>
-                        <span class="text-danger">{{$errors->first('re_password')}}</span>
+                        <span class="text-danger"><b>{{$errors->first('re_password')}}</b></span>
                         <div class="form-group">
-                            <input type="submit" value="Đăng nhập" class="btn float-right login_btn">
+                            <input type="submit" value="Đăng ký" class="btn float-right login_btn">
                         </div>
                     </form>
 
